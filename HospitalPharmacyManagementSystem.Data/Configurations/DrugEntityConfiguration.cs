@@ -35,8 +35,7 @@
                 ImageUrl = "https://vitaminshouse.com/wp-content/uploads/2021/05/Advil-Ibuprofen-200mg-24-Capsules-600x600.jpg",
                 Price = 15.92m,
                 CategoryId = 1,
-                PharmacistId = Guid.Parse("1B65AAD4-F701-4209-84DB-746688809C34"),
-                PatientId = Guid.Parse("BC80B1C0-3BA4-419E-ED9A-08DB7E2D50C1")
+                PharmacistId = Guid.Parse("1B65AAD4-F701-4209-84DB-746688809C34")
             };
             drugs.Add(drug);
 

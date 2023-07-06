@@ -9,6 +9,6 @@
             Id = Guid.NewGuid();
         }
 
-        public virtual ICollection<Drug> MyProperty { get; set; } = new HashSet<Drug>();
+        public virtual ICollection<Drug> Prescriptions { get; set; } = new HashSet<Drug>();
     }
 }

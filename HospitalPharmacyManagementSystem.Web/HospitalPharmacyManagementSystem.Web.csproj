@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-HospitalPharmacyManagementSystem.Web-f7fdcfb6-b7e9-4265-9986-784bc59c4f25</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Common\HospitalPharmacyManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data.Models\HospitalPharmacyManagementSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data\HospitalPharmacyManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Web.ViewModels\HospitalPharmacyManagementSystem.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+</Project>

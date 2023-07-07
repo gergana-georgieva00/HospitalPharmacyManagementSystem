@@ -1,12 +1,12 @@
-using HospitalPharmacyManagementSystem.Data.Models;
-using HospitalPharmacyManagementSystem.Services.Data;
-using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
-using HospitalPharmacyManagementSystem.Web.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
 namespace HospitalPharmacyManagementSystem.Web
 {
+    using Microsoft.EntityFrameworkCore;
+
+    using HospitalPharmacyManagementSystem.Data.Models;
+    using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using HospitalPharmacyManagementSystem.Web.Data;
+    using HospitalPharmacyManagementSystem.Web.Infrastructure.Extentions;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -34,7 +34,7 @@ namespace HospitalPharmacyManagementSystem.Web
             })
                 .AddEntityFrameworkStores<HospitalPharmacyManagementSystemDbContext>();
 
-            
+            builder.Services.AddAppServices(typeof(IDrugService));
 
             builder.Services.AddControllersWithViews();
 

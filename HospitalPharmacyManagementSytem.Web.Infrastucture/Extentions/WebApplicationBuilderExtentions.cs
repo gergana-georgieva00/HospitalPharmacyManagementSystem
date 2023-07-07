@@ -1,8 +1,7 @@
-﻿namespace Microsoft.Extensions.DependencyInjection
+﻿namespace HospitalPharmacyManagementSystem.Web.Infrastructure.Extentions
 {
-    using HospitalPharmacyManagementSystem.Services.Data;
-    using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using System.Reflection;
+    using Microsoft.Extensions.DependencyInjection;
 
     public static class WebApplicationBuilderExtentions
     {

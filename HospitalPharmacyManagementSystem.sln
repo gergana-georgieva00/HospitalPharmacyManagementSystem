@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalPharmacyManagementSystem.Services.Data", "HospitalPharmacyManagementSystem.Services.Data\HospitalPharmacyManagementSystem.Services.Data.csproj", "{7541F9E5-84A7-4E74-8152-3F2B2A568096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalPharmacyManagementSytem.Web.Infrastucture", "HospitalPharmacyManagementSytem.Web.Infrastucture\HospitalPharmacyManagementSytem.Web.Infrastucture.csproj", "{83781096-D441-40F3-8FD4-62FCB7CA2786}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{7541F9E5-84A7-4E74-8152-3F2B2A568096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7541F9E5-84A7-4E74-8152-3F2B2A568096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7541F9E5-84A7-4E74-8152-3F2B2A568096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83781096-D441-40F3-8FD4-62FCB7CA2786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83781096-D441-40F3-8FD4-62FCB7CA2786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83781096-D441-40F3-8FD4-62FCB7CA2786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83781096-D441-40F3-8FD4-62FCB7CA2786}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{5728718D-7AB6-46B2-AD75-C2BAB8040AAE} = {36EF699E-01B8-4509-B5E1-FCDCFD82A734}
 		{6CCACE67-1502-472A-BCE4-46C9F911C9E2} = {60303577-E1A7-4E52-89AA-1890DDB68C6D}
 		{7541F9E5-84A7-4E74-8152-3F2B2A568096} = {FC5F5FB2-D748-4D40-A73E-68AEE6C40F6E}
+		{83781096-D441-40F3-8FD4-62FCB7CA2786} = {60303577-E1A7-4E52-89AA-1890DDB68C6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D804E333-7BAA-4936-BC3A-EBF80018C1CA}

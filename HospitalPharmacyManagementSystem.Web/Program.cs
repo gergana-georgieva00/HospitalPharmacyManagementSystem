@@ -1,4 +1,6 @@
 using HospitalPharmacyManagementSystem.Data.Models;
+using HospitalPharmacyManagementSystem.Services.Data;
+using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
 using HospitalPharmacyManagementSystem.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,9 @@ namespace HospitalPharmacyManagementSystem.Web
                      builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
             })
                 .AddEntityFrameworkStores<HospitalPharmacyManagementSystemDbContext>();
+
+            
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

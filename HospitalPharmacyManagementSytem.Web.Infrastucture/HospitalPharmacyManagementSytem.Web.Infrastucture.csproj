@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data.Models\HospitalPharmacyManagementSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data\HospitalPharmacyManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Services.Data\HospitalPharmacyManagementSystem.Services.Data.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Common\HospitalPharmacyManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data.Models\HospitalPharmacyManagementSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data\HospitalPharmacyManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Web.ViewModels\HospitalPharmacyManagementSystem.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

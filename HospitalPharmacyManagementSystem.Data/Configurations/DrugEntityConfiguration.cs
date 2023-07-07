@@ -19,6 +19,8 @@
                 .WithMany(p => p.PrescribedDrugs)
                 .HasForeignKey(d => d.PharmacistId) 
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasData(this.GenerateDrugs());
         }
 
         private Drug[] GenerateDrugs()

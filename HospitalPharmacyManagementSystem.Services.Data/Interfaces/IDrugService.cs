@@ -4,6 +4,6 @@
 
     public interface IDrugService
     {
-        Task<IEnumerable<IndexViewModel>> MostPrescribed();
+        Task<IEnumerable<IndexViewModel>> BestDealsAsync();
     }
 }

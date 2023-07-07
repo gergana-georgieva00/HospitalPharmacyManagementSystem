@@ -2,8 +2,8 @@
 {
     public class IndexViewModel
     {
-        public string Id { get; set; }
-        public string BrandName { get; set; }
-        public string ImageUrl { get; set; }
+        public string Id { get; set; } = null!;
+        public string BrandName { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
     }
 }

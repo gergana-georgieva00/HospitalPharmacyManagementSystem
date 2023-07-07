@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -22,6 +22,7 @@
     <ProjectReference Include="..\HospitalPharmacyManagementSystem.Common\HospitalPharmacyManagementSystem.Common.csproj" />
     <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data.Models\HospitalPharmacyManagementSystem.Data.Models.csproj" />
     <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data\HospitalPharmacyManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Services.Data\HospitalPharmacyManagementSystem.Services.Data.csproj" />
     <ProjectReference Include="..\HospitalPharmacyManagementSystem.Web.ViewModels\HospitalPharmacyManagementSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 

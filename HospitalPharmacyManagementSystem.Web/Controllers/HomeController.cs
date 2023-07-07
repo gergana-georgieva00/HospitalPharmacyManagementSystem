@@ -1,21 +1,23 @@
-﻿using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-
-namespace HospitalPharmacyManagementSystem.Web.Controllers
+﻿namespace HospitalPharmacyManagementSystem.Web.Controllers
 {
+    using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
+
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IDrugService drugService;
+        public HomeController(IDrugService drugService)
         {
-            _logger = logger;
+            this.drugService = drugService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IEnumerable<IndexViewModel> model = await this.drugService.BestDealsAsync();
+
+            return View(model);
         }
 
         public IActionResult Privacy()

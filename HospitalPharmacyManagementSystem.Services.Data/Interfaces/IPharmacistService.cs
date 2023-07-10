@@ -2,6 +2,6 @@
 {
     public interface IPharmacistService
     {
-        Task<bool> PharmacistExistsByUserId(string userId);
+        Task<bool> PharmacistExistsByUserIdAsync(string userId);
     }
 }

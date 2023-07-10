@@ -9,7 +9,8 @@
         [AllowAnonymous]
         public async Task<IActionResult> All()
         {
-            return View();
+            return RedirectToAction("Index", "Home");
+            //return View();
         }
     }
 }

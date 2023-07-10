@@ -6,6 +6,8 @@ namespace HospitalPharmacyManagementSystem.Web
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using HospitalPharmacyManagementSystem.Web.Data;
     using HospitalPharmacyManagementSystem.Web.Infrastructure.Extentions;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
+    using HospitalPharmacyManagementSystem.Services.Data;
 
     public class Program
     {
@@ -35,6 +37,8 @@ namespace HospitalPharmacyManagementSystem.Web
                 .AddEntityFrameworkStores<HospitalPharmacyManagementSystemDbContext>();
 
             builder.Services.AddAppServices(typeof(IDrugService));
+            //builder.Services.AddScoped<IDrugService, DrugService>();
+            //builder.Services.AddScoped<IPharmacistService, PharmacistService>();
 
             builder.Services.AddControllersWithViews();
 

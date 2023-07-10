@@ -13,7 +13,7 @@ namespace HospitalPharmacyManagementSystem.Services.Data
             this.dbContext = dbContext;
         }
 
-        public async Task<bool> PharmacistExistsByUserId(string userId)
+        public async Task<bool> PharmacistExistsByUserIdAsync(string userId)
         {
             bool result = await this.dbContext.Pharmacists
                 .AnyAsync(p => p.UserId.ToString() == userId);

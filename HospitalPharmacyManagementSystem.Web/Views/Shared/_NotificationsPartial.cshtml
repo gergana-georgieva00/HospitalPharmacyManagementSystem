@@ -1,21 +1,21 @@
-﻿@using static HospitalPharmacyManagementSystem.Common.NotificationMessages
+﻿@using static HospitalPharmacyManagementSystem.Common.NotificationMessages;
 
 @if(TempData.ContainsKey(ErrorMessage))
 {
-    toastr.error(TempData[ErrorMessage]);
+    <script>toastr.error('@TempData[ErrorMessage]');</script>
 }
 
 @if (TempData.ContainsKey(WarningMessage))
 {
-    toastr.warning(TempData[WarningMessage]);
+    <script>toastr.warning('@TempData[WarningMessage]');</script>
 }
 
 @if (TempData.ContainsKey(InformationMessage))
 {
-    toastr.info(TempData[InformationMessage]);
+    <script>toastr.info('@TempData[InformationMessage]');</script>
 }
 
 @if (TempData.ContainsKey(SuccessMessage))
 {
-    toastr.success(TempData[SuccessMessage]);
+    <script>toastr.success('@TempData[SuccessMessage]');</script>
 }

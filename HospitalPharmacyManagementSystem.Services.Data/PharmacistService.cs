@@ -19,9 +19,12 @@ namespace HospitalPharmacyManagementSystem.Services.Data
             throw new NotImplementedException();
         }
 
-        public Task<bool> PharmacistExistsByHospitalIdAsync(string hospitalId)
+        public async Task<bool> PharmacistExistsByHospitalIdAsync(string hospitalId)
         {
-            throw new NotImplementedException();
+            bool result = await this.dbContext.Pharmacists
+                .AnyAsync(p => p.HospitalIdNumber.ToString() == hospitalId);
+
+            return result;
         }
 
         public async Task<bool> PharmacistExistsByUserIdAsync(string userId)

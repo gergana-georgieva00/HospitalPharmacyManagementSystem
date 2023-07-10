@@ -1,10 +1,12 @@
-﻿using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
-using HospitalPharmacyManagementSystem.Web.Data;
-using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
-using Microsoft.EntityFrameworkCore;
-
-namespace HospitalPharmacyManagementSystem.Services.Data
+﻿namespace HospitalPharmacyManagementSystem.Services.Data
 {
+    using HospitalPharmacyManagementSystem.Data.Models;
+    using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using HospitalPharmacyManagementSystem.Web.Data;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
+    using Microsoft.EntityFrameworkCore;
+
+
     public class PharmacistService : IPharmacistService
     {
         private readonly HospitalPharmacyManagementSystemDbContext dbContext;
@@ -14,9 +16,16 @@ namespace HospitalPharmacyManagementSystem.Services.Data
             this.dbContext = dbContext;
         }
 
-        public Task Create(string userId, BecomePharmacistFormModel model)
+        public async Task Create(string userId, BecomePharmacistFormModel model)
         {
-            throw new NotImplementedException();
+            Pharmacist pharmacist = new Pharmacist()
+            {
+                Id = Guid.Parse(userId),
+                HospitalIdNumber = model.HospitalIdNumber
+            };
+
+            await this.dbContext.AddAsync(pharmacist);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task<bool> PharmacistExistsByHospitalIdAsync(string hospitalId)

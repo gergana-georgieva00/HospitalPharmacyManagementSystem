@@ -25,6 +25,8 @@ namespace HospitalPharmacyManagementSystem.Web.ViewModels.Drug
         [Display(Name = "Drug Price")]
         public decimal PricePerPackage { get; set; }
 
+        [Display(Name = "Drug Form")]
+        public int DrugForm { get; set; }
 
         public IEnumerable<DrugSelectCategoryViewModel> Categories { get; set; } = new HashSet<DrugSelectCategoryViewModel>();
 

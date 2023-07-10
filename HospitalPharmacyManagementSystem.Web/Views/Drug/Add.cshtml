@@ -1,0 +1,15 @@
+﻿@model AddDrugViewModel
+@{
+    ViewData["Title"] = "Add New Drug To The Platform";
+}
+
+<h2 class="text-center">
+    @ViewData["Title"]
+</h2>
+<hr />
+
+<partial name="_DrugFormPartial" model = "@Model"/>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+}

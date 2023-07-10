@@ -1,6 +1,6 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data.Interfaces
 {
-    using Web.ViewModels.Category
+    using Web.ViewModels.Category;
 
     public interface ICategoryService
     {

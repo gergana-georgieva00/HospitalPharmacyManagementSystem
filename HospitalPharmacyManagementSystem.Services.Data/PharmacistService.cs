@@ -20,18 +20,18 @@
         {
             Pharmacist pharmacist = new Pharmacist()
             {
-                Id = Guid.Parse(userId),
+                UserId = Guid.Parse(userId),
                 HospitalIdNumber = model.HospitalIdNumber
             };
 
-            await this.dbContext.AddAsync(pharmacist);
+            await this.dbContext.Pharmacists.AddAsync(pharmacist);
             await this.dbContext.SaveChangesAsync();
         }
 
         public async Task<bool> PharmacistExistsByHospitalIdAsync(string hospitalId)
         {
             bool result = await this.dbContext.Pharmacists
-                .AnyAsync(p => p.HospitalIdNumber.ToString() == hospitalId);
+                .AnyAsync(p => p.HospitalIdNumber == hospitalId);
 
             return result;
         }

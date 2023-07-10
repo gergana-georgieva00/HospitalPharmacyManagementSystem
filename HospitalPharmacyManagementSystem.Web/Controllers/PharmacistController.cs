@@ -59,7 +59,19 @@
                 return View(model);
             }
 
+            try
+            {
+                await this.pharmacistService.Create(userId, model);
+            }
+            catch (Exception)
+            {
+                this.TempData[ErrorMessage] = "Unexpected error occured while attempting to register you as a partner! " +
+                    "Please try again later or contact administrator!";
 
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            return this.RedirectToAction("Drug", "All");
         }
     }
 }

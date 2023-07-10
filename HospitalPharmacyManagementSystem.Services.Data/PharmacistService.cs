@@ -1,5 +1,6 @@
 ﻿using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
 using HospitalPharmacyManagementSystem.Web.Data;
+using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalPharmacyManagementSystem.Services.Data
@@ -11,6 +12,16 @@ namespace HospitalPharmacyManagementSystem.Services.Data
         public PharmacistService(HospitalPharmacyManagementSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public Task Create(string userId, BecomePharmacistFormModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> PharmacistExistsByHospitalIdAsync(string hospitalId)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<bool> PharmacistExistsByUserIdAsync(string userId)

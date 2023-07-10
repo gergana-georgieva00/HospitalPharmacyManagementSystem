@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HospitalPharmacyManagementSystem.Services.Data.Interfaces
+﻿namespace HospitalPharmacyManagementSystem.Services.Data.Interfaces
 {
-    internal interface ICategoryService
+    using Web.ViewModels.Category
+
+    public interface ICategoryService
     {
+        Task<IEnumerable<DrugSelectCategoryViewModel>> AllCategoriesAsync();
     }
 }

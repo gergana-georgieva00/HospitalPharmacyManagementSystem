@@ -37,8 +37,6 @@ namespace HospitalPharmacyManagementSystem.Web
                 .AddEntityFrameworkStores<HospitalPharmacyManagementSystemDbContext>();
 
             builder.Services.AddAppServices(typeof(IDrugService));
-            //builder.Services.AddScoped<IDrugService, DrugService>();
-            //builder.Services.AddScoped<IPharmacistService, PharmacistService>();
 
             builder.Services.AddControllersWithViews();
 

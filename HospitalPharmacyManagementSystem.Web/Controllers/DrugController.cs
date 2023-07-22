@@ -45,5 +45,11 @@
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddDrugViewModel model)
+        {
+
+        }
     }
 }

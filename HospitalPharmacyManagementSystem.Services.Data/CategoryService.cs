@@ -30,7 +30,7 @@
             return allCategories;
         }
 
-        public async Task<bool> ExistsById(int id)
+        public async Task<bool> ExistsByIdAsync(int id)
         {
             bool result = await this.dbContext
                 .Categories

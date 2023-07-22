@@ -1,6 +1,8 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data
 {
+    using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Web.Data;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
     using Interfaces;
     using Microsoft.EntityFrameworkCore;
@@ -32,6 +34,22 @@
                 .ToArrayAsync();
 
             return fiveBestDeals;
+        }
+
+        public async Task CreateAsync(AddDrugViewModel formModel, string pharmacistId)
+        {
+            Drug newDrug = new Drug()
+            {
+                BrandName = formModel.BrandName,
+                Description = formModel.Description,
+                ImageUrl = formModel.ImageUrl,
+                Price = formModel.PricePerPackage,
+                CategoryId = formModel.CategoryId,
+                PharmacistId = Guid.Parse(pharmacistId)
+            };
+
+            await this.dbContext.Drugs.AddAsync(newDrug);
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

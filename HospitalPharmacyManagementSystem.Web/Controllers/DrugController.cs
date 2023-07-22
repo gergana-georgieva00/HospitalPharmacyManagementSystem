@@ -49,7 +49,28 @@
         [HttpPost]
         public async Task<IActionResult> Add(AddDrugViewModel model)
         {
+            bool isPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(this.User.GetId()!);
 
+            if (!isPharmacist)
+            {
+                this.TempData[ErrorMessage] = "You must be a partner in order to add new Drug to the system!";
+                return this.RedirectToAction("BecomePharmacist", "Pharmacist");
+            }
+
+            bool categoryExists = await this._categoryService
+                .ExistsByIdAsync(model.CategoryId);
+
+            if (!categoryExists)
+            {
+                ModelState.AddModelError(nameof(model.CategoryId), "Seelcted category does not exist!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                model.Categories = await this._categoryService.AllCategoriesAsync();
+                return View(model);
+            }
         }
     }
 }

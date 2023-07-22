@@ -5,6 +5,6 @@
     public interface ICategoryService
     {
         Task<IEnumerable<DrugSelectCategoryViewModel>> AllCategoriesAsync();
-        Task<bool> ExistsById(int id);
+        Task<bool> ExistsByIdAsync(int id);
     }
 }

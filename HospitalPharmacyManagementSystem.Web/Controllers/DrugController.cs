@@ -24,8 +24,7 @@
         [AllowAnonymous]
         public async Task<IActionResult> All()
         {
-            return RedirectToAction("Index", "Home");
-            //return View();
+            return this.Ok();
         }
 
         [HttpGet]

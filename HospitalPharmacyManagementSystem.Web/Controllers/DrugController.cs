@@ -1,5 +1,6 @@
 ﻿namespace HospitalPharmacyManagementSystem.Web.Controllers
 {
+    using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions;
     using Microsoft.AspNetCore.Authorization;
@@ -22,9 +23,16 @@
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All([FromQuery]AllDrugsQueryModel queryModel)
         {
-            return this.Ok();
+            AllDrugsFilteredAndPagedServiceModel serviceModel =
+                await this.drugService.AllAsync(queryModel);
+
+            queryModel.Drugs = serviceModel.Drugs;
+            queryModel.TotalDrugs = serviceModel.TotalDrugsCount;
+            queryModel.Categories = await this._categoryService.AllCategoryNamesAsync();
+
+            return this.View(queryModel);
         }
 
         [HttpGet]

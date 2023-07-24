@@ -30,6 +30,16 @@
             return allCategories;
         }
 
+        public async Task<IEnumerable<string>> AllCategoryNamesAsync()
+        {
+            IEnumerable<string> allNames = await this.dbContext
+                .Categories
+                .Select(c => c.Name)
+                .ToArrayAsync();
+
+            return allNames;
+        }
+
         public async Task<bool> ExistsByIdAsync(int id)
         {
             bool result = await this.dbContext

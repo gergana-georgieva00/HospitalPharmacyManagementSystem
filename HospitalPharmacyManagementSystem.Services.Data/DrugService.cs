@@ -1,8 +1,10 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data
 {
     using HospitalPharmacyManagementSystem.Data.Models;
+    using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.Data;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Drug.Enums;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
     using Interfaces;
     using Microsoft.EntityFrameworkCore;
@@ -17,6 +19,56 @@
         public DrugService(HospitalPharmacyManagementSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public async Task<AllDrugsFilteredAndPagedServiceModel> AllAsync(AllDrugsQueryModel queryModel)
+        {
+            IQueryable<Drug> drugsQuery = this.dbContext
+                .Drugs
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(queryModel.Category))
+            {
+                drugsQuery = drugsQuery
+                    .Where(h => h.Category.Name == queryModel.Category);
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            {
+                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+
+                drugsQuery = drugsQuery
+                    .Where(h => EF.Functions.Like(h.BrandName, wildCard) ||
+                                EF.Functions.Like(h.Description, wildCard));
+            }
+
+            drugsQuery = queryModel.DrugSorting switch
+            {
+                DrugSorting.PriceAscending => drugsQuery
+                    .OrderBy(d => d.Price),
+                DrugSorting.PriceDescending => drugsQuery
+                    .OrderByDescending(d => d.Price)
+            };
+
+            IEnumerable<DrugAllViewModel> allDrugs = await drugsQuery
+                .Where(d => d.IsActive)
+                .Skip((queryModel.CurrentPage - 1) * queryModel.DrugsPerPage)
+                .Take(queryModel.DrugsPerPage)
+                .Select(d => new DrugAllViewModel
+                {
+                    Id = d.Id.ToString(),
+                    BrandName = d.BrandName,
+                    ImageUrl = d.ImageUrl,
+                    Price = d.Price
+                })
+                .ToArrayAsync();
+            int totalDrugs = drugsQuery.Count();
+
+            return new AllDrugsFilteredAndPagedServiceModel()
+            {
+                TotalDrugsCount = totalDrugs,
+                Drugs = allDrugs
+            };
         }
 
         public async Task<IEnumerable<IndexViewModel>> BestDealsAsync()

@@ -6,5 +6,6 @@
     {
         Task<IEnumerable<DrugSelectCategoryViewModel>> AllCategoriesAsync();
         Task<bool> ExistsByIdAsync(int id);
+        Task<IEnumerable<string>> AllCategoryNamesAsync();
     }
 }

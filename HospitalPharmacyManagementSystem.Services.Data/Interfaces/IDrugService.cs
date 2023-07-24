@@ -1,5 +1,6 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data.Interfaces
 {
+    using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
 
@@ -7,5 +8,6 @@
     {
         Task<IEnumerable<IndexViewModel>> BestDealsAsync();
         Task CreateAsync(AddDrugViewModel formModel, string pharmacistId);
+        Task<AllDrugsFilteredAndPagedServiceModel> AllAsync(AllDrugsQueryModel queryModel);
     }
 }

@@ -22,6 +22,7 @@
             this.drugService = drugService;
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery]AllDrugsQueryModel queryModel)
         {

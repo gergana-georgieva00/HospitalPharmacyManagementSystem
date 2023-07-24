@@ -76,9 +76,10 @@
 
             try
             {
-                string pharmacistId = this.
+                string? pharmacistId =
+                    await this.pharmacistService.GetPharmacistIdByUserIdAsync(this.User.GetId()!);
 
-                this.drugService()
+                await this.drugService.CreateAsync(model, pharmacistId!);
             }
             catch (Exception)
             {
@@ -87,6 +88,8 @@
 
                 return this.View(model);
             }
+
+            return this.RedirectToAction("All", "Drug");
         }
     }
 }

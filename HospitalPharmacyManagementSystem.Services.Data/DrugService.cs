@@ -44,14 +44,21 @@
 
             drugsQuery = queryModel.DrugSorting switch
             {
+                DrugSorting.Newest => drugsQuery
+                    .OrderByDescending(h => h.CreatedOn),
+                DrugSorting.Oldest => drugsQuery
+                    .OrderBy(h => h.CreatedOn),
                 DrugSorting.PriceAscending => drugsQuery
-                    .OrderBy(d => d.Price),
+                    .OrderBy(h => h.Price),
                 DrugSorting.PriceDescending => drugsQuery
-                    .OrderByDescending(d => d.Price)
+                    .OrderByDescending(h => h.Price),
+                _ => drugsQuery
+                    //.OrderBy(h => h.RenterId != null)
+                    .OrderByDescending(h => h.CreatedOn)
             };
 
             IEnumerable<DrugAllViewModel> allDrugs = await drugsQuery
-                .Where(d => d.IsActive)
+                //.Where(d => d.IsActive)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.DrugsPerPage)
                 .Take(queryModel.DrugsPerPage)
                 .Select(d => new DrugAllViewModel

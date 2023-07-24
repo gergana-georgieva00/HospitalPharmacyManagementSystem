@@ -8,6 +8,7 @@ namespace HospitalPharmacyManagementSystem.Web
     using HospitalPharmacyManagementSystem.Web.Infrastructure.Extentions;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using HospitalPharmacyManagementSystem.Services.Data;
+    using HospitalPharmacyManagementSytem.Web.Infrastucture.ModelBinders;
 
     public class Program
     {
@@ -38,7 +39,12 @@ namespace HospitalPharmacyManagementSystem.Web
 
             builder.Services.AddAppServices(typeof(IDrugService));
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddMvcOptions(options =>
+                {
+                    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                });
+
 
             var app = builder.Build();
 

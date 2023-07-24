@@ -28,6 +28,20 @@
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task<string?> GetPharmacistIdByUserIdAsync(string userId)
+        {
+            Pharmacist? pharmacist = await this.dbContext
+                .Pharmacists
+                .FirstOrDefaultAsync(p => p.UserId.ToString() == userId);
+
+            if (pharmacist is null)
+            {
+                return null;
+            }
+
+            return pharmacist.Id.ToString();
+        }
+
         public async Task<bool> PharmacistExistsByHospitalIdAsync(string hospitalId)
         {
             bool result = await this.dbContext.Pharmacists

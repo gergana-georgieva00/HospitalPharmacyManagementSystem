@@ -12,11 +12,13 @@
     {
         private readonly ICategoryService _categoryService;
         private readonly IPharmacistService pharmacistService;
+        private readonly IDrugService drugService;
 
-        public DrugController(ICategoryService categoryService, IPharmacistService pharmacistService)
+        public DrugController(ICategoryService categoryService, IPharmacistService pharmacistService, IDrugService drugService)
         {
             _categoryService = categoryService;
             this.pharmacistService = pharmacistService;
+            this.drugService = drugService;
         }
 
         [AllowAnonymous]
@@ -70,6 +72,20 @@
             {
                 model.Categories = await this._categoryService.AllCategoriesAsync();
                 return View(model);
+            }
+
+            try
+            {
+                string pharmacistId = this.
+
+                this.drugService()
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty, "Unexpected error occurred while trying to add new drug!" +
+                    "Please try again or contact administrator!");
+
+                return this.View(model);
             }
         }
     }

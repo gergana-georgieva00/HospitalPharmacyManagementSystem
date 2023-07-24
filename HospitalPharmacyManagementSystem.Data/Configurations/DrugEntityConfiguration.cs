@@ -8,6 +8,9 @@
     {
         public void Configure(EntityTypeBuilder<Drug> builder)
         {
+            builder.Property(d => d.CreatedOn)
+                .HasDefaultValueSql("GETDATE()");
+
             builder
                 .HasOne(d => d.Category)
                 .WithMany(c => c.Drugs)

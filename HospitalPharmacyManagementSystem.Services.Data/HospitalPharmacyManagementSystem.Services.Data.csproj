@@ -10,6 +10,7 @@
     <ProjectReference Include="..\HospitalPharmacyManagementSystem.Common\HospitalPharmacyManagementSystem.Common.csproj" />
     <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data.Models\HospitalPharmacyManagementSystem.Data.Models.csproj" />
     <ProjectReference Include="..\HospitalPharmacyManagementSystem.Data\HospitalPharmacyManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Services.Data.Models\HospitalPharmacyManagementSystem.Services.Data.Models.csproj" />
     <ProjectReference Include="..\HospitalPharmacyManagementSystem.Web.ViewModels\HospitalPharmacyManagementSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 

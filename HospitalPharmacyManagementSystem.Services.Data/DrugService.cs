@@ -10,7 +10,6 @@
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Web.ViewModels;
 
     public class DrugService : IDrugService
     {
@@ -78,19 +77,64 @@
             };
         }
 
+        public async Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId)
+        {
+            var drugs = await this.dbContext
+               .Users
+               .Where(u => u.Id.ToString() == userId)
+               .Select(u => u.Prescriptions
+                        .Select(d => new DrugAllViewModel
+                        {
+                            Id = d.Id.ToString(),
+                            BrandName = d.BrandName,
+                            Description = d.Description,
+                            ImageUrl = d.ImageUrl,
+                            Price = d.Price
+                        }))
+               .SingleOrDefaultAsync();
+
+            //if (drugs is null)
+            //{
+            //    return null;
+            //}
+
+            return drugs;
+        }
+
+        //private  IEnumerable<DrugAllViewModel> GetAllDrugs(string userId)
+        //{
+        //    IQueryable<Drug> drugsQuery = dbContext
+        //        .Users
+        //        .Where(u => u.Id.ToString() == userId)
+        //        .Select(u => u.Prescriptions);
+
+        //    foreach (var drug in dbContext.Users
+        //               .Where(u => u.Id.ToString() == userId).FirstAsync().Prescriptions)
+        //    {
+        //        yield return new DrugAllViewModel()
+        //        {
+        //            Id = drug.Id.ToString(),
+        //            BrandName = drug.BrandName,
+        //            Description = drug.Description,
+        //            ImageUrl = drug.ImageUrl,
+        //            Price = drug.Price
+        //        };
+        //    }
+        //}
+
         public async Task<IEnumerable<IndexViewModel>> BestDealsAsync()
         {
-             IEnumerable<IndexViewModel> fiveBestDeals = await this.dbContext
-                .Drugs
-                .OrderBy(d => d.Price)
-                .Take(5)
-                .Select(d => new IndexViewModel() 
-                { 
-                    Id = d.Id.ToString(),
-                    BrandName = d.BrandName,
-                    ImageUrl = d.ImageUrl
-                })
-                .ToArrayAsync();
+            IEnumerable<IndexViewModel> fiveBestDeals = await this.dbContext
+               .Drugs
+               .OrderBy(d => d.Price)
+               .Take(5)
+               .Select(d => new IndexViewModel()
+               {
+                   Id = d.Id.ToString(),
+                   BrandName = d.BrandName,
+                   ImageUrl = d.ImageUrl
+               })
+               .ToArrayAsync();
 
             return fiveBestDeals;
         }

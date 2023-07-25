@@ -9,5 +9,6 @@
         Task<IEnumerable<IndexViewModel>> BestDealsAsync();
         Task CreateAsync(AddDrugViewModel formModel, string pharmacistId);
         Task<AllDrugsFilteredAndPagedServiceModel> AllAsync(AllDrugsQueryModel queryModel);
+        Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId);
     }
 }

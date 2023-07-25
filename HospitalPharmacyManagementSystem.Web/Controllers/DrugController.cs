@@ -37,6 +37,27 @@
         }
 
         [HttpGet]
+        public async Task<IActionResult> Mine()
+        {
+            List<DrugAllViewModel> myDrugs = new List<DrugAllViewModel>();
+            string userId = this.User.GetId()!;
+
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(userId);
+
+            var drugs = await this.drugService.AllByUserIdAsync(userId);
+            return this.View(drugs);
+            if (isUserPharmacist)
+            {
+                // should redirect or display message
+            }
+            else
+            {
+                
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
             bool isPharmacist = await this.pharmacistService

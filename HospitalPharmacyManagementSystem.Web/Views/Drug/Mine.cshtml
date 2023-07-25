@@ -1,0 +1,22 @@
+﻿@model List<DrugAllViewModel>
+
+@{
+    ViewData["Title"] = "My Drugs";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr/>
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">You do not have any drugs yet!</h2>
+}
+else
+{
+    <div class="row">
+        @foreach (DrugAllViewModel drug in Model)
+        {
+            <partial name="_DrugPartial" model="drug"/>
+        }
+    </div>
+}

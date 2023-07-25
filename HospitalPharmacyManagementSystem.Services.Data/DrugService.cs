@@ -154,5 +154,22 @@
             await this.dbContext.Drugs.AddAsync(newDrug);
             await this.dbContext.SaveChangesAsync();
         }
+
+        public async Task<DrugDetailsViewModel> GetDetailsByIdAsync(string drugId)
+        {
+            Drug drug = await this.dbContext.Drugs
+                .FirstAsync(d => d.Id.ToString() == drugId);
+
+            return new DrugDetailsViewModel()
+            {
+                Id = drug.Id.ToString(),
+                BrandName = drug.BrandName,
+                Description = drug.Description,
+                ImageUrl = drug.ImageUrl,
+                Price = drug.Price,
+                Category = drug.Category.Name,
+                Form = drug.Form.ToString()
+            };
+        }
     }
 }

@@ -1,0 +1,50 @@
+﻿@model DrugDetailsViewModel
+@{
+    ViewBag.Title = "Drug Details";
+}
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<div class="container" style="display:inline">
+    <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" style="width: 20rem;"
+                 src="@Model.ImageUrl" alt="Drug Image">
+        </div>
+        <div class="card col-8 border-0">
+            <p style="font-size:25px;"><u>@Model.BrandName</u></p>
+            <p>Form: <b>@Model.Form</b></p>
+            <p>
+                Price:
+                <b>@String.Format("{0:f2}", Model.Price) BGN</b>
+            </p>
+            <p>@Model.Description</p>
+            <p>Category: <b>@Model.Category</b></p>
+            <div class="form-inline">
+                @if (this.User.Identity?.IsAuthenticated ?? false)
+                {
+                    <a class="btn btn-warning" asp-controller="Drug" aspaction="Edit"
+                   asp-route-id="@Model.Id">Edit</a>
+                    <a class="ml-2 btn btn-danger" asp-controller="Drug" aspaction="Delete"
+                   asp-route-id="@Model.Id">Delete</a>
+                    @*@if (!Model.IsRented)
+                    {
+                        <form class="ml-2" asp-controller="House"
+                      asp-action="Rent" asp-route-id="@Model.Id"
+                              method="post">
+                            <input class="btn btn-primary" type="submit"
+                                   value="Rent" />
+                        </form>
+                    }
+                    else
+                    {
+                        <form class="ml-2" asp-controller="House" asp-action="Leave"
+                      asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit"
+                                   value="Leave" />
+                        </form>
+                    }*@
+                }
+            </div>
+        </div>
+    </div>
+</div>

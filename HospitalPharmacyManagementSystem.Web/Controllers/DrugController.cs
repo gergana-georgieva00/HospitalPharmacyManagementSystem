@@ -58,6 +58,21 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(string id)
+        {
+            DrugDetailsViewModel? viewModel = await this.drugService
+                .GetDetailsByIdAsync(id);
+            if (viewModel is null)
+            {
+                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+                return this.RedirectToAction("All", "Drug");
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
             bool isPharmacist = await this.pharmacistService

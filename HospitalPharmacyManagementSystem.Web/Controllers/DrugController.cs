@@ -61,13 +61,16 @@
         [AllowAnonymous]
         public async Task<IActionResult> Details(string id)
         {
-            DrugDetailsViewModel? viewModel = await this.drugService
-                .GetDetailsByIdAsync(id);
-            if (viewModel is null)
+            bool drugExists = await this.drugService.ExistsByIdAsync(id);
+
+            if (!drugExists)
             {
                 this.TempData[ErrorMessage] = "House with the provided id does not exist!";
                 return this.RedirectToAction("All", "Drug");
             }
+
+            DrugDetailsViewModel viewModel = await this.drugService
+                .GetDetailsByIdAsync(id);
 
             return View(viewModel);
         }

@@ -73,6 +73,12 @@
         }
 
         [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Add()
         {
             bool isPharmacist = await this.pharmacistService

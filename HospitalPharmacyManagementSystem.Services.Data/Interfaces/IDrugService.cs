@@ -3,6 +3,7 @@
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
+    using System.Globalization;
 
     public interface IDrugService
     {
@@ -10,6 +11,8 @@
         Task CreateAsync(AddDrugViewModel formModel, string pharmacistId);
         Task<AllDrugsFilteredAndPagedServiceModel> AllAsync(AllDrugsQueryModel queryModel);
         Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId);
+        Task<bool> ExistsByIdAsync(string houseId);
         Task<DrugDetailsViewModel> GetDetailsByIdAsync(string drugId);
+        Task<AddDrugViewModel> GetHouseForEditByIdAsync();
     }
 }

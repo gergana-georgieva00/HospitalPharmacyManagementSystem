@@ -155,6 +155,15 @@
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task<bool> ExistsByIdAsync(string houseId)
+        {
+            var result = await this.dbContext
+                .Drugs
+                .AnyAsync(d => d.Id.ToString() == houseId);
+
+            return result;
+        }
+
         public async Task<DrugDetailsViewModel> GetDetailsByIdAsync(string drugId)
         {
             Drug drug = await this.dbContext.Drugs
@@ -172,6 +181,11 @@
                 Category = drugCategory.Name,//drug.Category.Name,
                 Form = drug.Form.ToString()
             };
+        }
+
+        public Task<AddDrugViewModel> GetHouseForEditByIdAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

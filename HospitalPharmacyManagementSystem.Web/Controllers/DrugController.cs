@@ -78,7 +78,27 @@
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
+            bool drugExists = await this.drugService.ExistsByIdAsync(id);
 
+            if (!drugExists)
+            {
+                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+                return this.RedirectToAction("All", "Drug");
+            }
+
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(this.User.GetId()!);
+
+            if (!isUserPharmacist)
+            {
+                this.TempData[ErrorMessage] = "You must be registered as a pharmacist in order to edit drug info!";
+                return this.RedirectToAction("Become", "Pharmacist");
+            }
+
+            AddDrugViewModel formModel = await this.drugService
+                .GetDrugForEditByIdAsync(id);
+
+            return this.View(formModel);
         }
 
         [HttpGet]

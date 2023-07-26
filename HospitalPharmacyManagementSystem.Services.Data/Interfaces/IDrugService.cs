@@ -13,6 +13,6 @@
         Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId);
         Task<bool> ExistsByIdAsync(string houseId);
         Task<DrugDetailsViewModel> GetDetailsByIdAsync(string drugId);
-        Task<AddDrugViewModel> GetHouseForEditByIdAsync(string drugId);
+        Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId);
     }
 }

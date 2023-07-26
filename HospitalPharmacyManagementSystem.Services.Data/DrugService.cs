@@ -184,7 +184,7 @@
             };
         }
 
-        public async Task<AddDrugViewModel> GetHouseForEditByIdAsync(string drugId)
+        public async Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId)
         {
             Drug drug = await this.dbContext.Drugs
                 .FirstAsync(d => d.Id.ToString() == drugId);

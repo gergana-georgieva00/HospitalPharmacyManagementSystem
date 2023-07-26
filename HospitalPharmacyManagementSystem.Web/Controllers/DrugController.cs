@@ -97,6 +97,8 @@
 
             AddDrugViewModel formModel = await this.drugService
                 .GetDrugForEditByIdAsync(id);
+            formModel.Categories = await this._categoryService
+                .AllCategoriesAsync();
 
             return this.View(formModel);
         }

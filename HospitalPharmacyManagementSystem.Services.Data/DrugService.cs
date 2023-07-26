@@ -10,6 +10,7 @@
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    //using static HospitalPharmacyManagementSystem.Common.EntityValidationConstants;
 
     public class DrugService : IDrugService
     {
@@ -183,9 +184,22 @@
             };
         }
 
-        public Task<AddDrugViewModel> GetHouseForEditByIdAsync()
+        public async Task<AddDrugViewModel> GetHouseForEditByIdAsync(string drugId)
         {
-            throw new NotImplementedException();
+            Drug drug = await this.dbContext.Drugs
+                .FirstAsync(d => d.Id.ToString() == drugId);
+
+            var drugCategory = await dbContext.Categories.Where(c => c.Id == drug.CategoryId).SingleAsync();
+
+            return new AddDrugViewModel
+            {
+                BrandName = drug.BrandName,
+                Description = drug.Description,
+                ImageUrl = drug.ImageUrl,
+                PricePerPackage = drug.Price,
+                CategoryId = drug.Category.Id,
+                DrugForm = drug.Form.ToString()
+            };
         }
     }
 }

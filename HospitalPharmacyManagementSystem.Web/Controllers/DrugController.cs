@@ -95,12 +95,21 @@
                 return this.RedirectToAction("Become", "Pharmacist");
             }
 
-            AddDrugViewModel formModel = await this.drugService
+            try
+            {
+                AddDrugViewModel formModel = await this.drugService
                 .GetDrugForEditByIdAsync(id);
-            formModel.Categories = await this._categoryService
-                .AllCategoriesAsync();
+                formModel.Categories = await this._categoryService
+                    .AllCategoriesAsync();
 
-            return this.View(formModel);
+                return this.View(formModel);
+            }
+            catch (Exception)
+            {
+                this.TempData[ErrorMessage] = "Unexpected error occurred while trying to update the drug!" +
+                    "Please try again or contact administrator!";
+                return this.RedirectToAction("All", "Drug");
+            }
         }
 
         [HttpPost]
@@ -125,6 +134,8 @@
 
                 return this.View(formModel);
             }
+
+            return this.RedirectToAction("Details", "Drug", new { id });
         }
 
         [HttpGet]

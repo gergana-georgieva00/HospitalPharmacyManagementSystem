@@ -5,6 +5,8 @@ namespace HospitalPharmacyManagementSystem.Web.ViewModels.Drug
 {
     public class DrugPreDeleteViewModel
     {
+        [Display(Name = "Brand Name")]
+
         public string BrandName { get; set; } = null!;
         public string Description { get; set; } = null!;
 

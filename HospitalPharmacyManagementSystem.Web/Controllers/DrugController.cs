@@ -144,6 +144,7 @@
                 return this.View(formModel);
             }
 
+            TempData[SuccessMessage] = "Drug was edited successfully!";
             return this.RedirectToAction("Details", "Drug", new { id });
         }
 
@@ -208,6 +209,7 @@
                 string? pharmacistId =
                     await this.pharmacistService.GetPharmacistIdByUserIdAsync(this.User.GetId()!);
 
+                TempData[SuccessMessage] = "Drug was added successfully!";
                 await this.drugService.CreateAsync(model, pharmacistId!);
             }
             catch (Exception)

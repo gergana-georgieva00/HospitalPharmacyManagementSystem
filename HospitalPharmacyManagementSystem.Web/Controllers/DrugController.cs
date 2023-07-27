@@ -69,10 +69,19 @@
                 return this.RedirectToAction("All", "Drug");
             }
 
-            DrugDetailsViewModel viewModel = await this.drugService
+            try
+            {
+                DrugDetailsViewModel viewModel = await this.drugService
                 .GetDetailsByIdAsync(id);
 
-            return View(viewModel);
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                this.TempData[ErrorMessage] = "Unexpected error occurred while trying to update the drug!" +
+                    "Please try again or contact administrator!";
+                return this.RedirectToAction("All", "Drug");
+            }
         }
 
         [HttpGet]
@@ -83,7 +92,7 @@
             if (!drugExists)
             {
                 this.TempData[ErrorMessage] = "House with the provided id does not exist!";
-                return this.RedirectToAction("All", "Drug");
+                return this.RedirectToAction("Index", "Home");
             }
 
             bool isUserPharmacist = await this.pharmacistService
@@ -150,12 +159,22 @@
                 return this.RedirectToAction("BecomePharmacist", "Pharmacist");
             }
 
-            AddDrugViewModel model = new AddDrugViewModel()
+            try
             {
-                Categories = await this._categoryService.AllCategoriesAsync()
-            };
+                AddDrugViewModel model = new AddDrugViewModel()
+                {
+                    Categories = await this._categoryService.AllCategoriesAsync()
+                };
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty,
+                    "Unexpected error occurred while trying to update the drug!" +
+                    "Please try again or contact administrator!");
+                return this.RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]

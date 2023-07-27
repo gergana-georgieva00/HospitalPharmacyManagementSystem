@@ -1,5 +1,6 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data
 {
+    using HospitalPharmacyManagementSystem.Common.Enums;
     using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.Data;
@@ -156,11 +157,28 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<bool> ExistsByIdAsync(string houseId)
+        public async Task EditDrugByIdAndFormModel(string drugId, AddDrugViewModel formModel)
+        {
+            Drug drug = await this.dbContext
+                .Drugs
+                .FirstAsync(d => d.Id.ToString() == drugId);
+
+            drug.BrandName = formModel.BrandName;
+            drug.Description = formModel.Description;
+            drug.ImageUrl = formModel.ImageUrl;
+            drug.Price = formModel.PricePerPackage;
+            //drug.Form = Enum.TryParse(formModel.DrugForm, DrugForm, );
+            drug.Form = Enum.Parse<DrugForm>(formModel.DrugForm);
+            drug.CategoryId = formModel.CategoryId;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> ExistsByIdAsync(string drugId)
         {
             var result = await this.dbContext
                 .Drugs
-                .AnyAsync(d => d.Id.ToString() == houseId);
+                .AnyAsync(d => d.Id.ToString() == drugId);
 
             return result;
         }

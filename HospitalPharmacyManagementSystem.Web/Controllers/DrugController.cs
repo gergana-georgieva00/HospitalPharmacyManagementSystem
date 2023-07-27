@@ -103,6 +103,30 @@
             return this.View(formModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, AddDrugViewModel formModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                formModel.Categories = await this._categoryService.AllCategoriesAsync();
+                return this.View(formModel);
+            }
+
+            try
+            {
+                await this.drugService.EditDrugByIdAndFormModel(id, formModel);
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty,
+                    "Unexpected error occurred while trying to update the drug!" +
+                    "Please try again or contact administrator!");
+                formModel.Categories = await this._categoryService.AllCategoriesAsync();
+
+                return this.View(formModel);
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> Add()
         {

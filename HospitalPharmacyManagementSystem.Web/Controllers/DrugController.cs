@@ -242,6 +242,21 @@
                 this.TempData[ErrorMessage] = "You must be registered as a pharmacist in order to edit drug info!";
                 return this.RedirectToAction("Become", "Pharmacist");
             }
+
+            try
+            {
+                DrugPreDeleteViewModel viewModel= await this.drugService
+                    .GetDrugForDeleteByIdAsync(id);
+
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty,
+                    "Unexpected error occurred while trying to update the drug!" +
+                    "Please try again or contact administrator!");
+                return this.RedirectToAction("Index", "Home");
+            }
         }
     }
 }

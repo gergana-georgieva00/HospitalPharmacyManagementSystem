@@ -211,9 +211,9 @@
             return new DrugPreDeleteViewModel
             {
                 BrandName = drug.BrandName,
-                Details = drug.Description,
+                Description = drug.Description,
                 ImageUrl = drug.ImageUrl
-            }
+            };
         }
 
         public async Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId)

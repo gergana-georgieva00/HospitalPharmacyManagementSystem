@@ -132,7 +132,7 @@
 
             try
             {
-                await this.drugService.EditDrugByIdAndFormModel(id, formModel);
+                await this.drugService.EditDrugByIdAndFormModelAsync(id, formModel);
             }
             catch (Exception)
             {

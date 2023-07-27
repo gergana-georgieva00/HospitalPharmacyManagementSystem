@@ -157,7 +157,7 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task EditDrugByIdAndFormModel(string drugId, AddDrugViewModel formModel)
+        public async Task EditDrugByIdAndFormModelAsync(string drugId, AddDrugViewModel formModel)
         {
             Drug drug = await this.dbContext
                 .Drugs
@@ -200,6 +200,20 @@
                 Category = drugCategory.Name,//drug.Category.Name,
                 Form = drug.Form.ToString()
             };
+        }
+
+        public async Task<DrugPreDeleteViewModel> GetDrugForDeleteByIdAsync(string drugId)
+        {
+            Drug drug = await this.dbContext
+                .Drugs
+                .FirstAsync(d => d.Id.ToString() == drugId);
+
+            return new DrugPreDeleteViewModel
+            {
+                BrandName = drug.BrandName,
+                Details = drug.Description,
+                ImageUrl = drug.ImageUrl
+            }
         }
 
         public async Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId)

@@ -14,6 +14,7 @@
         Task<bool> ExistsByIdAsync(string drugId);
         Task<DrugDetailsViewModel> GetDetailsByIdAsync(string drugId);
         Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId);
-        Task EditDrugByIdAndFormModel(string drugId, AddDrugViewModel formModel);
+        Task EditDrugByIdAndFormModelAsync(string drugId, AddDrugViewModel formModel);
+        Task<DrugPreDeleteViewModel> GetDrugForDeleteByIdAsync(string drugId);
     }
 }

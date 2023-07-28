@@ -59,7 +59,7 @@
             };
 
             IEnumerable<DrugAllViewModel> allDrugs = await drugsQuery
-                //.Where(d => d.IsActive)
+                .Where(d => d.IsActive)
                 .Skip((queryModel.CurrentPage - 1) * queryModel.DrugsPerPage)
                 .Take(queryModel.DrugsPerPage)
                 .Select(d => new DrugAllViewModel
@@ -81,26 +81,37 @@
 
         public async Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId)
         {
-            var drugs = await this.dbContext
-               .Users
-               .Where(u => u.Id.ToString() == userId)
-               .Select(u => u.Prescriptions
-                        .Select(d => new DrugAllViewModel
-                        {
-                            Id = d.Id.ToString(),
-                            BrandName = d.BrandName,
-                            Description = d.Description,
-                            ImageUrl = d.ImageUrl,
-                            Price = d.Price
-                        }))
-               .SingleOrDefaultAsync();
+            //var drugs = await this.dbContext
+            //   .Users
+            //   .Where(u => u.Id.ToString() == userId)
+            //   .Select(u => u.Prescriptions
+            //            .Select(d => new DrugAllViewModel
+            //            {
+            //                Id = d.Id.ToString(),
+            //                BrandName = d.BrandName,
+            //                Description = d.Description,
+            //                ImageUrl = d.ImageUrl,
+            //                Price = d.Price
+            //            }))
+            //   .SingleOrDefaultAsync();
 
-            //if (drugs is null)
-            //{
-            //    return null;
-            //}
+            //return drugs;
 
-            return drugs;
+            IEnumerable<DrugAllViewModel> allUserDrugs = await dbContext
+                .Drugs
+                .Where(d => d.IsActive &&
+                            d.Patients.Any(p => p.Id.ToString() == userId))
+                .Select(d => new DrugAllViewModel
+                {
+                    Id = d.Id.ToString(),
+                    BrandName = d.BrandName,
+                    Description = d.Description,
+                    ImageUrl = d.ImageUrl,
+                    Price = d.Price
+                })
+                .ToArrayAsync();
+
+            return allUserDrugs;
         }
 
         //private  IEnumerable<DrugAllViewModel> GetAllDrugs(string userId)
@@ -165,13 +176,14 @@
                 .FirstAsync(d => d.Id.ToString() == drugId);
 
             drugToDelete.IsActive = false;
-            this.dbContext.SaveChangesAsync();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task EditDrugByIdAndFormModelAsync(string drugId, AddDrugViewModel formModel)
         {
             Drug drug = await this.dbContext
                 .Drugs
+                .Where(d => d.IsActive)
                 .FirstAsync(d => d.Id.ToString() == drugId);
 
             drug.BrandName = formModel.BrandName;
@@ -189,6 +201,7 @@
         {
             var result = await this.dbContext
                 .Drugs
+                .Where(d => d.IsActive)
                 .AnyAsync(d => d.Id.ToString() == drugId);
 
             return result;
@@ -196,7 +209,9 @@
 
         public async Task<DrugDetailsViewModel> GetDetailsByIdAsync(string drugId)
         {
-            Drug drug = await this.dbContext.Drugs
+            Drug drug = await this.dbContext
+                .Drugs
+                .Where(d => d.IsActive)
                 .FirstAsync(d => d.Id.ToString() == drugId);
 
             var drugCategory = await dbContext.Categories.Where(c => c.Id == drug.CategoryId).SingleAsync();
@@ -217,6 +232,7 @@
         {
             Drug drug = await this.dbContext
                 .Drugs
+                .Where(d => d.IsActive)
                 .FirstAsync(d => d.Id.ToString() == drugId);
 
             return new DrugPreDeleteViewModel
@@ -229,7 +245,9 @@
 
         public async Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId)
         {
-            Drug drug = await this.dbContext.Drugs
+            Drug drug = await this.dbContext
+                .Drugs
+                .Where(d => d.IsActive)
                 .FirstAsync(d => d.Id.ToString() == drugId);
 
             var drugCategory = await dbContext.Categories.Where(c => c.Id == drug.CategoryId).SingleAsync();

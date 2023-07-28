@@ -16,5 +16,6 @@
         Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId);
         Task EditDrugByIdAndFormModelAsync(string drugId, AddDrugViewModel formModel);
         Task<DrugPreDeleteViewModel> GetDrugForDeleteByIdAsync(string drugId);
+        Task DeleteDrugByIdAsync(string houseId);
     }
 }

@@ -157,6 +157,17 @@
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task DeleteDrugByIdAsync(string houseId)
+        {
+            Drug drugToDelete = await this.dbContext
+                .Drugs
+                .Where(d => d.IsActive == true)
+                .FirstAsync(d => d.Id.ToString() == drugId);
+
+            drugToDelete.IsActive = false;
+            this.dbContext.SaveChangesAsync();
+        }
+
         public async Task EditDrugByIdAndFormModelAsync(string drugId, AddDrugViewModel formModel)
         {
             Drug drug = await this.dbContext

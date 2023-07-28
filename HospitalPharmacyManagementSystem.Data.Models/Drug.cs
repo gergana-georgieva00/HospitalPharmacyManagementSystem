@@ -39,6 +39,7 @@
         public Guid PharmacistId { get; set; }
 
         public virtual Pharmacist Pharmacist { get; set; } = null!;
+        public bool IsActive { get; set; }
 
         public virtual ICollection<AppUser> Patients { get; set; } = new HashSet<AppUser>();
     }

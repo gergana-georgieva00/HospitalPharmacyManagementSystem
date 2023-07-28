@@ -258,5 +258,41 @@
                 return this.RedirectToAction("Index", "Home");
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id, DrugPreDeleteViewModel model)
+        {
+            bool drugExists = await this.drugService.ExistsByIdAsync(id);
+
+            if (!drugExists)
+            {
+                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(this.User.GetId()!);
+
+            if (!isUserPharmacist)
+            {
+                this.TempData[ErrorMessage] = "You must be registered as a pharmacist in order to edit drug info!";
+                return this.RedirectToAction("Become", "Pharmacist");
+            }
+
+            try
+            {
+                await this.drugService.DeleteDrugByIdAsync(id);
+
+                this.TempData[WarningMessage] = "Drug deleted successfully!";
+                return this.RedirectToAction("Mine", "Drug");
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty,
+                    "Unexpected error occurred while trying to delete the drug from the system!" +
+                    "Please try again or contact administrator!");
+                return this.RedirectToAction("Index", "Home");
+            }
+        }
     }
 }

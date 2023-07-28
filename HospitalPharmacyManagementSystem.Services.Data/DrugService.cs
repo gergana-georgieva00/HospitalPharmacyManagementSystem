@@ -157,7 +157,7 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteDrugByIdAsync(string houseId)
+        public async Task DeleteDrugByIdAsync(string drugId)
         {
             Drug drugToDelete = await this.dbContext
                 .Drugs

@@ -101,7 +101,7 @@
             IEnumerable<DrugAllViewModel> allUserDrugs = await dbContext
                 .Drugs
                 .Where(d => d.IsActive &&
-                            d.Patients.Any(p => p.Id.ToString() == userId))
+                            d.Patients.Any(p => p.ToString() == userId))
                 .Select(d => new DrugAllViewModel
                 {
                     Id = d.Id.ToString(),

@@ -57,5 +57,20 @@
 
             return result;
         }
+
+        public async Task PrescribeDrugAsync(string id, string userId)
+        {
+            Drug drug = await this.dbContext
+                .Drugs
+                .FirstAsync(d => d.Id.ToString() == id);
+
+            AppUser user = await this.dbContext
+                .Users
+                .FirstAsync(u => u.Id.ToString() == userId);
+
+            drug.Patients.Add(user);
+
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

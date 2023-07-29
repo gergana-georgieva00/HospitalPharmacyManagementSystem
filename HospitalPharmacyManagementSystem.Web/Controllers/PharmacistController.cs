@@ -73,5 +73,11 @@
 
             return this.RedirectToAction("Drug", "All");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Prescribe(string id)
+        {
+            return this.Ok();
+        }
     }
 }

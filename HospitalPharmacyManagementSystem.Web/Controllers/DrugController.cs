@@ -29,6 +29,10 @@
             AllDrugsFilteredAndPagedServiceModel serviceModel =
                 await this.drugService.AllAsync(queryModel);
 
+            string userId = this.User.GetId()!;
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(userId);
+            ViewBag.IsUserPharmacist = isUserPharmacist;
             queryModel.Drugs = serviceModel.Drugs;
             queryModel.TotalDrugs = serviceModel.TotalDrugsCount;
             queryModel.Categories = await this._categoryService.AllCategoryNamesAsync();
@@ -39,22 +43,24 @@
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
-            List<DrugAllViewModel> myDrugs = new List<DrugAllViewModel>();
+            IEnumerable<DrugAllViewModel> myDrugs = new List<DrugAllViewModel>();
             string userId = this.User.GetId()!;
-
             bool isUserPharmacist = await this.pharmacistService
                 .PharmacistExistsByUserIdAsync(userId);
+            ViewBag.IsUserPharmacist = isUserPharmacist;
 
-            var drugs = await this.drugService.AllByUserIdAsync(userId);
-            return this.View(drugs);
-            if (isUserPharmacist)
+            try
             {
-                // should redirect or display message
+                var drugs = await this.drugService.AllByUserIdAsync(userId);
+                return this.View(drugs);
             }
-            else
+            catch (Exception)
             {
-                
+                this.TempData[ErrorMessage] = "Unexpected error occurred!" +
+                    "Please try again or contact administrator!";
+                return this.RedirectToAction("All", "Drug");
             }
+            
         }
 
         [HttpGet]
@@ -62,10 +68,14 @@
         public async Task<IActionResult> Details(string id)
         {
             bool drugExists = await this.drugService.ExistsByIdAsync(id);
+            string userId = this.User.GetId()!;
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(userId);
+            ViewBag.IsUserPharmacist = isUserPharmacist;
 
             if (!drugExists)
             {
-                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+                this.TempData[ErrorMessage] = "Drug with the provided id does not exist!";
                 return this.RedirectToAction("All", "Drug");
             }
 
@@ -91,7 +101,7 @@
 
             if (!drugExists)
             {
-                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+                this.TempData[ErrorMessage] = "Drug with the provided id does not exist!";
                 return this.RedirectToAction("Index", "Home");
             }
 
@@ -151,10 +161,12 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            bool isPharmacist = await this.pharmacistService
-                .PharmacistExistsByUserIdAsync(this.User.GetId()!);
+            string userId = this.User.GetId()!;
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(userId);
+            ViewBag.IsUserPharmacist = isUserPharmacist;
 
-            if (!isPharmacist)
+            if (!isUserPharmacist)
             {
                 this.TempData[ErrorMessage] = "You must be a partner in order to add new Drug to the system!";
                 return this.RedirectToAction("BecomePharmacist", "Pharmacist");
@@ -230,7 +242,7 @@
 
             if (!drugExists)
             {
-                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+                this.TempData[ErrorMessage] = "Drug with the provided id does not exist!";
                 return this.RedirectToAction("Index", "Home");
             }
 
@@ -266,7 +278,7 @@
 
             if (!drugExists)
             {
-                this.TempData[ErrorMessage] = "House with the provided id does not exist!";
+                this.TempData[ErrorMessage] = "Drug with the provided id does not exist!";
                 return this.RedirectToAction("Index", "Home");
             }
 

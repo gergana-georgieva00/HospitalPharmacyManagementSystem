@@ -71,7 +71,8 @@
                 })
                 .ToArrayAsync();
             int totalDrugs = drugsQuery.Count();
-
+            var testCountAllDrugs = allDrugs.Count();
+            var firstDrug = allDrugs.FirstOrDefault();
             return new AllDrugsFilteredAndPagedServiceModel()
             {
                 TotalDrugsCount = totalDrugs,
@@ -223,7 +224,7 @@
                 Description = drug.Description,
                 ImageUrl = drug.ImageUrl,
                 Price = drug.Price,
-                Category = drugCategory.Name,//drug.Category.Name,
+                Category = drugCategory.Name,
                 Form = drug.Form.ToString()
             };
         }

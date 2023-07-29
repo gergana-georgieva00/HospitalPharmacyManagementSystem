@@ -12,6 +12,10 @@
                 .HasDefaultValueSql("GETDATE()");
 
             builder
+                .Property(d => d.IsActive)
+                .HasDefaultValue(true);
+
+            builder
                 .HasOne(d => d.Category)
                 .WithMany(c => c.Drugs)
                 .HasForeignKey(d => d.CategoryId)

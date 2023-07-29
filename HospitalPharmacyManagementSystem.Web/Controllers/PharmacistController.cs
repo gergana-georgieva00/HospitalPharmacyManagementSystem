@@ -13,10 +13,12 @@
     public class PharmacistController : Controller
     {
         private readonly IPharmacistService pharmacistService;
+        private readonly IDrugService drugService;
 
-        public PharmacistController(IPharmacistService pharmacistService)
+        public PharmacistController(IPharmacistService pharmacistService, IDrugService drugService)
         {
             this.pharmacistService = pharmacistService;
+            this.drugService = drugService;
         }
 
         [HttpGet]
@@ -77,7 +79,30 @@
         [HttpPost]
         public async Task<IActionResult> Prescribe(string id)
         {
-            return this.Ok();
+            bool drugExists = await this.drugService
+                .ExistsByIdAsync(id);
+
+            if (!drugExists)
+            {
+                TempData[ErrorMessage] = "Drug with provided id does not exist! " +
+                    "Please try again or add it to the System!";
+
+                return RedirectToAction("All", "Drug");
+            }
+
+            try
+            {
+                await pharmacistService.PrescribeDrugAsync(id, User.GetId()!);
+            }
+            catch (Exception)
+            {
+                this.TempData[ErrorMessage] = "Unexpected error occured while attempting to prescribe the drug! " +
+                    "Please try again later or contact administrator!";
+
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("All", "Drug");
         }
     }
 }

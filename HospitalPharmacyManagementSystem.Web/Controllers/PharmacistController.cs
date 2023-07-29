@@ -76,8 +76,14 @@
             return this.RedirectToAction("Drug", "All");
         }
 
+        //[HttpGet]
+        //public async Task<IActionResult> Prescribe()
+        //{
+        //    return View();
+        //}
+
         [HttpPost]
-        public async Task<IActionResult> Prescribe(string id)
+        public async Task<IActionResult> Prescribe(string id)//, PrescribeFormModel model)
         {
             bool drugExists = await this.drugService
                 .ExistsByIdAsync(id);
@@ -93,6 +99,8 @@
             try
             {
                 await pharmacistService.PrescribeDrugAsync(id, User.GetId()!);
+                //PrescribeFormModel model = await this.pharmacistService
+                //    .
             }
             catch (Exception)
             {

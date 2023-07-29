@@ -3,6 +3,7 @@
     using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using HospitalPharmacyManagementSystem.Web.Data;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
     using Microsoft.EntityFrameworkCore;
 
@@ -58,7 +59,7 @@
             return result;
         }
 
-        public async Task PrescribeDrugAsync(string id, string userId)
+        public async Task<PrescribeFormModel> PrescribeDrugAsync(string id, string userId)
         {
             Drug drug = await this.dbContext
                 .Drugs
@@ -71,6 +72,29 @@
             drug.Patients.Add(user);
 
             await dbContext.SaveChangesAsync();
+
+            IEnumerable<DrugAllViewModel> allDrugs = await this.dbContext
+                .Drugs
+                .Where(d => d.IsActive)
+                .Select(d => new DrugAllViewModel
+                {
+                    Id = d.Id.ToString(),
+                    BrandName = d.BrandName,
+                    ImageUrl = d.ImageUrl,
+                    Price = d.Price
+                })
+                .ToArrayAsync();
+
+            return new PrescribeFormModel
+            {
+                PatientFullName = "",
+                Age = 1,
+                Gender = "male",
+                Drugs = allDrugs,
+                MedicationFrequency = "",
+                Notes = "",
+                PrescriptionCode = new Random().Next(0, 100)
+            };
         }
     }
 }

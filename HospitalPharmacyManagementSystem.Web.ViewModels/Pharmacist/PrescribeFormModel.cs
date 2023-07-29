@@ -10,7 +10,6 @@ namespace HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist
             Drugs = new HashSet<DrugAllViewModel>();
         }
 
-        public string PatientId { get; set; } = null!;
         public string PatientFullName { get; set; } = null!;
         public int Age { get; set; }
         public string Gender { get; set; } = null!;

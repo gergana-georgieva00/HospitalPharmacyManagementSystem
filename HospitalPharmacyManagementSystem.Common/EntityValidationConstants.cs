@@ -32,5 +32,13 @@ namespace HospitalPharmacyManagementSystem.Common
         {
             public const int HospitalIdNumberLength = 8;
         }
+
+        public static class Prescription
+        {
+            public const int NotesMinLength = 50;
+            public const int NotesMaxLength = 500;
+            public const int MedicationFrequencyMinLength = 50;
+            public const int MedicationFrequencyMaxLength = 50;
+        }
     }
 }

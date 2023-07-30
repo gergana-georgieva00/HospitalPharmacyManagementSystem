@@ -16,6 +16,7 @@
         public DbSet<Drug> Drugs { get; set; } = null!;
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Pharmacist> Pharmacists { get; set; } = null!;
+        public DbSet<Prescription> Prescriptions { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

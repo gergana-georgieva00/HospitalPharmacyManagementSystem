@@ -80,40 +80,45 @@
             };
         }
 
-        public async Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId)
+        public Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId)
         {
-            //var drugs = await this.dbContext
-            //   .Users
-            //   .Where(u => u.Id.ToString() == userId)
-            //   .Select(u => u.Prescriptions
-            //            .Select(d => new DrugAllViewModel
-            //            {
-            //                Id = d.Id.ToString(),
-            //                BrandName = d.BrandName,
-            //                Description = d.Description,
-            //                ImageUrl = d.ImageUrl,
-            //                Price = d.Price
-            //            }))
-            //   .SingleOrDefaultAsync();
-
-            //return drugs;
-
-            IEnumerable<DrugAllViewModel> allUserDrugs = await dbContext
-                .Drugs
-                .Where(d => d.IsActive &&
-                            d.Patients.Any(p => p.ToString() == userId))
-                .Select(d => new DrugAllViewModel
-                {
-                    Id = d.Id.ToString(),
-                    BrandName = d.BrandName,
-                    Description = d.Description,
-                    ImageUrl = d.ImageUrl,
-                    Price = d.Price
-                })
-                .ToArrayAsync();
-
-            return allUserDrugs;
+            throw new NotImplementedException();
         }
+
+        //public async Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId)
+        //{
+        //    //var drugs = await this.dbContext
+        //    //   .Users
+        //    //   .Where(u => u.Id.ToString() == userId)
+        //    //   .Select(u => u.Prescriptions
+        //    //            .Select(d => new DrugAllViewModel
+        //    //            {
+        //    //                Id = d.Id.ToString(),
+        //    //                BrandName = d.BrandName,
+        //    //                Description = d.Description,
+        //    //                ImageUrl = d.ImageUrl,
+        //    //                Price = d.Price
+        //    //            }))
+        //    //   .SingleOrDefaultAsync();
+
+        //    //return drugs;
+
+        //    IEnumerable<DrugAllViewModel> allUserDrugs = await dbContext
+        //        .Drugs
+        //        .Where(d => d.IsActive &&
+        //                    d.Patients.Any(p => p.ToString() == userId))
+        //        .Select(d => new DrugAllViewModel
+        //        {
+        //            Id = d.Id.ToString(),
+        //            BrandName = d.BrandName,
+        //            Description = d.Description,
+        //            ImageUrl = d.ImageUrl,
+        //            Price = d.Price
+        //        })
+        //        .ToArrayAsync();
+
+        //    return allUserDrugs;
+        //}
 
         //private  IEnumerable<DrugAllViewModel> GetAllDrugs(string userId)
         //{
@@ -162,7 +167,6 @@
                 ImageUrl = formModel.ImageUrl,
                 Price = formModel.PricePerPackage,
                 CategoryId = formModel.CategoryId,
-                PharmacistId = Guid.Parse(pharmacistId)
             };
 
             await this.dbContext.Drugs.AddAsync(newDrug);

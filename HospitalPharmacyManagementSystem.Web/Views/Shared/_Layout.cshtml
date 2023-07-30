@@ -31,7 +31,7 @@
                         </li>
                         @if (this.User.Identity?.IsAuthenticated ?? false)
                         {
-                            @if (ViewBag.IsUserPharmacist)
+                            @if (ViewBag.IsUserPharmacist is not null && ViewBag.IsUserPharmacist)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Drug" asp-action="Add">Add Drug</a>

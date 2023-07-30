@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalPharmacyManagementSystem.Data.Migrations
 {
     [DbContext(typeof(HospitalPharmacyManagementSystemDbContext))]
-    [Migration("20230706135247_InitializeDb")]
-    partial class InitializeDb
+    [Migration("20230730184019_HideFullNameAndAge")]
+    partial class HideFullNameAndAge
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,9 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -106,6 +109,23 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Over-the-counter"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Prescription"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Complementary medicine"
+                        });
                 });
 
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Drug", b =>
@@ -122,6 +142,11 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -134,10 +159,12 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("PatientId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
-                    b.Property<Guid>("PharmacistId")
+                    b.Property<Guid?>("PrescriptionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
@@ -147,11 +174,47 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("PatientId");
-
-                    b.HasIndex("PharmacistId");
+                    b.HasIndex("PrescriptionId");
 
                     b.ToTable("Drugs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("93cd0c0b-3a82-46ac-8aba-54bcdfd70d89"),
+                            BrandName = "Advil",
+                            CategoryId = 1,
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Provides quick relief for tough pains including headaches, muscle aches, backaches, menstrual pain, minor arthritis and more",
+                            Form = 1,
+                            ImageUrl = "https://vitaminshouse.com/wp-content/uploads/2021/05/Advil-Ibuprofen-200mg-24-Capsules-600x600.jpg",
+                            IsActive = false,
+                            Price = 15.92m
+                        },
+                        new
+                        {
+                            Id = new Guid("8ba6727f-9d8c-4f84-8b51-1c2e8fbbaaa8"),
+                            BrandName = "Lipitor",
+                            CategoryId = 2,
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "LIPITOR is a prescription medicine that contains a cholesterol lowering medicine (statin) called atorvastatin.",
+                            Form = 1,
+                            ImageUrl = "https://pharmacy.ansvel.com.ng/wp-content/uploads/sites/10/2016/03/lipitor-_atorvastatin-calcium_-10mg-x30-tabs-1_fxljg4_500x.webp",
+                            IsActive = false,
+                            Price = 20.71m
+                        },
+                        new
+                        {
+                            Id = new Guid("cbec945e-7122-492f-b23e-81cdfcafc886"),
+                            BrandName = "Nature Made Fish Oil",
+                            CategoryId = 3,
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "The Omega-3 fatty acids (EPA and DHA) found in fish and other marine life help support a healthy heart.",
+                            Form = 2,
+                            ImageUrl = "https://www.bioshop.bg/images/detailed/10/nature-way-fish-oil.jpg",
+                            IsActive = false,
+                            Price = 24.99m
+                        });
                 });
 
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Pharmacist", b =>
@@ -173,6 +236,46 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Pharmacists");
+                });
+
+            modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Prescription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MedicationFrequency")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PharmacistId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ValidUntil")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.HasIndex("PharmacistId");
+
+                    b.ToTable("Prescriptions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -313,26 +416,16 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Drug", b =>
                 {
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Category", "Category")
-                        .WithMany("Drugs")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", "Patient")
-                        .WithMany("MyProperty")
-                        .HasForeignKey("PatientId");
-
-                    b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Pharmacist", "Pharmacist")
-                        .WithMany("PrescribedDrugs")
-                        .HasForeignKey("PharmacistId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Prescription", null)
+                        .WithMany("Medications")
+                        .HasForeignKey("PrescriptionId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Patient");
-
-                    b.Navigation("Pharmacist");
                 });
 
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Pharmacist", b =>
@@ -344,6 +437,25 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Prescription", b =>
+                {
+                    b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", "Patient")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Pharmacist", "Pharmacist")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("PharmacistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+
+                    b.Navigation("Pharmacist");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -399,17 +511,17 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
 
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.AppUser", b =>
                 {
-                    b.Navigation("MyProperty");
-                });
-
-            modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Category", b =>
-                {
-                    b.Navigation("Drugs");
+                    b.Navigation("Prescriptions");
                 });
 
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Pharmacist", b =>
                 {
-                    b.Navigation("PrescribedDrugs");
+                    b.Navigation("Prescriptions");
+                });
+
+            modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Prescription", b =>
+                {
+                    b.Navigation("Medications");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,6 +12,6 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-        public ICollection<Drug> Drugs { get; set; } = new List<Drug>();
+        //public ICollection<Drug> Drugs { get; set; } = new List<Drug>();
     }
 }

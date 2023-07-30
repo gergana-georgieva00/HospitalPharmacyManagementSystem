@@ -10,8 +10,9 @@
             Id = Guid.NewGuid();
         }
 
-        public string FullName { get; set; } = null!;
-        public int Age { get; set; }
+        //public string FullName { get; set; } = null!;
+        //public int Age { get; set; }
         public Gender Gender { get; set; }
+        public virtual ICollection<Prescription> Prescriptions { get; set; } = new HashSet<Prescription>();
     }
 }

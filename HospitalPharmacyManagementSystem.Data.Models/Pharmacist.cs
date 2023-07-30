@@ -20,6 +20,6 @@
         public Guid UserId { get; set; }
         public virtual AppUser User { get; set; } = null!;
 
-        public virtual ICollection<Drug> PrescribedDrugs { get; set; } = new HashSet<Drug>();
+        public virtual ICollection<Prescription> Prescriptions { get; set; } = new HashSet<Prescription>();
     }
 }

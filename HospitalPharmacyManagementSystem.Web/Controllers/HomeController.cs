@@ -35,6 +35,7 @@
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int statusCode)
         {
+
             if (statusCode == 400 || statusCode == 404)
             {
                 return View("Error404");
@@ -46,6 +47,14 @@
             }
 
             return View();
+        }
+
+        private async Task<bool> IsUserPharmacist()
+        {
+            string userId = this.User.GetId()!;
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(userId);
+            return ViewBag.IsUserPharmacist = isUserPharmacist;
         }
     }
 }

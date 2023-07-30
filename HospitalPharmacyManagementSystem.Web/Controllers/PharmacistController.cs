@@ -24,7 +24,7 @@
         [HttpGet]
         public async Task<IActionResult> BecomePharmacist()
         {
-            string? userId = this.User.GetId();
+            string userId = this.User.GetId()!;
             bool isPharmacist = await this.pharmacistService.PharmacistExistsByUserIdAsync(userId);
 
             if (isPharmacist)
@@ -87,6 +87,10 @@
         {
             bool drugExists = await this.drugService
                 .ExistsByIdAsync(id);
+            string userId = this.User.GetId()!;
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(userId);
+            ViewBag.IsUserPharmacist = isUserPharmacist;
 
             if (!drugExists)
             {

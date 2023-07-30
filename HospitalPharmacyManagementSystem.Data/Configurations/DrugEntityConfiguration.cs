@@ -15,17 +15,11 @@
                 .Property(d => d.IsActive)
                 .HasDefaultValue(true);
 
-            builder
-                .HasOne(d => d.Category)
-                .WithMany(c => c.Drugs)
-                .HasForeignKey(d => d.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .HasOne(d => d.Pharmacist)
-                .WithMany(p => p.PrescribedDrugs)
-                .HasForeignKey(d => d.PharmacistId) 
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder
+            //    .HasOne(d => d.Category)
+            //    .WithMany(c => c.Drugs)
+            //    .HasForeignKey(d => d.CategoryId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasData(this.GenerateDrugs());
         }
@@ -44,7 +38,6 @@
                 ImageUrl = "https://vitaminshouse.com/wp-content/uploads/2021/05/Advil-Ibuprofen-200mg-24-Capsules-600x600.jpg",
                 Price = 15.92m,
                 CategoryId = 1,
-                PharmacistId = Guid.Parse("1B65AAD4-F701-4209-84DB-746688809C34")
             };
             drugs.Add(drug);
 
@@ -57,7 +50,6 @@
                 ImageUrl = "https://pharmacy.ansvel.com.ng/wp-content/uploads/sites/10/2016/03/lipitor-_atorvastatin-calcium_-10mg-x30-tabs-1_fxljg4_500x.webp",
                 Price = 20.71m,
                 CategoryId = 2,
-                PharmacistId = Guid.Parse("1B65AAD4-F701-4209-84DB-746688809C34")
             };
             drugs.Add(drug);
 
@@ -70,7 +62,6 @@
                 ImageUrl = "https://www.bioshop.bg/images/detailed/10/nature-way-fish-oil.jpg",
                 Price = 24.99m,
                 CategoryId = 3,
-                PharmacistId = Guid.Parse("1B65AAD4-F701-4209-84DB-746688809C34")
             };
             drugs.Add(drug);
 

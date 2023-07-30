@@ -36,11 +36,11 @@
 
         public virtual Category Category { get; set; } = null!;
 
-        public Guid PharmacistId { get; set; }
+        //public Guid PharmacistId { get; set; }
 
-        public virtual Pharmacist Pharmacist { get; set; } = null!;
+        //public virtual Pharmacist Pharmacist { get; set; } = null!;
         public bool IsActive { get; set; }
 
-        public virtual ICollection<AppUser> Patients { get; set; } = new HashSet<AppUser>();
+        //public virtual ICollection<AppUser> Patients { get; set; } = new HashSet<AppUser>();
     }
 }

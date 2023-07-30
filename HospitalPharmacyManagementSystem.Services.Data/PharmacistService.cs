@@ -69,7 +69,7 @@
                 .Users
                 .FirstAsync(u => u.Id.ToString() == userId);
 
-            drug.Patients.Add(user);
+            //drug.Patients.Add(user);
 
             await dbContext.SaveChangesAsync();
 

@@ -13,6 +13,5 @@
         public string FullName { get; set; }
         public int Age { get; set; }
         public Gender Gender { get; set; }
-        public virtual ICollection<Drug> Prescriptions { get; set; } = new HashSet<Drug>();
     }
 }

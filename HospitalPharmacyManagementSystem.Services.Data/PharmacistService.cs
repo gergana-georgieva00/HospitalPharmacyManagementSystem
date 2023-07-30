@@ -93,7 +93,6 @@
                 Drugs = allDrugs,
                 MedicationFrequency = "",
                 Notes = "",
-                PrescriptionCode = new Random().Next(0, 100)
             };
         }
     }

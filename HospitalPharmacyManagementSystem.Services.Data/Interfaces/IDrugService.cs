@@ -3,6 +3,7 @@
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
     using System.Globalization;
 
     public interface IDrugService
@@ -10,7 +11,7 @@
         Task<IEnumerable<IndexViewModel>> BestDealsAsync();
         Task CreateAsync(AddDrugViewModel formModel, string pharmacistId);
         Task<AllDrugsFilteredAndPagedServiceModel> AllAsync(AllDrugsQueryModel queryModel);
-        Task<IEnumerable<DrugAllViewModel>> AllByUserIdAsync(string userId);
+        Task<IEnumerable<PrescribeFormModel>> AllByUserIdAsync(string userId);
         Task<bool> ExistsByIdAsync(string drugId);
         Task<DrugDetailsViewModel> GetDetailsByIdAsync(string drugId);
         Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId);

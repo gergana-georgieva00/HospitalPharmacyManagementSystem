@@ -16,6 +16,5 @@ namespace HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist
         public IEnumerable<DrugAllViewModel> Drugs { get; set; }
         public string MedicationFrequency { get; set; } = null!;
         public string Notes { get; set; } = null!;
-        public int PrescriptionCode { get; set; }
     }
 }

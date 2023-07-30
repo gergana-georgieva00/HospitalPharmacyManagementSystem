@@ -2,6 +2,7 @@
 {
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
     using HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -43,7 +44,7 @@
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
-            IEnumerable<DrugAllViewModel> myDrugs = new List<DrugAllViewModel>();
+            IEnumerable<PrescribeFormModel> myDrugs = new List<PrescribeFormModel>();
             string userId = this.User.GetId()!;
             bool isUserPharmacist = await this.pharmacistService
                 .PharmacistExistsByUserIdAsync(userId);

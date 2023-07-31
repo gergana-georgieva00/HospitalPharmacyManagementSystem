@@ -8,6 +8,6 @@ namespace HospitalPharmacyManagementSystem.Services.Data.Interfaces
         Task<bool> PharmacistExistsByHospitalIdAsync(string hospitalId);
         Task Create(string userId, BecomePharmacistFormModel model);
         Task<string?> GetPharmacistIdByUserIdAsync(string userId);
-        Task PrescribeDrugAsync(/*string drugId, string userId, */PrescribeFormModel formModel);
+        Task PrescribeDrugAsync(PrescribeFormModel formModel, string userId);
     }
 }

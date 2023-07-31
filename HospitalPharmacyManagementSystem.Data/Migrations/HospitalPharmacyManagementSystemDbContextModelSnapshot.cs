@@ -162,9 +162,6 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<Guid?>("PrescriptionId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -172,14 +169,12 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("PrescriptionId");
-
                     b.ToTable("Drugs");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("93cd0c0b-3a82-46ac-8aba-54bcdfd70d89"),
+                            Id = new Guid("6cfb2f70-68a7-4ba5-b7eb-6b3b77c2e3d0"),
                             BrandName = "Advil",
                             CategoryId = 1,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -191,7 +186,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8ba6727f-9d8c-4f84-8b51-1c2e8fbbaaa8"),
+                            Id = new Guid("cc75d015-ff34-4968-8d45-5ece051ab43a"),
                             BrandName = "Lipitor",
                             CategoryId = 2,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -203,7 +198,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cbec945e-7122-492f-b23e-81cdfcafc886"),
+                            Id = new Guid("4365ac66-017e-409e-8819-44dd02a8e2ae"),
                             BrandName = "Nature Made Fish Oil",
                             CategoryId = 3,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -250,6 +245,9 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<Guid>("MedicationId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -261,13 +259,12 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.Property<Guid>("PharmacistId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("ValidUntil")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicationId");
 
                     b.HasIndex("PatientId");
 
@@ -419,10 +416,6 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Prescription", null)
-                        .WithMany("Medications")
-                        .HasForeignKey("PrescriptionId");
-
                     b.Navigation("Category");
                 });
 
@@ -439,6 +432,12 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
 
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Prescription", b =>
                 {
+                    b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Drug", "Medication")
+                        .WithMany()
+                        .HasForeignKey("MedicationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", "Patient")
                         .WithMany("Prescriptions")
                         .HasForeignKey("PatientId")
@@ -450,6 +449,8 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         .HasForeignKey("PharmacistId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Medication");
 
                     b.Navigation("Patient");
 
@@ -515,11 +516,6 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Pharmacist", b =>
                 {
                     b.Navigation("Prescriptions");
-                });
-
-            modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Prescription", b =>
-                {
-                    b.Navigation("Medications");
                 });
 #pragma warning restore 612, 618
         }

@@ -35,9 +35,9 @@ namespace HospitalPharmacyManagementSystem.Common
 
         public static class Prescription
         {
-            public const int NotesMinLength = 50;
+            public const int NotesMinLength = 5;
             public const int NotesMaxLength = 500;
-            public const int MedicationFrequencyMinLength = 50;
+            public const int MedicationFrequencyMinLength = 5;
             public const int MedicationFrequencyMaxLength = 50;
         }
 

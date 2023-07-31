@@ -81,111 +81,49 @@
             };
         }
 
-        public async Task<IEnumerable<PrescribeFormModel>> AllByUserIdAsync(string userId)
+        public Task<IEnumerable<PrescribeFormModel>> AllByUserIdAsync(string userId)
         {
-            //    //var drugs = await this.dbContext
-            //    //   .Users
-            //    //   .Where(u => u.Id.ToString() == userId)
-            //    //   .Select(u => u.Prescriptions
-            //    //            .Select(d => new DrugAllViewModel
-            //    //            {
-            //    //                Id = d.Id.ToString(),
-            //    //                BrandName = d.BrandName,
-            //    //                Description = d.Description,
-            //    //                ImageUrl = d.ImageUrl,
-            //    //                Price = d.Price
-            //    //            }))
-            //    //   .SingleOrDefaultAsync();
-
-            //    //return drugs;
-
-            //    //IEnumerable<DrugAllViewModel> allUserDrugs = await dbContext
-            //    //    .Drugs
-            //    //    .Where(d => d.IsActive &&
-            //    //                d.Patients.Any(p => p.ToString() == userId))
-            //    //    .Select(d => new DrugAllViewModel
-            //    //    {
-            //    //        Id = d.Id.ToString(),
-            //    //        BrandName = d.BrandName,
-            //    //        Description = d.Description,
-            //    //        ImageUrl = d.ImageUrl,
-            //    //        Price = d.Price
-            //    //    })
-            //    //    .ToArrayAsync();
-
-            //    //return allUserDrugs;
-
-
-            //    IEnumerable<PrescribeFormModel> allUserDrugs = await dbContext
-            //        .Prescriptions
-            //        .Where(p => p.UserId.ToString() == userId)
-            //        .Select(p => new PrescribeFormModel
-            //        {
-            //            PatientFullName = "",
-            //            Age = 1,
-            //            Gender = "male",
-            //            Drugs = p.Medications,
-            //            MedicationFrequency = "",
-            //            Notes = ""
-            //        });
-            //}
-
-            //private  IEnumerable<DrugAllViewModel> GetAllDrugs(string userId)
-            //{
-            //    IQueryable<Drug> drugsQuery = dbContext
-            //        .Users
-            //        .Where(u => u.Id.ToString() == userId)
-            //        .Select(u => u.Prescriptions);
-
-            //    foreach (var drug in dbContext.Users
-            //               .Where(u => u.Id.ToString() == userId).FirstAsync().Prescriptions)
-            //    {
-            //        yield return new DrugAllViewModel()
-            //        {
-            //            Id = drug.Id.ToString(),
-            //            BrandName = drug.BrandName,
-            //            Description = drug.Description,
-            //            ImageUrl = drug.ImageUrl,
-            //            Price = drug.Price
-            //        };
-            //    }
-
-            var drugModelsForPrescriptions = await this.dbContext
-                .Prescriptions
-                .Where(p => p.UserId.ToString() == userId)
-                .ToDictionaryAsync(p => p.Id.ToString(), p => p.Medications.Select(d => new DrugAllViewModel
-                {
-                    Id = d.Id.ToString(),
-                    BrandName = d.BrandName,
-                    Description = d.Description,
-                    Price = d.Price,
-                    ImageUrl = d.ImageUrl
-                }));
-
-            var allPrescriptions = await this.dbContext
-                .Prescriptions
-                .Where(p => p.UserId.ToString() == userId)
-                .Select(p => new PrescribeFormModel
-                {
-                    PatientFullName = "",
-                    Age = 20,
-                    Gender = p.Patient.Gender.ToString(),
-                    Drugs = drugModelsForPrescriptions[p.Id.ToString()],
-                    MedicationFrequency = p.MedicationFrequency,
-                    Notes = p.Notes
-                })
-                .ToListAsync();
-
-            return allPrescriptions;
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<SelectAllDrugsViewModel>> AllDrugsAsync()
+        //public async Task<IEnumerable<PrescribeFormModel>> AllByUserIdAsync(string userId)
+        //{
+        //    var drugModelsForPrescriptions = await this.dbContext
+        //        .Prescriptions
+        //        .Where(p => p.UserId.ToString() == userId)
+        //        .ToDictionaryAsync(p => p.Id.ToString(), p => p.Medications.Select(d => new DrugAllViewModel
+        //        {
+        //            Id = d.Id.ToString(),
+        //            BrandName = d.BrandName,
+        //            Description = d.Description,
+        //            Price = d.Price,
+        //            ImageUrl = d.ImageUrl
+        //        }));
+
+        //    var allPrescriptions = await this.dbContext
+        //        .Prescriptions
+        //        .Where(p => p.UserId.ToString() == userId)
+        //        .Select(p => new PrescribeFormModel
+        //        {
+        //            PatientFullName = "",
+        //            Age = 20,
+        //            Gender = p.Patient.Gender.ToString(),
+        //            //Drugs = drugModelsForPrescriptions[p.Id.ToString()],
+        //            MedicationFrequency = p.MedicationFrequency,
+        //            Notes = p.Notes
+        //        })
+        //        .ToListAsync();
+
+        //    return allPrescriptions;
+        //}
+
+        public async Task<IEnumerable<SelectDrugViewModel>> AllDrugsAsync()
         {
-            IEnumerable<SelectAllDrugsViewModel> allDrugs =
+            IEnumerable<SelectDrugViewModel> allDrugs =
                 await this.dbContext
                 .Drugs
                 .AsNoTracking()
-                .Select(d => new SelectAllDrugsViewModel()
+                .Select(d => new SelectDrugViewModel()
                 {
                     Id = d.Id.ToString(),
                     BrandName = d.BrandName

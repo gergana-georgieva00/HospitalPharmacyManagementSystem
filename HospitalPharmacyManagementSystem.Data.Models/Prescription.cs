@@ -15,11 +15,12 @@
         public Guid Id { get; set; }
         public Guid PharmacistId { get; set; }
         public virtual Pharmacist Pharmacist { get; set; } = null!;
-        public Guid UserId { get; set; }
-        public AppUser Patient { get; set; }
+        public Guid PatientId { get; set; }
+        public virtual AppUser Patient { get; set; } = null!;
         public DateTime CreatedOn { get; set; }
         public DateTime ValidUntil { get; set; }
-        public virtual ICollection<Drug> Medications { get; set; } = new HashSet<Drug>();
+        public virtual Drug Medication { get; set; } = null!;
+        public Guid MedicationId { get; set; }
 
         [MaxLength(MedicationFrequencyMaxLength)]
         public string MedicationFrequency { get; set; } = null!;

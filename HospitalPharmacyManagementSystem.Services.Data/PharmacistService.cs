@@ -59,46 +59,23 @@
             return result;
         }
 
-        public async Task PrescribeDrugAsync(/*string drugId, string userId, */PrescribeFormModel formModel)
+        public async Task PrescribeDrugAsync(PrescribeFormModel formModel, string userId)
         {
-            //Drug drug = await this.dbContext
-            //    .Drugs
-            //    .FirstAsync(d => d.Id.ToString() == drugId);
-
-            //AppUser user = await this.dbContext
-            //    .Users
-            //    .FirstAsync(u => u.Id.ToString() == userId);
-
-            //drug.Patients.Add(user);
+            var pharmacist = await this.dbContext
+                .Pharmacists
+                .FirstAsync(p => p.UserId.ToString() == userId);
+            var user = await this.dbContext
+                .Users.
+                FirstAsync(u => u.Email == formModel.PatientEmail);
 
             Prescription prescription = new Prescription()
             {
-                Medications = (ICollection<Drug>)formModel.Drugs,
+                PharmacistId = pharmacist.Id,
+                PatientId = user.Id,
+                MedicationId = Guid.Parse(formModel.DrugId),
                 MedicationFrequency = formModel.MedicationFrequency,
                 Notes = formModel.Notes
             };
-
-            //IEnumerable<DrugAllViewModel> allDrugs = await this.dbContext
-            //    .Drugs
-            //    .Where(d => d.IsActive)
-            //    .Select(d => new DrugAllViewModel
-            //    {
-            //        Id = d.Id.ToString(),
-            //        BrandName = d.BrandName,
-            //        ImageUrl = d.ImageUrl,
-            //        Price = d.Price
-            //    })
-            //    .ToArrayAsync();
-
-            //return new PrescribeFormModel
-            //{
-            //    PatientFullName = "",
-            //    Age = 1,
-            //    Gender = "male",
-            //    Drugs = allDrugs,
-            //    MedicationFrequency = "",
-            //    Notes = "",
-            //};
 
             this.dbContext.Prescriptions.Add(prescription);
             await dbContext.SaveChangesAsync();

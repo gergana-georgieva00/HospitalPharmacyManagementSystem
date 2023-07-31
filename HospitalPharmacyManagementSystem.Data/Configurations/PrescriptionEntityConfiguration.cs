@@ -26,7 +26,7 @@ namespace HospitalPharmacyManagementSystem.Data.Configurations
             builder
                 .HasOne(p => p.Patient)
                 .WithMany(pa => pa.Prescriptions)
-                .HasForeignKey(p => p.UserId)
+                .HasForeignKey(p => p.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

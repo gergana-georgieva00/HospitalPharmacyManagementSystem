@@ -8,15 +8,17 @@
     public class PrescribeFormModel
     {
         [Required]
-        [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
-        [Display(Name = "Patient Full Name")]
-        public string PatientFullName { get; set; } = null!;
-        public int Age { get; set; }
+        public string PatientEmail { get; set; } = null!;
+        //[Required]
+        //[StringLength(NameMaxLength, MinimumLength = NameMinLength)]
+        //[Display(Name = "Patient Full Name")]
+        //public string PatientFullName { get; set; } = null!;
+        //public int Age { get; set; }
         public string Gender { get; set; } = null!;
-        public IEnumerable<DrugAllViewModel> Drugs { get; set; } = new HashSet<DrugAllViewModel>();
+        public IEnumerable<SelectDrugViewModel> Drugs { get; set; } = new HashSet<SelectDrugViewModel>();
 
         [Display(Name = "Drugs")]
-        public IEnumerable<string> DrugsIds { get; set; } = null!;
+        public string DrugId { get; set; } = null!;
 
         [Required]
         [StringLength(MedicationFrequencyMaxLength, MinimumLength = MedicationFrequencyMinLength)]

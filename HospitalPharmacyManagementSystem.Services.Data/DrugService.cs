@@ -4,6 +4,7 @@
     using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.Data;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Category;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug.Enums;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
@@ -176,6 +177,22 @@
                 .ToListAsync();
 
             return allPrescriptions;
+        }
+
+        public async Task<IEnumerable<SelectAllDrugsViewModel>> AllDrugsAsync()
+        {
+            IEnumerable<SelectAllDrugsViewModel> allDrugs =
+                await this.dbContext
+                .Drugs
+                .AsNoTracking()
+                .Select(d => new SelectAllDrugsViewModel()
+                {
+                    Id = d.Id.ToString(),
+                    BrandName = d.BrandName
+                })
+                .ToArrayAsync();
+
+            return allDrugs;
         }
 
         public async Task<IEnumerable<IndexViewModel>> BestDealsAsync()

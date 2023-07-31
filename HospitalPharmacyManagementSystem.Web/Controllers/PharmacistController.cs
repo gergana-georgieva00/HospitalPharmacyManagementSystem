@@ -118,6 +118,12 @@
                 return RedirectToAction("All", "Drug");
             }
 
+            //if (ModelState.IsValid)
+            //{
+            //    model.Drugs = await this.drugService.AllAsync();
+            //    return View(model);
+            //}
+
             try
             {
                 string? pharmacistId =

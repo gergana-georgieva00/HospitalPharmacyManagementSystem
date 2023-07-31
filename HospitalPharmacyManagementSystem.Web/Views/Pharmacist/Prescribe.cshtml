@@ -36,10 +36,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="Drugs"></label>
-                <input asp-for="Drugs" class="form-control"
-                       placeholder="">
-                <span asp-validation-for="Drugs" class="small textdanger"></span>
+                <label asp-for="DrugsIds"></label>
+                <select class="select" multiple data-mdb-filter="true">
+                    @foreach (var drug in Model.Drugs)
+                    {
+                        <option value="@drug.Id">@drug.BrandName</option>
+                    }
+                </select>
+                <span asp-validation-for="DrugsIds" class="small textdanger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MedicationFrequency"></label>

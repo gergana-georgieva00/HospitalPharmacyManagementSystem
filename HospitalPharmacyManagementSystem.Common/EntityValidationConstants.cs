@@ -40,5 +40,11 @@ namespace HospitalPharmacyManagementSystem.Common
             public const int MedicationFrequencyMinLength = 50;
             public const int MedicationFrequencyMaxLength = 50;
         }
+
+        public static class Patient
+        {
+            public const int NameMinLength = 10;
+            public const int NameMaxLength = 50;
+        }
     }
 }

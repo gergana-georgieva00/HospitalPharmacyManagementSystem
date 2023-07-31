@@ -2,6 +2,7 @@
 {
     using HospitalPharmacyManagementSystem.Services.Data;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
     using HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions;
     using Microsoft.AspNetCore.Authorization;
@@ -76,14 +77,31 @@
             return this.RedirectToAction("Drug", "All");
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Prescribe()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Prescribe()
+        {
+            string userId = this.User.GetId()!;
+            bool isUserPharmacist = await this.pharmacistService
+                .PharmacistExistsByUserIdAsync(userId);
+            ViewBag.IsUserPharmacist = isUserPharmacist;
+
+            try
+            {
+                PrescribeFormModel model = new PrescribeFormModel();
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty,
+                    "Unexpected error occurred while trying to update the drug!" +
+                    "Please try again or contact administrator!");
+                return this.RedirectToAction("Index", "Home");
+            }
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Prescribe(string id)//, PrescribeFormModel model)
+        public async Task<IActionResult> Prescribe(string id, PrescribeFormModel model)
         {
             bool drugExists = await this.drugService
                 .ExistsByIdAsync(id);
@@ -102,9 +120,11 @@
 
             try
             {
-                await pharmacistService.PrescribeDrugAsync(id, User.GetId()!);
-                //PrescribeFormModel model = await this.pharmacistService
-                //    .
+                string? pharmacistId =
+                   await this.pharmacistService.GetPharmacistIdByUserIdAsync(this.User.GetId()!);
+
+                TempData[SuccessMessage] = "Prescription was added successfully!";
+                await this.pharmacistService.PrescribeDrugAsync(model);
             }
             catch (Exception)
             {

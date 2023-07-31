@@ -59,41 +59,49 @@
             return result;
         }
 
-        public async Task<PrescribeFormModel> PrescribeDrugAsync(string id, string userId)
+        public async Task PrescribeDrugAsync(/*string drugId, string userId, */PrescribeFormModel formModel)
         {
-            Drug drug = await this.dbContext
-                .Drugs
-                .FirstAsync(d => d.Id.ToString() == id);
+            //Drug drug = await this.dbContext
+            //    .Drugs
+            //    .FirstAsync(d => d.Id.ToString() == drugId);
 
-            AppUser user = await this.dbContext
-                .Users
-                .FirstAsync(u => u.Id.ToString() == userId);
+            //AppUser user = await this.dbContext
+            //    .Users
+            //    .FirstAsync(u => u.Id.ToString() == userId);
 
             //drug.Patients.Add(user);
 
-            await dbContext.SaveChangesAsync();
-
-            IEnumerable<DrugAllViewModel> allDrugs = await this.dbContext
-                .Drugs
-                .Where(d => d.IsActive)
-                .Select(d => new DrugAllViewModel
-                {
-                    Id = d.Id.ToString(),
-                    BrandName = d.BrandName,
-                    ImageUrl = d.ImageUrl,
-                    Price = d.Price
-                })
-                .ToArrayAsync();
-
-            return new PrescribeFormModel
+            Prescription prescription = new Prescription()
             {
-                PatientFullName = "",
-                Age = 1,
-                Gender = "male",
-                Drugs = allDrugs,
-                MedicationFrequency = "",
-                Notes = "",
+                Medications = (ICollection<Drug>)formModel.Drugs,
+                MedicationFrequency = formModel.MedicationFrequency,
+                Notes = formModel.Notes
             };
+
+            //IEnumerable<DrugAllViewModel> allDrugs = await this.dbContext
+            //    .Drugs
+            //    .Where(d => d.IsActive)
+            //    .Select(d => new DrugAllViewModel
+            //    {
+            //        Id = d.Id.ToString(),
+            //        BrandName = d.BrandName,
+            //        ImageUrl = d.ImageUrl,
+            //        Price = d.Price
+            //    })
+            //    .ToArrayAsync();
+
+            //return new PrescribeFormModel
+            //{
+            //    PatientFullName = "",
+            //    Age = 1,
+            //    Gender = "male",
+            //    Drugs = allDrugs,
+            //    MedicationFrequency = "",
+            //    Notes = "",
+            //};
+
+            this.dbContext.Prescriptions.Add(prescription);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace HospitalPharmacyManagementSystem.Services.Data.Interfaces
         Task Create(string userId, BecomePharmacistFormModel model);
         Task<string?> GetPharmacistIdByUserIdAsync(string userId);
         Task PrescribeDrugAsync(PrescribeFormModel formModel, string userId);
+        Task<bool> PatientExistsByEmailAsync(string email);
     }
 }

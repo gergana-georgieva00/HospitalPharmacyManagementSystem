@@ -81,41 +81,25 @@
             };
         }
 
-        public Task<IEnumerable<PrescribeFormModel>> AllByUserIdAsync(string userId)
+        public async Task<IEnumerable<PrescriptionViewModel>> AllByUserIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            IEnumerable<PrescriptionViewModel> allPrescriptions = await this.dbContext
+                .Prescriptions
+                .Where(p => p.PatientId.ToString() == userId)
+                .OrderBy(p => p.CreatedOn)
+                .Select(p => new PrescriptionViewModel
+                {
+                    Id = p.Id.ToString(),
+                    PharmacistId = p.PharmacistId.ToString(),
+                    PatientEmail = p.Patient.Email,
+                    CreatedOn = p.CreatedOn,
+                    ValidUntil = p.ValidUntil,
+                    MedicationFrequency = p.MedicationFrequency,
+                    Notes = p.Notes
+                }).ToListAsync();
+
+            return allPrescriptions;
         }
-
-        //public async Task<IEnumerable<PrescribeFormModel>> AllByUserIdAsync(string userId)
-        //{
-        //    var drugModelsForPrescriptions = await this.dbContext
-        //        .Prescriptions
-        //        .Where(p => p.UserId.ToString() == userId)
-        //        .ToDictionaryAsync(p => p.Id.ToString(), p => p.Medications.Select(d => new DrugAllViewModel
-        //        {
-        //            Id = d.Id.ToString(),
-        //            BrandName = d.BrandName,
-        //            Description = d.Description,
-        //            Price = d.Price,
-        //            ImageUrl = d.ImageUrl
-        //        }));
-
-        //    var allPrescriptions = await this.dbContext
-        //        .Prescriptions
-        //        .Where(p => p.UserId.ToString() == userId)
-        //        .Select(p => new PrescribeFormModel
-        //        {
-        //            PatientFullName = "",
-        //            Age = 20,
-        //            Gender = p.Patient.Gender.ToString(),
-        //            //Drugs = drugModelsForPrescriptions[p.Id.ToString()],
-        //            MedicationFrequency = p.MedicationFrequency,
-        //            Notes = p.Notes
-        //        })
-        //        .ToListAsync();
-
-        //    return allPrescriptions;
-        //}
 
         public async Task<IEnumerable<SelectDrugViewModel>> AllDrugsAsync()
         {
@@ -258,6 +242,37 @@
                 CategoryId = drug.Category.Id,
                 DrugForm = drug.Form.ToString()
             };
+        }
+
+        public async Task<PrescriptionViewModel> GetPrescriptionByIdAsync(string id)
+        {
+            var prescription = await this
+                .dbContext
+                .Prescriptions
+                .Where(p => p.Id.ToString() == id)
+                .FirstAsync();
+
+                var user = await this.dbContext
+                .Users
+                .Where(u => u.Id == prescription.PatientId)
+                .FirstAsync();
+
+            var medication = await this.dbContext
+                .Drugs
+                .Where(d => d.Id == prescription.MedicationId)
+                .FirstAsync();
+
+            return new PrescriptionViewModel
+                {
+                    Id = id,
+                    PharmacistId = prescription.PharmacistId.ToString(),
+                    PatientEmail = user.Email,
+                    CreatedOn = prescription.CreatedOn,
+                    ValidUntil = prescription.ValidUntil,
+                    DrugBrandName = medication.BrandName,
+                    MedicationFrequency = prescription.MedicationFrequency,
+                    Notes = prescription.Notes
+                };
         }
     }
 }

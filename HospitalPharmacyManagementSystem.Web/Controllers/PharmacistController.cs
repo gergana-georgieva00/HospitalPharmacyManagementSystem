@@ -113,19 +113,19 @@
                 .PharmacistExistsByUserIdAsync(userId);
             ViewBag.IsUserPharmacist = isUserPharmacist;
 
-            //if (!drugExists)
-            //{
-            //    TempData[ErrorMessage] = "Drug with provided id does not exist! " +
-            //        "Please try again or add it to the System!";
+            bool userExists = await
+                this.pharmacistService.PatientExistsByEmailAsync(model.PatientEmail);
 
-            //    return RedirectToAction("All", "Drug");
-            //}
+            if (!userExists)
+            {
+                ModelState.AddModelError(nameof(model.PatientEmail),
+                    "Patient with the provided email does not exist in the system!");
+            }
 
-            //if (ModelState.IsValid)
-            //{
-            //    model.Drugs = await this.drugService.AllAsync();
-            //    return View(model);
-            //}
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
 
             try
             {

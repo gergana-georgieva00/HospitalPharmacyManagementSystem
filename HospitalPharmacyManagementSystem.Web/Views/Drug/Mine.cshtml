@@ -1,7 +1,7 @@
-﻿@model IEnumerable<DrugAllViewModel>
+﻿@model IEnumerable<PrescriptionViewModel>
 
 @{
-    ViewData["Title"] = "My Drugs";
+    ViewData["Title"] = "My Prescriptions";
 }
 
 <h2 class="text-center">@ViewData["Title"]</h2>
@@ -9,14 +9,14 @@
 
 @if (!Model.Any())
 {
-    <h2 class="text-center">You do not have any drugs yet!</h2>
+    <h2 class="text-center">You do not have any prescriptions yet!</h2>
 }
 else
 {
     <div class="row">
-        @foreach (DrugAllViewModel drug in Model)
+        @foreach (var drug in Model)
         {
-            <partial name="_DrugPartial" model="drug"/>
+            <partial name="_PrescriptionPartial" model="drug"/>
         }
     </div>
 }

@@ -44,7 +44,25 @@
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
-            IEnumerable<PrescribeFormModel> myDrugs = new List<PrescribeFormModel>();
+            //IEnumerable<PrescribeFormModel> myDrugs = new List<PrescribeFormModel>();
+            //string userId = this.User.GetId()!;
+            //bool isUserPharmacist = await this.pharmacistService
+            //    .PharmacistExistsByUserIdAsync(userId);
+            //ViewBag.IsUserPharmacist = isUserPharmacist;
+
+            //try
+            //{
+            //    var drugs = await this.drugService.AllByUserIdAsync(userId);
+            //    return this.View(drugs);
+            //}
+            //catch (Exception)
+            //{
+            //    this.TempData[ErrorMessage] = "Unexpected error occurred!" +
+            //        "Please try again or contact administrator!";
+            //    return this.RedirectToAction("All", "Drug");
+            //}
+
+            IEnumerable<PrescriptionViewModel> myDrugs = new List<PrescriptionViewModel>();
             string userId = this.User.GetId()!;
             bool isUserPharmacist = await this.pharmacistService
                 .PharmacistExistsByUserIdAsync(userId);
@@ -61,29 +79,28 @@
                     "Please try again or contact administrator!";
                 return this.RedirectToAction("All", "Drug");
             }
-            
         }
 
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Details(string id)
         {
-            bool drugExists = await this.drugService.ExistsByIdAsync(id);
+            //bool drugExists = await this.drugService.ExistsByIdAsync(id);
             string userId = this.User.GetId()!;
             bool isUserPharmacist = await this.pharmacistService
                 .PharmacistExistsByUserIdAsync(userId);
             ViewBag.IsUserPharmacist = isUserPharmacist;
 
-            if (!drugExists)
-            {
-                this.TempData[ErrorMessage] = "Drug with the provided id does not exist!";
-                return this.RedirectToAction("All", "Drug");
-            }
+            //if (!drugExists)
+            //{
+            //    this.TempData[ErrorMessage] = "Drug with the provided id does not exist!";
+            //    return this.RedirectToAction("All", "Drug");
+            //}
 
             try
             {
-                DrugDetailsViewModel viewModel = await this.drugService
-                .GetDetailsByIdAsync(id);
+                PrescriptionViewModel viewModel = await this.drugService
+                .GetPrescriptionByIdAsync(id);
 
                 return View(viewModel);
             }

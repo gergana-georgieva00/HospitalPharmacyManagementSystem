@@ -43,6 +43,15 @@
             return pharmacist.Id.ToString();
         }
 
+        public async Task<bool> PatientExistsByEmailAsync(string email)
+        {
+            bool result = await this.dbContext
+                .Users
+                .AnyAsync(u => u.Email == email);
+
+            return result;
+        }
+
         public async Task<bool> PharmacistExistsByHospitalIdAsync(string hospitalId)
         {
             bool result = await this.dbContext.Pharmacists
@@ -61,7 +70,7 @@
 
         public async Task PrescribeDrugAsync(PrescribeFormModel formModel, string userId)
         {
-            var pharmacist = await this.dbContext
+            Pharmacist pharmacist = await this.dbContext
                 .Pharmacists
                 .FirstAsync(p => p.UserId.ToString() == userId);
             var user = await this.dbContext

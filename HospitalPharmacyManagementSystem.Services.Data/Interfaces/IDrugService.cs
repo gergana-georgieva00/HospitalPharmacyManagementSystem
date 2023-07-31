@@ -12,7 +12,8 @@
         Task CreateAsync(AddDrugViewModel formModel, string pharmacistId);
         Task<AllDrugsFilteredAndPagedServiceModel> AllAsync(AllDrugsQueryModel queryModel);
         Task<IEnumerable<SelectDrugViewModel>> AllDrugsAsync();
-        Task<IEnumerable<PrescribeFormModel>> AllByUserIdAsync(string userId);
+        Task<IEnumerable<PrescriptionViewModel>> AllByUserIdAsync(string userId);
+        Task<PrescriptionViewModel> GetPrescriptionByIdAsync(string id);
         Task<bool> ExistsByIdAsync(string drugId);
         Task<DrugDetailsViewModel> GetDetailsByIdAsync(string drugId);
         Task<AddDrugViewModel> GetDrugForEditByIdAsync(string drugId);

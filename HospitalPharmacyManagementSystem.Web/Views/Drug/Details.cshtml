@@ -20,29 +20,12 @@
             <p>@Model.Description</p>
             <p>Category: <b>@Model.Category</b></p>
             <div class="form-inline">
-                @if (this.User.Identity?.IsAuthenticated ?? false)
+                @if (User.Identity?.IsAuthenticated ?? false)
                 {
-                    <a class="btn btn-warning" asp-controller="Drug" aspaction="Edit"
-                   asp-route-id="@Model.Id">Edit</a>
-                    <a class="ml-2 btn btn-danger" asp-controller="Drug" aspaction="Delete"
-                   asp-route-id="@Model.Id">Delete</a>
-                    @*@if (!Model.IsRented)
-                    {
-                        <form class="ml-2" asp-controller="House"
-                      asp-action="Rent" asp-route-id="@Model.Id"
-                              method="post">
-                            <input class="btn btn-primary" type="submit"
-                                   value="Rent" />
-                        </form>
-                    }
-                    else
-                    {
-                        <form class="ml-2" asp-controller="House" asp-action="Leave"
-                      asp-route-id="@Model.Id" method="post">
-                            <input class="btn btn-primary" type="submit"
-                                   value="Leave" />
-                        </form>
-                    }*@
+                    <a asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Edit</a>
+                    <a asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
+                       class="btn btn-danger">Delete</a>
                 }
             </div>
         </div>

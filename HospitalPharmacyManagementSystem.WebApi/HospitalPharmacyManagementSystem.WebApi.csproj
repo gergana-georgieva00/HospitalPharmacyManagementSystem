@@ -10,4 +10,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Common\HospitalPharmacyManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Services.Data.Models\HospitalPharmacyManagementSystem.Services.Data.Models.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSystem.Services.Data\HospitalPharmacyManagementSystem.Services.Data.csproj" />
+    <ProjectReference Include="..\HospitalPharmacyManagementSytem.Web.Infrastucture\HospitalPharmacyManagementSytem.Web.Infrastucture.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,12 +1,15 @@
 namespace HospitalPharmacyManagementSystem.WebApi
 {
+    using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using Web.Infrastructure.Extentions;
+
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddAppServices(typeof(IDrugService));
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -14,7 +17,6 @@ namespace HospitalPharmacyManagementSystem.WebApi
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

@@ -3,6 +3,7 @@
     using HospitalPharmacyManagementSystem.Common.Enums;
     using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
+    using HospitalPharmacyManagementSystem.Services.Data.Models.Statistics;
     using HospitalPharmacyManagementSystem.Web.Data;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Category;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
@@ -273,6 +274,15 @@
                     MedicationFrequency = prescription.MedicationFrequency,
                     Notes = prescription.Notes
                 };
+        }
+
+        public async Task<StatisticsServiceModel> GetStatisticsAsync()
+        {
+            return new StatisticsServiceModel()
+            {
+                TotalDrugs = await this.dbContext.Drugs.CountAsync(),
+                TotalPrescriptions = await this.dbContext.Prescriptions.CountAsync()
+            };
         }
     }
 }

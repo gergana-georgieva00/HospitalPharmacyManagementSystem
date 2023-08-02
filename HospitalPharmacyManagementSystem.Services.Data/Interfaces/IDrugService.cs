@@ -1,6 +1,7 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data.Interfaces
 {
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
+    using HospitalPharmacyManagementSystem.Services.Data.Models.Statistics;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
@@ -20,5 +21,6 @@
         Task EditDrugByIdAndFormModelAsync(string drugId, AddDrugViewModel formModel);
         Task<DrugPreDeleteViewModel> GetDrugForDeleteByIdAsync(string drugId);
         Task DeleteDrugByIdAsync(string drugId);
+        Task<StatisticsServiceModel> GetStatisticsAsync();
     }
 }

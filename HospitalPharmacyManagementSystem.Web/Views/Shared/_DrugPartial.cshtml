@@ -4,12 +4,11 @@
 @using HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions;
 @model DrugAllViewModel
 
-@*@inject IPharmacistService AgentService
-@inject IDrugService HouseService
+
+@inject IPharmacistService PharmacistService
 @{
-    bool isUserAgent = await PharmacistService.PharmacistExistsByUserIdAsync(User.GetId()!);
-    bool isHouseRentedByUser = await DrugService.IsRentedByUserWithIdAsync(Model.Id, User.GetId()!);
-}*@
+    bool isUserPharmacist = await PharmacistService.PharmacistExistsByUserIdAsync(this.User.GetId());
+}
 
 <div class="col-md-4">
     <div class="card mb-3">
@@ -26,10 +25,13 @@
 
             @if (User.Identity?.IsAuthenticated ?? false)
             {
-                <a asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
-                   class="btn btn-warning">Edit</a>
-                <a asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
-                   class="btn btn-danger">Delete</a>
+                @if (isUserPharmacist)
+                {
+                    <a asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Edit</a>
+                    <a asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
+                       class="btn btn-danger">Delete</a>
+                }
             }
         </div>
     </div>

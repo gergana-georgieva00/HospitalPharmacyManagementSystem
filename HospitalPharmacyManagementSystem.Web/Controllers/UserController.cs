@@ -10,7 +10,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    using Data.Models;
+    using HospitalPharmacyManagementSystem.Data.Models;
     using ViewModels.User;
 
     using static Common.NotificationMessages;

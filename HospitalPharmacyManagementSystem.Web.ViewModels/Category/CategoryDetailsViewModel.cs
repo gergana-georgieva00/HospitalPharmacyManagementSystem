@@ -5,6 +5,6 @@
     public class CategoryDetailsViewModel : ICategoryDetailsModel
     {
         public string Name { get; set; } = null!;
-        public string Id { get; set; } = null!;
+        public int Id { get; set; }
     }
 }

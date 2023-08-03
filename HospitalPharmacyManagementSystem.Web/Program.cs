@@ -77,7 +77,7 @@ namespace HospitalPharmacyManagementSystem.Web
             app.UseEndpoints(config =>
             {
                 config.MapControllerRoute(
-                    name: "ProtectingUrlPattern", 
+                    name: "ProtectingUrlRoute", 
                     pattern: "/{controller}/{action}/{id}/{information}",
                     defaults: new { Controller = "Category", Action = "Details" }
                     );

@@ -61,7 +61,7 @@
         {
             bool result = await this.dbContext
                 .Categories
-                .AllAsync(c => c.Id == id);
+                .AnyAsync(c => c.Id == id);
 
             return result;
         }
@@ -74,7 +74,7 @@
 
             CategoryDetailsViewModel viewModel = new CategoryDetailsViewModel()
             {
-                Id = category.Id.ToString(),
+                Id = category.Id,
                 Name = category.Name
             };
             return viewModel;

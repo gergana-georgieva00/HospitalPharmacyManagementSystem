@@ -43,6 +43,12 @@ namespace HospitalPharmacyManagementSystem.Web
 
             builder.Services.AddAppServices(typeof(IDrugService));
 
+            builder.Services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.LoginPath = "/User/Login";
+                cfg.AccessDeniedPath = "/Home/Error/401";
+            });
+
             builder.Services.AddControllersWithViews()
                 .AddMvcOptions(options =>
                 {

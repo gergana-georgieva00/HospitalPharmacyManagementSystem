@@ -14,6 +14,7 @@
     using ViewModels.User;
 
     using static Common.NotificationMessages;
+    using HospitalPharmacyManagementSystem.Common.Enums;
 
     [Authorize]
     public class UserController : Controller
@@ -44,10 +45,11 @@
                 return View(model);
             }
 
-            ApplicationUser user = new ApplicationUser()
+            AppUser user = new AppUser()
             {
-                FirstName = model.FirstName,
-                LastName = model.LastName
+                FullName = model.FullName,
+                Age = model.Age,
+                Gender = Enum.Parse<Gender>(model.Gender)
             };
 
             await userManager.SetEmailAsync(user, model.Email);

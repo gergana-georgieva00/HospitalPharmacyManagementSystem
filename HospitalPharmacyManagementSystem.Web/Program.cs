@@ -45,8 +45,11 @@ namespace HospitalPharmacyManagementSystem.Web
                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
                 });
 
+            
 
             var app = builder.Build();
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -71,6 +74,7 @@ namespace HospitalPharmacyManagementSystem.Web
 
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
+           
 
             app.Run();
         }

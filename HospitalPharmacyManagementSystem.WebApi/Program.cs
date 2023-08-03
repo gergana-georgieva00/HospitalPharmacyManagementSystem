@@ -1,6 +1,8 @@
 namespace HospitalPharmacyManagementSystem.WebApi
 {
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using HospitalPharmacyManagementSystem.Web.Data;
+    using Microsoft.EntityFrameworkCore;
     using Web.Infrastructure.Extentions;
 
     public class Program
@@ -9,11 +11,27 @@ namespace HospitalPharmacyManagementSystem.WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            builder.Services.AddDbContext<HospitalPharmacyManagementSystemDbContext>
+                (opt => opt.UseSqlServer(connectionString));
+
             builder.Services.AddAppServices(typeof(IDrugService));
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddCors(setup =>
+            {
+                setup.AddPolicy("HospitalPharmacyManagementSystem", policyBuilder =>
+                {
+                    policyBuilder.WithOrigins("https://localhost:7181/")
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
 
             var app = builder.Build();
 
@@ -29,6 +47,8 @@ namespace HospitalPharmacyManagementSystem.WebApi
 
 
             app.MapControllers();
+
+            app.UseCors("HospitalPharmacyManagementSystem");
 
             app.Run();
         }

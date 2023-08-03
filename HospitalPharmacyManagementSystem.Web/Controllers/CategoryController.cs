@@ -1,10 +1,11 @@
-﻿using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
-using HospitalPharmacyManagementSystem.Web.ViewModels.Category;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace HospitalPharmacyManagementSystem.Web.Controllers
+﻿namespace HospitalPharmacyManagementSystem.Web.Controllers
 {
+    using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Category;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
+    using Web.Infrastructure.Extensions;
     [Authorize]
     public class CategoryController : Controller
     {

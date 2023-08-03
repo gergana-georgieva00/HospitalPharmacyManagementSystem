@@ -3,7 +3,7 @@
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
-    using HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions;
+    using HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Interfaces;

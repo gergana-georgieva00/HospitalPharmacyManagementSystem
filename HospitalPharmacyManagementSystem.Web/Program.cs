@@ -5,7 +5,7 @@ namespace HospitalPharmacyManagementSystem.Web
     using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using HospitalPharmacyManagementSystem.Web.Data;
-    using HospitalPharmacyManagementSystem.Web.Infrastructure.Extentions;
+    using HospitalPharmacyManagementSystem.Web.Infrastructure.Extensions;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using HospitalPharmacyManagementSystem.Services.Data;
     using HospitalPharmacyManagementSytem.Web.Infrastucture.ModelBinders;

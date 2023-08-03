@@ -4,7 +4,7 @@
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
-    using HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions;
+    using HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using static Common.NotificationMessages;

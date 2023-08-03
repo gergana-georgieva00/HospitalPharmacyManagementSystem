@@ -1,9 +1,9 @@
-﻿namespace HospitalPharmacyManagementSystem.Web.Infrastructure.Extentions
+﻿namespace HospitalPharmacyManagementSystem.Web.Infrastructure.Extensions
 {
     using System.Reflection;
     using Microsoft.Extensions.DependencyInjection;
 
-    public static class WebApplicationBuilderExtentions
+    public static class WebApplicationBuilderExtensions
     {
         public static void AddAppServices(this IServiceCollection services, Type serviceType)
         {

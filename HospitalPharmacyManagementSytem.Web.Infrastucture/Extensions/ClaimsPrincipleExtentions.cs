@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 
-namespace HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions
+namespace HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions
 {
-    public static class ClaimsPrincipleExtentions
+    public static class ClaimsPrincipleExtensions
     {
         public static string? GetId(this ClaimsPrincipal user)
         {

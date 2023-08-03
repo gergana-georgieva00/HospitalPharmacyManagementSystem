@@ -2,7 +2,7 @@
 {
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Home;
-    using HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions;
+    using HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;

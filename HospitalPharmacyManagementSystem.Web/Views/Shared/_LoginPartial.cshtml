@@ -7,14 +7,17 @@
 
 @inject IPharmacistService PharmacistService
 @{
-    bool isUserPharmacist = await PharmacistService.PharmacistExistsByUserIdAsync(this.User.GetId());
+    bool isUserPharmacist = await PharmacistService.PharmacistExistsByUserIdAsync(this.User.GetId()!);
+    string userFullName = await UserService.GetFullNameByEmailAsync(this.User.Identity?.Name!);
 }
+
+@inject IUserService UserService
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @userFullName!</a>
     </li>
         @if (!isUserPharmacist)
         {

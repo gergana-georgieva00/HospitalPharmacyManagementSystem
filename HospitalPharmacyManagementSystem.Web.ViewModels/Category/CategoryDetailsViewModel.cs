@@ -4,7 +4,7 @@
 
     public class CategoryDetailsViewModel : ICategoryDetailsModel
     {
-        public string Name { get; } = null!;
+        public string Name { get; set; } = null!;
         public string Id { get; set; } = null!;
     }
 }

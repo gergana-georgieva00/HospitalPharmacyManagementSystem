@@ -1,5 +1,6 @@
 ﻿namespace HospitalPharmacyManagementSystem.Web.Controllers
 {
+    using HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Category;
     using Microsoft.AspNetCore.Authorization;

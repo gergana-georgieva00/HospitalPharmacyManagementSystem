@@ -1,9 +1,11 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data
 {
+    using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using HospitalPharmacyManagementSystem.Web.Data;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Category;
     using Microsoft.EntityFrameworkCore;
+    //using static HospitalPharmacyManagementSystem.Common.EntityValidationConstants;
 
     public class CategoryService : ICategoryService
     {
@@ -62,6 +64,20 @@
                 .AllAsync(c => c.Id == id);
 
             return result;
+        }
+
+        public async Task<CategoryDetailsViewModel> GetDetailsByIdAsync(int id)
+        {
+            Category category = await dbContext
+                .Categories
+                .FirstAsync(c => c.Id == id);
+
+            CategoryDetailsViewModel viewModel = new CategoryDetailsViewModel()
+            {
+                Id = category.Id.ToString(),
+                Name = category.Name
+            };
+            return viewModel;
         }
     }
 }

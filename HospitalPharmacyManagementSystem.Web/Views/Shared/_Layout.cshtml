@@ -1,4 +1,12 @@
 ﻿@using static HospitalPharmacyManagementSystem.Common.GeneralAppConstants
+@using HospitalPharmacyManagementSystem.Services.Data.Interfaces
+@using HospitalPharmacyManagementSytem.Web.Infrastucture.Extentions;
+
+@inject IPharmacistService PharmacistService
+@{
+    bool isUserPharmacist = await PharmacistService.PharmacistExistsByUserIdAsync(this.User.GetId());
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +39,7 @@
                         </li>
                         @if (this.User.Identity?.IsAuthenticated ?? false)
                         {
-                            @if (ViewBag.IsUserPharmacist is not null && ViewBag.IsUserPharmacist)
+                            @if (isUserPharmacist)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Drug" asp-action="Add">Add Drug</a>

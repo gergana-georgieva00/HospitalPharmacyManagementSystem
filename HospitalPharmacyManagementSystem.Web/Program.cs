@@ -9,6 +9,7 @@ namespace HospitalPharmacyManagementSystem.Web
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using HospitalPharmacyManagementSystem.Services.Data;
     using HospitalPharmacyManagementSytem.Web.Infrastucture.ModelBinders;
+    using Microsoft.AspNetCore.Mvc;
 
     public class Program
     {
@@ -43,6 +44,7 @@ namespace HospitalPharmacyManagementSystem.Web
                 .AddMvcOptions(options =>
                 {
                     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
 
             

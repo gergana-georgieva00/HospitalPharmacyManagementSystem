@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using HospitalPharmacyManagementSystem.Web.Data;
 namespace HospitalPharmacyManagementSystem.Web
 {
     using Microsoft.EntityFrameworkCore;

@@ -4,6 +4,7 @@ using HospitalPharmacyManagementSystem.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalPharmacyManagementSystem.Data.Migrations
 {
     [DbContext(typeof(HospitalPharmacyManagementSystemDbContext))]
-    partial class HospitalPharmacyManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230803153148_AddFirstNameAndAgeToAppUser")]
+    partial class AddFirstNameAndAgeToAppUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -421,7 +423,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -432,7 +434,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -443,19 +445,19 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Drug", "Medication")
                         .WithMany()
                         .HasForeignKey("MedicationId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", "Patient")
                         .WithMany("Prescriptions")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.Pharmacist", "Pharmacist")
                         .WithMany("Prescriptions")
                         .HasForeignKey("PharmacistId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Medication");
@@ -470,7 +472,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -479,7 +481,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -488,7 +490,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -497,13 +499,13 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -512,7 +514,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasOne("HospitalPharmacyManagementSystem.Data.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

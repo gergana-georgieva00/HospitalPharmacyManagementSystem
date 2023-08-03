@@ -9,13 +9,13 @@ namespace HospitalPharmacyManagementSystem.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            //builder
-            //    .Property(u => u.FullName)
-            //    .HasDefaultValue("Test");
+            builder
+                .Property(u => u.FullName)
+                .HasDefaultValue("Test");
 
-            //builder
-            //    .Property(u => u.Age)
-            //    .HasDefaultValue("20");
+            builder
+                .Property(u => u.Age)
+                .HasDefaultValue("20");
             builder
                 .Property(u => u.Gender)
                 .HasDefaultValue(Gender.Male);

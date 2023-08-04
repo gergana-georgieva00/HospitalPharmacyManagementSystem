@@ -85,7 +85,10 @@ namespace HospitalPharmacyManagementSystem.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.SeedAdministrator(DevelopmentAdminEmail);
+            if (app.Environment.IsDevelopment())
+            {
+                app.SeedAdministrator(DevelopmentAdminEmail);
+            }
 
             app.UseEndpoints(config =>
             {

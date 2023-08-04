@@ -74,7 +74,7 @@
                 return this.RedirectToAction("Index", "Home");
             }
 
-            return this.RedirectToAction("Drug", "All");
+            return this.RedirectToAction("All", "Drug");
         }
 
         [HttpGet]

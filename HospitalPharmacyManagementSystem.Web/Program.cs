@@ -28,7 +28,7 @@ namespace HospitalPharmacyManagementSystem.Web
 
             builder.Services.AddDefaultIdentity<AppUser>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = 
+                options.SignIn.RequireConfirmedAccount =
                     builder.Configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
                 options.Password.RequireLowercase =
                      builder.Configuration.GetValue<bool>("Identity:Password:RequireLowercase");
@@ -39,6 +39,7 @@ namespace HospitalPharmacyManagementSystem.Web
                 options.Password.RequiredLength =
                      builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
             })
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<HospitalPharmacyManagementSystemDbContext>();
 
             builder.Services.AddAppServices(typeof(IDrugService));

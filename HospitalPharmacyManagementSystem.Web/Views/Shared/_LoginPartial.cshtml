@@ -5,13 +5,15 @@
 @using HospitalPharmacyManagementSystem.Services.Data.Interfaces
 @using HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions;
 
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@inject IUserService UserService
+
 @inject IPharmacistService PharmacistService
 @{
     bool isUserPharmacist = await PharmacistService.PharmacistExistsByUserIdAsync(this.User.GetId()!);
     string userFullName = await UserService.GetFullNameByEmailAsync(this.User.Identity?.Name!);
 }
-
-@inject IUserService UserService
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

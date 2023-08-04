@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Griesoft.AspNetCore.ReCaptcha;
+    //using Griesoft.AspNetCore.ReCaptcha;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -15,8 +15,9 @@
 
     using static Common.NotificationMessages;
     using HospitalPharmacyManagementSystem.Common.Enums;
+    using System;
 
-    [Authorize]
+    //[Authorize]
     public class UserController : Controller
     {
         private readonly SignInManager<AppUser> signInManager;
@@ -36,8 +37,8 @@
         }
 
         [HttpPost]
-        [ValidateRecaptcha(Action = nameof(Register),
-            ValidationFailedAction = ValidationFailedAction.ContinueRequest)]
+        //[ValidateRecaptcha(Action = nameof(Register),
+           // ValidationFailedAction = ValidationFailedAction.ContinueRequest)]
         public async Task<IActionResult> Register(RegisterFormModel model)
         {
             if (!ModelState.IsValid)
@@ -70,7 +71,7 @@
 
             await signInManager.SignInAsync(user, false);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", new { page = "" });
         }
 
         [HttpGet]

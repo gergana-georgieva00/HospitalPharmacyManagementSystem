@@ -23,6 +23,7 @@
 
         [Required]
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
+        [Display(Name = "Full name")]
         public string FullName { get; set; } = null!;
 
         [Required]

@@ -13,6 +13,7 @@ namespace HospitalPharmacyManagementSystem.Web
     using HospitalPharmacyManagementSystem.Services.Data;
     using HospitalPharmacyManagementSytem.Web.Infrastucture.ModelBinders;
     using Microsoft.AspNetCore.Mvc;
+    using static Common.GeneralAppConstants;
 
     public class Program
     {
@@ -83,6 +84,8 @@ namespace HospitalPharmacyManagementSystem.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.SeedAdministrator(DevelopmentAdminEmail);
 
             app.UseEndpoints(config =>
             {

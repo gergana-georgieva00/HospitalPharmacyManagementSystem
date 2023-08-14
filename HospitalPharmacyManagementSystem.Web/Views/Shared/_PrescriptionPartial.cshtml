@@ -18,7 +18,7 @@
                 <b>@($"{Model.PatientEmail}") </b>
             </h6>
             <br />
-            <a asp-controller="Prescription" asp-action="PrescriptionDetails" asp-route-id="@Model.Id"
+            <a asp-area="" asp-controller="Prescription" asp-action="PrescriptionDetails" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
             @*@if (User.Identity?.IsAuthenticated ?? false)
             {

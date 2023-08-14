@@ -20,16 +20,16 @@
                 <b>@($"{Model.Price:f2}") BGN</b>
             </h6>
             <br />
-            <a asp-controller="Drug" asp-action="Details" asp-route-id="@Model.Id"
+            <a asp-area="" asp-controller="Drug" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
 
             @if (User.Identity?.IsAuthenticated ?? false)
             {
                 @if (isUserPharmacist)
                 {
-                    <a asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
+                    <a asp-area="" asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
                        class="btn btn-warning">Edit</a>
-                    <a asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
+                    <a asp-area="" asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
                        class="btn btn-danger">Delete</a>
                 }
             }

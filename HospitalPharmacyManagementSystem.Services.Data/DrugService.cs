@@ -86,7 +86,7 @@
         {
             IEnumerable<PrescriptionViewModel> allPrescriptions = await this.dbContext
                 .Prescriptions
-                .Where(p => p.PatientId.ToString() == userId)
+                .Where(p => p.PharmacistId.ToString() == userId)
                 .OrderBy(p => p.CreatedOn)
                 .Select(p => new PrescriptionViewModel
                 {

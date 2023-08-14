@@ -1,0 +1,17 @@
+﻿@model MyDrugsViewModel
+@{
+    ViewBag.Title = "My Prescriptions";
+}
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<h4>My Prescribed Drugs</h4>
+@if (!Model.PrescribedDrugs.Any())
+{
+    <h2 class="text-center">You have no prescriptions added yet!</h2>
+}
+<div class="row">
+    @foreach (var prescription in Model.PrescribedDrugs)
+    {
+        @await Html.PartialAsync("~/Views/Shared/_PrescriptionPartial.cshtml", prescription)
+    }
+</div>

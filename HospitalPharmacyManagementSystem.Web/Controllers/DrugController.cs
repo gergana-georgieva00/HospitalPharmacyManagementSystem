@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Interfaces;
+    using static Common.GeneralAppConstants;
     using static Common.NotificationMessages;
 
     [Authorize]
@@ -44,6 +45,11 @@
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
+            if (this.User.IsInRole(AdminRoleName))
+            {
+                return this.RedirectToAction("Mine", "Drug", new { Area = AdminAreaName });
+            }
+
             IEnumerable<PrescriptionViewModel> myDrugs = new List<PrescriptionViewModel>();
             string userId = this.User.GetId()!;
             bool isUserPharmacist = await this.pharmacistService

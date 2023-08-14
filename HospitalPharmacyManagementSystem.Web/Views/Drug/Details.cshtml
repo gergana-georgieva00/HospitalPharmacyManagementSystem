@@ -22,9 +22,9 @@
             <div class="form-inline">
                 @if (User.Identity?.IsAuthenticated ?? false)
                 {
-                    <a asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
+                    <a asp-area = "" asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
                        class="btn btn-warning">Edit</a>
-                    <a asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
+                    <a asp-area="" asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
                        class="btn btn-danger">Delete</a>
                 }
             </div>

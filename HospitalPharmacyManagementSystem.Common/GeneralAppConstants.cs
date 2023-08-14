@@ -7,5 +7,6 @@
         public const int EntitiesPerPage = 3;
         public const string AdminRoleName = "Administrator";
         public const string DevelopmentAdminEmail = "admin@gmail.com";
+        public const string AdminAreaName = "Admin";
     }
 }

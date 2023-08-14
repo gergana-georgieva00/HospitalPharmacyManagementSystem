@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
+    using static Common.GeneralAppConstants;
 
     public class HomeController : Controller
     {
@@ -19,6 +20,11 @@
 
         public async Task<IActionResult> Index()
         {
+            if (this.User.IsInRole(AdminRoleName))
+            {
+                return this.RedirectToAction("Index", "Home", new { Area = AdminAreaName });
+            }
+
             IEnumerable<IndexViewModel> model = await this.drugService.BestDealsAsync();
             string userId = this.User.GetId()!;
             bool isUserPharmacist = await this.pharmacistService

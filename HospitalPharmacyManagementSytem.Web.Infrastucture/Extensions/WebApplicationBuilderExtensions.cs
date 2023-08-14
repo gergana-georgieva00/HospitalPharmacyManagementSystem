@@ -69,9 +69,9 @@
             return app;
         }
 
-        //public static IApplicationBuilder EnableOnlineUsersCheck(this IApplicationBuilder app)
-        //{
-        //    return app.UseMiddleware<OnlineUsersMiddleware>();
-        //}
+        public static IApplicationBuilder EnableOnlineUsersCheck(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<OnlineUsersMiddleware>();
+        }
     }
 }

@@ -45,6 +45,8 @@ namespace HospitalPharmacyManagementSystem.Web
 
             builder.Services.AddAppServices(typeof(IDrugService));
 
+            builder.Services.AddRecaptchaService();
+
             builder.Services.ConfigureApplicationCookie(cfg =>
             {
                 cfg.LoginPath = "/User/Login";

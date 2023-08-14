@@ -1,4 +1,5 @@
 ﻿@using HospitalPharmacyManagementSystem.Web.ViewModels.User;
+@using HospitalPharmacyManagementSytem.Web.Infrastucture.Middlewares;
 @model IEnumerable<UserViewModel>
 @{
     ViewBag.Title = "All Users";
@@ -12,6 +13,7 @@
             <th><label>Full Name</label></th>
             <th><label>Phone Number / Hospital Id</label></th>
             <th><label>User is Pharmacist</label></th>
+            <th><label>User is Online</label></th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +25,16 @@
                 <td><label>@user.PhoneNumber</label></td>
                 <td>
                     @if (user.PhoneNumber != string.Empty)
+                    {
+                        <label>✔</label>
+                    }
+                    else
+                    {
+                        <label class="text-center">❌</label>
+                    }
+                </td>
+                <td>
+                    @if (OnlineUsersMiddleware.CheckIfUserIsOnline(user.Id))
                     {
                         <label>✔</label>
                     }

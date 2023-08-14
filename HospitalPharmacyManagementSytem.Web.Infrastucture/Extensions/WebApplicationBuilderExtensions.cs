@@ -2,6 +2,7 @@
 {
     using System.Reflection;
     using HospitalPharmacyManagementSystem.Data.Models;
+    using HospitalPharmacyManagementSytem.Web.Infrastucture.Middlewares;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;

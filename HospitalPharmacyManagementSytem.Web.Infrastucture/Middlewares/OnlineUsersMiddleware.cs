@@ -79,7 +79,7 @@
 
         private void RemoveKeyWhenExpired(object key, object value, EvictionReason reason, object state)
         {
-            string keyStr = (string)key; //UserId
+            string keyStr = (string)key;
 
             if (!AllKeys.TryRemove(keyStr, out _))
             {

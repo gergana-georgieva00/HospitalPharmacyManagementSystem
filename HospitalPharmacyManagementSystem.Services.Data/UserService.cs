@@ -18,9 +18,33 @@
             this.dbContext = dbContext;
         }
 
-        public Task<IEnumerable<UserViewModel>> AllAsync()
+        public async Task<IEnumerable<UserViewModel>> AllAsync()
         {
-            throw new NotImplementedException();
+            List<UserViewModel> allUsers = await this.dbContext
+                .Users
+                .Select(u => new UserViewModel()
+                {
+                    Id = u.Id.ToString(),
+                    Email = u.Email,
+                    FullName = u.FullName
+                })
+                .ToListAsync();
+            foreach (UserViewModel user in allUsers)
+            {
+                Pharmacist? pharmacist = this.dbContext
+                    .Pharmacists
+                    .FirstOrDefault(p => p.UserId.ToString() == user.Id);
+                if (pharmacist != null)
+                {
+                    user.PhoneNumber = pharmacist.HospitalIdNumber;
+                }
+                else
+                {
+                    user.PhoneNumber = string.Empty;
+                }
+            }
+
+            return allUsers;
         }
 
         public async Task<string> GetFullNameByEmailAsync(string email)

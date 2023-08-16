@@ -12,5 +12,6 @@
         public const string PrescriptionsCacheKey = "PrescriptionsCache";
         public const string OnlineUsersCookieName = "IsOnline";
         public const int LastActivityBeforeOfflineMinutes = 10;
+        public const int UsersCacheDurationMinutes = 5;
     }
 }

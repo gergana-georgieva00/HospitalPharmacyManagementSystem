@@ -8,6 +8,8 @@
         public const string AdminRoleName = "Administrator";
         public const string DevelopmentAdminEmail = "admin@gmail.com";
         public const string AdminAreaName = "Admin";
+        public const string UsersCacheKey = "UsersCache";
+        public const string PrescriptionsCacheKey = "PrescriptionsCache";
         public const string OnlineUsersCookieName = "IsOnline";
         public const int LastActivityBeforeOfflineMinutes = 10;
     }

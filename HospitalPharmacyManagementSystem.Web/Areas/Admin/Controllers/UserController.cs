@@ -1,10 +1,11 @@
-﻿using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
-using HospitalPharmacyManagementSystem.Web.ViewModels.User;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
-
-namespace HospitalPharmacyManagementSystem.Web.Areas.Admin.Controllers
+﻿namespace HospitalPharmacyManagementSystem.Web.Areas.Admin.Controllers
 {
+    using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.User;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
+    using static Common.GeneralAppConstants;
+
     public class UserController : BaseAdminController
     {
         private readonly IUserService userService;
@@ -21,17 +22,17 @@ namespace HospitalPharmacyManagementSystem.Web.Areas.Admin.Controllers
         public async Task<IActionResult> All()
         {
             IEnumerable<UserViewModel> users = await this.userService.AllAsync();
-            //    this.memoryCache.Get<IEnumerable<UserViewModel>>(UsersCacheKey);
-            //if (users == null)
-            //{
-            //    users = await this.userService.AllAsync();
+            this.memoryCache.Get<IEnumerable<UserViewModel>>(UsersCacheKey);
+            if (users == null)
+            {
+                users = await this.userService.AllAsync();
 
-            //    MemoryCacheEntryOptions cacheOptions = new MemoryCacheEntryOptions()
-            //        .SetAbsoluteExpiration(TimeSpan
-            //            .FromMinutes(UsersCacheDurationMinutes));
+                MemoryCacheEntryOptions cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan
+                        .FromMinutes(UsersCacheDurationMinutes));
 
-            //    this.memoryCache.Set(UsersCacheKey, users, cacheOptions);
-            //}
+                this.memoryCache.Set(UsersCacheKey, users, cacheOptions);
+            }
 
             return View(users);
         }

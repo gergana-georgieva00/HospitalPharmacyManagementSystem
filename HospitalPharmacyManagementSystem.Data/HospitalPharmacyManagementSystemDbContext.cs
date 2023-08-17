@@ -36,7 +36,7 @@
             if (this.seedDb)
             {
                 builder.ApplyConfiguration(new CategoryEntityConfiguration());
-                //builder.ApplyConfiguration(new SeedDrugsEntityConfiguration());
+                builder.ApplyConfiguration(new SeedDrugsEntityConfiguration());
             }
 
             base.OnModelCreating(builder);

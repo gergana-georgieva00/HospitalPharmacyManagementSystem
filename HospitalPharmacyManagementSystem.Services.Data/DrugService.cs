@@ -1,10 +1,10 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data
 {
     using HospitalPharmacyManagementSystem.Common.Enums;
+    using HospitalPharmacyManagementSystem.Data;
     using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
     using HospitalPharmacyManagementSystem.Services.Data.Models.Statistics;
-    using HospitalPharmacyManagementSystem.Web.Data;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Category;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug.Enums;

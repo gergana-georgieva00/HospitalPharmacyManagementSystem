@@ -1,4 +1,4 @@
-﻿namespace HospitalPharmacyManagementSystem.Web.Infrastructure.Extensions
+﻿namespace HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions
 {
     using System.Reflection;
     using HospitalPharmacyManagementSystem.Data.Models;
@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
-    using static Common.GeneralAppConstants;
+    using static HospitalPharmacyManagementSystem.Common.GeneralAppConstants;
 
     public static class WebApplicationBuilderExtensions
     {

@@ -14,20 +14,25 @@
     using ViewModels.User;
 
     using static Common.NotificationMessages;
+    using static Common.GeneralAppConstants;
     using HospitalPharmacyManagementSystem.Common.Enums;
     using System;
+    using Microsoft.Extensions.Caching.Memory;
 
     //[Authorize]
     public class UserController : Controller
     {
         private readonly SignInManager<AppUser> signInManager;
         private readonly UserManager<AppUser> userManager;
+        private readonly IMemoryCache memoryCache;
 
         public UserController(SignInManager<AppUser> signInManager,
-                              UserManager<AppUser> userManager)
+                              UserManager<AppUser> userManager,
+                              IMemoryCache memoryCache)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
+            this.memoryCache = memoryCache;
         }
 
         [HttpGet]
@@ -70,6 +75,7 @@
             }
 
             await signInManager.SignInAsync(user, false);
+            this.memoryCache.Remove(UsersCacheKey);
 
             return RedirectToAction("Index", new { page = "" });
         }

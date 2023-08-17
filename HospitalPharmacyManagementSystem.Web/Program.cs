@@ -1,19 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using HospitalPharmacyManagementSystem.Web.Data;
 namespace HospitalPharmacyManagementSystem.Web
 {
     using Microsoft.EntityFrameworkCore;
 
     using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
-    using HospitalPharmacyManagementSystem.Web.Data;
-    using HospitalPharmacyManagementSystem.Web.Infrastructure.Extensions;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using HospitalPharmacyManagementSystem.Services.Data;
     using HospitalPharmacyManagementSytem.Web.Infrastucture.ModelBinders;
     using Microsoft.AspNetCore.Mvc;
     using static Common.GeneralAppConstants;
+    using HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions;
+    using HospitalPharmacyManagementSystem.Data;
 
     public class Program
     {

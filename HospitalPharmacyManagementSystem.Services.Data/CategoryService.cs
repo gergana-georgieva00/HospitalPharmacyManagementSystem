@@ -1,8 +1,8 @@
 ﻿namespace HospitalPharmacyManagementSystem.Services.Data
 {
+    using HospitalPharmacyManagementSystem.Data;
     using HospitalPharmacyManagementSystem.Data.Models;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
-    using HospitalPharmacyManagementSystem.Web.Data;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Category;
     using Microsoft.EntityFrameworkCore;
     //using static HospitalPharmacyManagementSystem.Common.EntityValidationConstants;

@@ -1,5 +1,6 @@
-﻿namespace HospitalPharmacyManagementSystem.Web.Data
+﻿namespace HospitalPharmacyManagementSystem.Data
 {
+    using HospitalPharmacyManagementSystem.Data.Configurations;
     using HospitalPharmacyManagementSystem.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -8,9 +9,13 @@
 
     public class HospitalPharmacyManagementSystemDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     {
-        public HospitalPharmacyManagementSystemDbContext(DbContextOptions<HospitalPharmacyManagementSystemDbContext> options)
+        private readonly bool seedDb;
+
+        public HospitalPharmacyManagementSystemDbContext
+            (DbContextOptions<HospitalPharmacyManagementSystemDbContext> options, bool seedDb = true)
             : base(options)
         {
+            this.seedDb = seedDb;
         }
 
         public DbSet<Drug> Drugs { get; set; } = null!;
@@ -20,10 +25,19 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            var configAssembly = Assembly.GetAssembly(typeof(HospitalPharmacyManagementSystemDbContext)) ??
-                                 Assembly.GetExecutingAssembly();
+            //var configAssembly = Assembly.GetAssembly(typeof(HospitalPharmacyManagementSystemDbContext)) ??
+            //                     Assembly.GetExecutingAssembly();
 
-            builder.ApplyConfigurationsFromAssembly(configAssembly);
+            //builder.ApplyConfigurationsFromAssembly(configAssembly);
+
+            builder.ApplyConfiguration(new AppUserEntityConfiguration());
+            builder.ApplyConfiguration(new DrugEntityConfiguration());
+
+            if (this.seedDb)
+            {
+                builder.ApplyConfiguration(new CategoryEntityConfiguration());
+                //builder.ApplyConfiguration(new SeedDrugsEntityConfiguration());
+            }
 
             base.OnModelCreating(builder);
         }

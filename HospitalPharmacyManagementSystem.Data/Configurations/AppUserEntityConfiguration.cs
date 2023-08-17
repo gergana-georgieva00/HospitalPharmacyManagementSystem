@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HospitalPharmacyManagementSystem.Data.Configurations
 {
-    public class AppUserEntityConfiguration
+    public class AppUserEntityConfiguration : IEntityTypeConfiguration<AppUser>
     {
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {

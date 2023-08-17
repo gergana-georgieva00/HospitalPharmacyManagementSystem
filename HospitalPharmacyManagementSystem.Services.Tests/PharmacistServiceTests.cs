@@ -1,10 +1,11 @@
-using HospitalPharmacyManagementSystem.Data;
-using HospitalPharmacyManagementSystem.Services.Data;
-using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
-using Microsoft.EntityFrameworkCore;
-
 namespace HospitalPharmacyManagementSystem.Services.Tests
 {
+    using HospitalPharmacyManagementSystem.Data;
+    using HospitalPharmacyManagementSystem.Services.Data;
+    using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using Microsoft.EntityFrameworkCore;
+    using static DataBaseSeeder;
+
     public class PharmacistServiceTests
     {
         private HospitalPharmacyManagementSystemDbContext dbContext;
@@ -21,7 +22,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
             this.dbContext = new HospitalPharmacyManagementSystemDbContext(this.dbOptions, false);
 
             this.dbContext.Database.EnsureCreated();
-            //SeedDatabase(this.dbContext);
+            SeedDatabase(this.dbContext);
 
             this.pharmacistService = new PharmacistService(this.dbContext);
         }

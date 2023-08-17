@@ -6,7 +6,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using Web.Infrastructure.Extensions;
     [Authorize]
     public class CategoryController : Controller
     {

@@ -4,7 +4,6 @@ namespace HospitalPharmacyManagementSystem.WebApi
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using HospitalPharmacyManagementSytem.Web.Infrastucture.Extensions;
     using Microsoft.EntityFrameworkCore;
-    using Web.Infrastructure.Extensions;
 
     public class Program
     {

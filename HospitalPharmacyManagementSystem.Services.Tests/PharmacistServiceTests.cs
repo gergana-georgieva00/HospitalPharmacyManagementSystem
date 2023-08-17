@@ -26,5 +26,25 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
 
             this.pharmacistService = new PharmacistService(this.dbContext);
         }
+
+        [Test]
+        public async Task PharmacistExistsByUserIdAsyncShouldReturnTrueWhenExists()
+        {
+            string existingPharmacistUserId = PharmacistUser.Id.ToString();
+
+            bool result = await this.pharmacistService.PharmacistExistsByUserIdAsync(existingPharmacistUserId);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public async Task PharmacistExistsByUserIdAsyncShouldReturnFalseWhenNotExists()
+        {
+            string existingPharmacistUserId = PatientUser.Id.ToString();
+
+            bool result = await this.pharmacistService.PharmacistExistsByUserIdAsync(existingPharmacistUserId);
+
+            Assert.IsFalse(result);
+        }
     }
 }

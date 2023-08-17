@@ -9,54 +9,51 @@ using System.Threading.Tasks;
 
 namespace HospitalPharmacyManagementSystem.Services.Tests
 {
-    public class DataBaseSeeder
+    public static class DatabaseSeeder
     {
-        public static class DatabaseSeeder
+        public static AppUser PharmacistUser;
+        public static AppUser PatientUser;
+        public static Pharmacist Pharmacist;
+
+        public static void SeedDatabase(HospitalPharmacyManagementSystemDbContext dbContext)
         {
-            public static AppUser PharmacistUser;
-            public static AppUser PatientUser;
-            public static Pharmacist Pharmacist;
-
-            public static void SeedDatabase(HospitalPharmacyManagementSystemDbContext dbContext)
+            PharmacistUser = new AppUser()
             {
-                PharmacistUser = new AppUser()
-                {
-                    UserName = "gerganaPharmacist@gmail.com",
-                    NormalizedUserName = "GERGANAPHARMACIST@GMAIL.COM",
-                    Email = "gerganaPharmacist@gmail.com",
-                    NormalizedEmail = "GERGANAPHARMACIST@GMAIL.COM",
-                    EmailConfirmed = false,
-                    PasswordHash = "AQAAAAEAACcQAAAAEJ/bwr+dzffeqKt/TSwD0vBcU36AwcOd0ejd2ktuw9gIh+L3zrxalGw1UZo7Wr+B5A==",
-                    ConcurrencyStamp = "443d8adf-c6d7-47f4-9e15-eb9f29fa88f7",
-                    SecurityStamp = "6Z5MJOVOOQ4AMMM4XYXPECUZCBLGDQ2Y",
-                    TwoFactorEnabled = false,
-                    FullName = "Pharmacevt Pharmacevtov"
-                };
-                PatientUser = new AppUser()
-                {
-                    UserName = "patient@gmail.com",
-                    NormalizedUserName = "PATIENT@GMAIL.COM",
-                    Email = "patient@gmail.com",
-                    NormalizedEmail = "PATIENT@GMAIL.COM",
-                    EmailConfirmed = false,
-                    PasswordHash = "AQAAAAEAACcQAAAAEGw8M9z+JF/C+M/7SPYBn7mTah07nBfCsEHs4twALuK9ObdqmkIbZGF29AxCgYQu7w==",
-                    ConcurrencyStamp = "baf68241-1eb0-448e-b53a-eda16c242ed2",
-                    SecurityStamp = "JWS7GI53VDBW3RMPUAYPSSEK3BXIJGYH",
-                    TwoFactorEnabled = false,
-                    FullName = "Patient Patientov"
-                };
-                Pharmacist = new Pharmacist()
-                {
-                    HospitalIdNumber = "12345678",
-                    User = PharmacistUser
-                };
+                UserName = "gerganaPharmacist@gmail.com",
+                NormalizedUserName = "GERGANAPHARMACIST@GMAIL.COM",
+                Email = "gerganaPharmacist@gmail.com",
+                NormalizedEmail = "GERGANAPHARMACIST@GMAIL.COM",
+                EmailConfirmed = false,
+                PasswordHash = "AQAAAAEAACcQAAAAEJ/bwr+dzffeqKt/TSwD0vBcU36AwcOd0ejd2ktuw9gIh+L3zrxalGw1UZo7Wr+B5A==",
+                ConcurrencyStamp = "443d8adf-c6d7-47f4-9e15-eb9f29fa88f7",
+                SecurityStamp = "6Z5MJOVOOQ4AMMM4XYXPECUZCBLGDQ2Y",
+                TwoFactorEnabled = false,
+                FullName = "Pharmacevt Pharmacevtov"
+            };
+            PatientUser = new AppUser()
+            {
+                UserName = "patient@gmail.com",
+                NormalizedUserName = "PATIENT@GMAIL.COM",
+                Email = "patient@gmail.com",
+                NormalizedEmail = "PATIENT@GMAIL.COM",
+                EmailConfirmed = false,
+                PasswordHash = "AQAAAAEAACcQAAAAEGw8M9z+JF/C+M/7SPYBn7mTah07nBfCsEHs4twALuK9ObdqmkIbZGF29AxCgYQu7w==",
+                ConcurrencyStamp = "baf68241-1eb0-448e-b53a-eda16c242ed2",
+                SecurityStamp = "JWS7GI53VDBW3RMPUAYPSSEK3BXIJGYH",
+                TwoFactorEnabled = false,
+                FullName = "Patient Patientov"
+            };
+            Pharmacist = new Pharmacist()
+            {
+                HospitalIdNumber = "12345678",
+                User = PharmacistUser
+            };
 
-                dbContext.Users.Add(PharmacistUser);
-                dbContext.Users.Add(PatientUser);
-                dbContext.Pharmacists.Add(Pharmacist);
+            dbContext.Users.Add(PharmacistUser);
+            dbContext.Users.Add(PatientUser);
+            dbContext.Pharmacists.Add(Pharmacist);
 
-                dbContext.SaveChanges();
-            }
+            dbContext.SaveChanges();
         }
     }
 }

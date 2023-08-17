@@ -4,7 +4,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
     using HospitalPharmacyManagementSystem.Services.Data;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using static DataBaseSeeder;
+    using static DatabaseSeeder;
 
     public class PharmacistServiceTests
     {

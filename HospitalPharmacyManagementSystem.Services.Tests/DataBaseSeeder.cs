@@ -21,33 +21,33 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
             {
                 PharmacistUser = new AppUser()
                 {
-                    UserName = "Pesho",
-                    NormalizedUserName = "PESHO",
-                    Email = "pesho@agents.com",
-                    NormalizedEmail = "PESHO@AGENTS.COM",
-                    EmailConfirmed = true,
-                    PasswordHash = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
-                    ConcurrencyStamp = "caf271d7-0ba7-4ab1-8d8d-6d0e3711c27d",
-                    SecurityStamp = "ca32c787-626e-4234-a4e4-8c94d85a2b1c",
+                    UserName = "gerganaPharmacist@gmail.com",
+                    NormalizedUserName = "GERGANAPHARMACIST@GMAIL.COM",
+                    Email = "gerganaPharmacist@gmail.com",
+                    NormalizedEmail = "GERGANAPHARMACIST@GMAIL.COM",
+                    EmailConfirmed = false,
+                    PasswordHash = "AQAAAAEAACcQAAAAEJ/bwr+dzffeqKt/TSwD0vBcU36AwcOd0ejd2ktuw9gIh+L3zrxalGw1UZo7Wr+B5A==",
+                    ConcurrencyStamp = "443d8adf-c6d7-47f4-9e15-eb9f29fa88f7",
+                    SecurityStamp = "6Z5MJOVOOQ4AMMM4XYXPECUZCBLGDQ2Y",
                     TwoFactorEnabled = false,
-                    FullName = "Pharmacist Ph"
+                    FullName = "Pharmacevt Pharmacevtov"
                 };
                 PatientUser = new AppUser()
                 {
-                    UserName = "Gosho",
-                    NormalizedUserName = "GOSHO",
-                    Email = "gosho@renters.com",
-                    NormalizedEmail = "GOSHO@RENTERS.COM",
-                    EmailConfirmed = true,
-                    PasswordHash = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
-                    ConcurrencyStamp = "8b51706e-f6e8-4dae-b240-54f856fb3004",
-                    SecurityStamp = "f6af46f5-74ba-43dc-927b-ad83497d0387",
+                    UserName = "patient@gmail.com",
+                    NormalizedUserName = "PATIENT@GMAIL.COM",
+                    Email = "patient@gmail.com",
+                    NormalizedEmail = "PATIENT@GMAIL.COM",
+                    EmailConfirmed = false,
+                    PasswordHash = "AQAAAAEAACcQAAAAEGw8M9z+JF/C+M/7SPYBn7mTah07nBfCsEHs4twALuK9ObdqmkIbZGF29AxCgYQu7w==",
+                    ConcurrencyStamp = "baf68241-1eb0-448e-b53a-eda16c242ed2",
+                    SecurityStamp = "JWS7GI53VDBW3RMPUAYPSSEK3BXIJGYH",
                     TwoFactorEnabled = false,
-                    FullName = "Patient Pa"
+                    FullName = "Patient Patientov"
                 };
                 Pharmacist = new Pharmacist()
                 {
-                    HospitalIdNumber = "09876543",
+                    HospitalIdNumber = "12345678",
                     User = PharmacistUser
                 };
 

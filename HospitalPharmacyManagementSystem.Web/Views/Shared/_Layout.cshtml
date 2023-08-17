@@ -36,7 +36,8 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Drug" asp-action="All">All Drugs</a>
+                            <a class="nav-link text-dark" style="font-family: 'Times New Roman', serif; font-size: 20px"
+                               asp-area="" asp-controller="Drug" asp-action="All"><b>All Drugs</b></a>
                         </li>
                         @if (this.User.Identity?.IsAuthenticated ?? false)
                         {
@@ -70,7 +71,7 @@
 
     <footer style="background-color:#e1eedd" class="border-top footer text-muted">
         <div class="container">
-            &copy; DrugWise @ReleaseYear
+            &copy; <b>DrugWise @ReleaseYear</b>
             @if (DateTime.UtcNow.Year != ReleaseYear)
             {
                 @Html.Raw($" - {DateTime.UtcNow.Year}")

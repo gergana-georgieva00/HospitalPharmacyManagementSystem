@@ -52,5 +52,11 @@ namespace HospitalPharmacyManagementSystem.Common
             public const int NameMinLength = 10;
             public const int NameMaxLength = 50;
         }
+
+        public static class Disease
+        {
+            public const int NameMinLength = 5;
+            public const int NameMaxLength = 50;
+        }
     }
 }

@@ -82,6 +82,7 @@
                 PharmacistId = pharmacist.Id,
                 PatientId = user.Id,
                 MedicationId = Guid.Parse(formModel.DrugId),
+                DiseaseId = formModel.DiseaseId,
                 MedicationFrequency = formModel.MedicationFrequency,
                 Notes = formModel.Notes
             };

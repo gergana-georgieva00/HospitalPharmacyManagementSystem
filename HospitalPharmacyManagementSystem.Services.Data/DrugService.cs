@@ -94,6 +94,8 @@
                     PharmacistId = p.PharmacistId.ToString(),
                     PatientEmail = p.Patient.Email,
                     CreatedOn = p.CreatedOn,
+                    DrugBrandName = p.Medication.BrandName,
+                    DiseaseName = p.Disease.Name,
                     ValidUntil = p.ValidUntil,
                     MedicationFrequency = p.MedicationFrequency,
                     Notes = p.Notes
@@ -271,6 +273,7 @@
                     CreatedOn = prescription.CreatedOn,
                     ValidUntil = prescription.ValidUntil,
                     DrugBrandName = medication.BrandName,
+                    DiseaseName = prescription.Disease.Name,
                     MedicationFrequency = prescription.MedicationFrequency,
                     Notes = prescription.Notes
                 };

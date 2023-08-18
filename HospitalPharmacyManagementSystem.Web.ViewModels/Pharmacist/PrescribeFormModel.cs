@@ -24,7 +24,7 @@
         public IEnumerable<SelectDiseaseViewModel> Diseases { get; set; } = new HashSet<SelectDiseaseViewModel>();
 
         [Display(Name = "Diseases")]
-        public string DiseaseId { get; set; } = null!;
+        public int DiseaseId { get; set; }
 
         [Required]
         [StringLength(MedicationFrequencyMaxLength, MinimumLength = MedicationFrequencyMinLength)]

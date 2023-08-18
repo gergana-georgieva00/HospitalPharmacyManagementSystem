@@ -22,6 +22,7 @@
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Pharmacist> Pharmacists { get; set; } = null!;
         public DbSet<Prescription> Prescriptions { get; set; } = null!;
+        public DbSet<Disease> Diseases { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -32,6 +33,7 @@
 
             builder.ApplyConfiguration(new AppUserEntityConfiguration());
             builder.ApplyConfiguration(new DrugEntityConfiguration());
+            builder.ApplyConfiguration(new DiseaseEntityConfiguration());
 
             if (this.seedDb)
             {

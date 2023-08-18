@@ -4,6 +4,7 @@ using HospitalPharmacyManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalPharmacyManagementSystem.Data.Migrations
 {
     [DbContext(typeof(HospitalPharmacyManagementSystemDbContext))]
-    partial class HospitalPharmacyManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230818115359_Test2")]
+    partial class Test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,38 +158,6 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Diseases");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Heart Disease"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Skin Cancer"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Obesity"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Chronic Respiratory Disease"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Type two Diabetes"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Influenza"
-                        });
                 });
 
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Drug", b =>
@@ -238,7 +208,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("88ed9f27-1595-455e-a0a2-ea04e71abed7"),
+                            Id = new Guid("b6bfcfc8-0021-4f60-bf5e-c8775d2a1ec5"),
                             BrandName = "Advil",
                             CategoryId = 1,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -250,7 +220,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e395d97a-61da-4913-839d-dcae4c774174"),
+                            Id = new Guid("22ea0d0b-4f8e-4ae7-b3fe-9a27ccbe69c9"),
                             BrandName = "Lipitor",
                             CategoryId = 2,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -262,7 +232,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cca8f7a9-a59c-465b-a439-979d72ae14a0"),
+                            Id = new Guid("811f232a-f0d6-40c0-b8a4-5def2f8802ef"),
                             BrandName = "Nature Made Fish Oil",
                             CategoryId = 3,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),

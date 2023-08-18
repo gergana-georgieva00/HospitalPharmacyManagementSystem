@@ -4,6 +4,7 @@ using HospitalPharmacyManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalPharmacyManagementSystem.Data.Migrations
 {
     [DbContext(typeof(HospitalPharmacyManagementSystemDbContext))]
-    partial class HospitalPharmacyManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230818113232_SeedDbWithDiseases")]
+    partial class SeedDbWithDiseases
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,56 +142,6 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Disease", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Diseases");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Heart Disease"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Skin Cancer"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Obesity"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Chronic Respiratory Disease"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Type two Diabetes"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Influenza"
-                        });
-                });
-
             modelBuilder.Entity("HospitalPharmacyManagementSystem.Data.Models.Drug", b =>
                 {
                     b.Property<Guid>("Id")
@@ -238,7 +190,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("88ed9f27-1595-455e-a0a2-ea04e71abed7"),
+                            Id = new Guid("9f2f28b0-a9f2-4488-9905-f8504e058488"),
                             BrandName = "Advil",
                             CategoryId = 1,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -250,7 +202,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e395d97a-61da-4913-839d-dcae4c774174"),
+                            Id = new Guid("f6bc1e11-c7fa-4e65-ab76-8ce097ea528d"),
                             BrandName = "Lipitor",
                             CategoryId = 2,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -262,7 +214,7 @@ namespace HospitalPharmacyManagementSystem.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cca8f7a9-a59c-465b-a439-979d72ae14a0"),
+                            Id = new Guid("ccded0b1-2dec-43dd-a9c5-0b6f41cc6399"),
                             BrandName = "Nature Made Fish Oil",
                             CategoryId = 3,
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),

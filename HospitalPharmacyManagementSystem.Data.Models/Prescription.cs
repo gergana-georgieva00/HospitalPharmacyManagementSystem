@@ -22,7 +22,6 @@
         public virtual Drug Medication { get; set; } = null!;
         public Guid MedicationId { get; set; }
         public int DiseaseId { get; set; }
-
         public virtual Disease Disease { get; set; } = null!;
 
         [MaxLength(MedicationFrequencyMaxLength)]

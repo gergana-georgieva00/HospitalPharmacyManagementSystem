@@ -86,7 +86,7 @@
         {
             IEnumerable<PrescriptionViewModel> allPrescriptions = await this.dbContext
                 .Prescriptions
-                .Where(p => p.PharmacistId.ToString() == userId)
+                .Where(p => p.PatientId.ToString() == userId)
                 .OrderBy(p => p.CreatedOn)
                 .Select(p => new PrescriptionViewModel
                 {
@@ -265,6 +265,11 @@
                 .Where(d => d.Id == prescription.MedicationId)
                 .FirstAsync();
 
+            var disease = await this.dbContext
+                .Diseases
+                .Where(d => d.Id == prescription.DiseaseId)
+                .FirstAsync();
+
             return new PrescriptionViewModel
                 {
                     Id = id,
@@ -273,7 +278,7 @@
                     CreatedOn = prescription.CreatedOn,
                     ValidUntil = prescription.ValidUntil,
                     DrugBrandName = medication.BrandName,
-                    DiseaseName = prescription.Disease.Name,
+                    DiseaseName = disease.Name,
                     MedicationFrequency = prescription.MedicationFrequency,
                     Notes = prescription.Notes
                 };

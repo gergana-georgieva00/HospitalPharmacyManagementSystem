@@ -15,11 +15,13 @@
     {
         private readonly IPharmacistService pharmacistService;
         private readonly IDrugService drugService;
+        private readonly IDiseaseService diseaseService;
 
-        public PharmacistController(IPharmacistService pharmacistService, IDrugService drugService)
+        public PharmacistController(IPharmacistService pharmacistService, IDrugService drugService, IDiseaseService diseaseService)
         {
             this.pharmacistService = pharmacistService;
             this.drugService = drugService;
+            this.diseaseService = diseaseService;
         }
 
         [HttpGet]
@@ -89,7 +91,8 @@
             {
                 PrescribeFormModel model = new PrescribeFormModel
                 {
-                    Drugs = await this.drugService.AllDrugsAsync()
+                    Drugs = await this.drugService.AllDrugsAsync(),
+                    Diseases = await this.diseaseService.AllDiseasesAsync()
                 };
 
                 return View(model);

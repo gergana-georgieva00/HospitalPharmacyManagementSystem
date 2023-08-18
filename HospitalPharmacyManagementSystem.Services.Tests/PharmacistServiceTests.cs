@@ -46,5 +46,25 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
 
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public async Task PatientExistsByEmailAsyncShouldReturnTrueWhenExists()
+        {
+            string existingPatientEmail = PatientUser.Email.ToString();
+
+            bool result = await this.pharmacistService.PatientExistsByEmailAsync(existingPatientEmail);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public async Task PatientExistsByEmailAsyncShouldReturnFalseWhenNotExists()
+        {
+            string existingPatientEmail = "";//PatientUser.Email.ToString();
+
+            bool result = await this.pharmacistService.PatientExistsByEmailAsync(existingPatientEmail);
+
+            Assert.IsFalse(result);
+        }
     }
 }

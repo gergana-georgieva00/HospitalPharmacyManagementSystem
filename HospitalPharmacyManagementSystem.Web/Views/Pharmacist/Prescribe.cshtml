@@ -42,6 +42,16 @@
                 </select>
             </div>
             <div class="form-group">
+                <label asp-for="DiseaseId"></label>
+                <select asp-for="DiseaseId" class="form-control">
+                    @foreach (var disease in Model.Diseases)
+                    {
+                        <option value="@disease.Id">@disease.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="DiseaseId" class="small textdanger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="DrugId"></label>
                 <select asp-for="DrugId" class="form-control">
                     @foreach (var drug in Model.Drugs)

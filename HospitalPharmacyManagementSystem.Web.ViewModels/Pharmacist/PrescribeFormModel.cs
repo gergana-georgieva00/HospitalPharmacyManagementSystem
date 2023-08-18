@@ -4,6 +4,7 @@
     using static Common.EntityValidationConstants.Prescription;
     using HospitalPharmacyManagementSystem.Web.ViewModels.Drug;
     using System.ComponentModel.DataAnnotations;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Disease;
 
     public class PrescribeFormModel
     {
@@ -19,6 +20,11 @@
 
         [Display(Name = "Drugs")]
         public string DrugId { get; set; } = null!;
+
+        public IEnumerable<SelectDiseaseViewModel> Diseases { get; set; } = new HashSet<SelectDiseaseViewModel>();
+
+        [Display(Name = "Diseases")]
+        public string DiseaseId { get; set; } = null!;
 
         [Required]
         [StringLength(MedicationFrequencyMaxLength, MinimumLength = MedicationFrequencyMinLength)]

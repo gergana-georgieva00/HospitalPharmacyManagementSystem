@@ -5,6 +5,7 @@
     using HospitalPharmacyManagementSystem.Services.Data;
     using Microsoft.EntityFrameworkCore;
     using static DatabaseSeeder;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.User;
 
     public class UserServiceTests
     {
@@ -65,6 +66,14 @@
             var resut = await this.userService.GetFullNameByEmailAsync(user.Email);
 
             Assert.That(resut, Is.EqualTo(PatientUser.FullName));
+        }
+
+        [Test]
+        public async Task AllAsyncShouldReturnCorrectResult()
+        {
+            var resut = await this.userService.AllAsync();
+
+            Assert.That(resut.ToList()[0].Email, Is.EqualTo(PharmacistUser.Email));
         }
     }
 }

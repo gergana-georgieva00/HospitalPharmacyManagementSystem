@@ -22,12 +22,12 @@
                 await this.dbContext
                 .Categories
                 .AsNoTracking()
-                .Select(d => new DrugSelectCategoryViewModel() 
+                .Select(c => new DrugSelectCategoryViewModel() 
                 { 
-                    Id = d.Id,
-                    Name = d.Name
+                    Id = c.Id,
+                    Name = c.Name
                 })
-                .ToArrayAsync();
+                .ToListAsync();
 
             return allCategories;
         }

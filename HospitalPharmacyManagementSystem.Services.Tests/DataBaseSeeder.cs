@@ -14,6 +14,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
         public static AppUser PharmacistUser;
         public static AppUser PatientUser;
         public static Pharmacist Pharmacist;
+        public static Category Category;
 
         public static void SeedDatabase(HospitalPharmacyManagementSystemDbContext dbContext)
         {
@@ -48,10 +49,16 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
                 HospitalIdNumber = "12345678",
                 User = PharmacistUser
             };
+            Category = new Category()
+            {
+                Id = 1,
+                Name = "Over-the-counter"
+            };
 
             dbContext.Users.Add(PharmacistUser);
             dbContext.Users.Add(PatientUser);
             dbContext.Pharmacists.Add(Pharmacist);
+            dbContext.Categories.Add(Category);
 
             dbContext.SaveChanges();
         }

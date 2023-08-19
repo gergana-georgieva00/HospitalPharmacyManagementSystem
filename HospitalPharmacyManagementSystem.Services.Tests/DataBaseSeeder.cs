@@ -84,12 +84,25 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
                 CategoryId = 2,
                 IsActive = true
             };
+            var Prescription = new Prescription()
+            {
+                Id = Guid.Parse("DC8AF683-A9F7-4197-9771-641C055758B8"),
+                PharmacistId = Guid.Parse("AF814777-0299-4041-AA12-F800EA5A25DA"),
+                PatientId = Guid.Parse("C0BCC73A-D87C-4D81-BDE4-20FFAEE2C93E"),
+                CreatedOn = DateTime.Now,
+                ValidUntil = DateTime.Now,
+                MedicationId = Guid.Parse("AEC8649C-11B7-4040-AF70-23AA5F293EB3"),
+                DiseaseId = 1,
+                MedicationFrequency = "",
+                Notes = ""
+            };
 
             dbContext.Users.Add(PharmacistUser);
             dbContext.Users.Add(PatientUser);
             dbContext.Pharmacists.Add(Pharmacist);
             dbContext.Categories.Add(Category);
             dbContext.Drugs.Add(Drug);
+            dbContext.Prescriptions.Add(Prescription);
 
             dbContext.SaveChanges();
         }

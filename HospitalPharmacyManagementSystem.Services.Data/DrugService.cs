@@ -173,7 +173,6 @@
             drug.Description = formModel.Description;
             drug.ImageUrl = formModel.ImageUrl;
             drug.Price = formModel.PricePerPackage;
-            //drug.Form = Enum.TryParse(formModel.DrugForm, DrugForm, );
             drug.Form = Enum.Parse<DrugForm>(formModel.DrugForm);
             drug.CategoryId = formModel.CategoryId;
 

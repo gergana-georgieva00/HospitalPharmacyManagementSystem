@@ -51,5 +51,21 @@
 
             Assert.That(result.ToList()[0], Is.EqualTo("Over-the-counter"));
         }
+
+        [Test]
+        public async Task ExistsByIdAsyncShouldWorkCorrectly()
+        {
+            var result = await this.categoryService.ExistsByIdAsync(1);
+
+            Assert.True(result);
+        }
+
+        [Test]
+        public async Task GetDetailsByIdAsyncShouldWorkCorrectly()
+        {
+            var result = await this.categoryService.GetDetailsByIdAsync(1);
+
+            Assert.That(result.Name, Is.EqualTo("Over-the-counter"));
+        }
     }
 }

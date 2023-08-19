@@ -9,6 +9,7 @@ namespace HospitalPharmacyManagementSystem.Web.ViewModels.Drug
     {
         [Required]
         [StringLength(BrandNameMaxLength, MinimumLength = BrandNameMinLength)]
+        [Display(Name = "Drug Brand Name")]
         public string BrandName { get; set; } = null!;
 
         [Required]

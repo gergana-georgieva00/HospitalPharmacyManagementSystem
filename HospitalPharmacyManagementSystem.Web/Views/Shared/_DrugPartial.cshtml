@@ -10,9 +10,11 @@
 }
 
 <div class="col-md-4">
-    <div class="card mb-3">
-        <img class="card-img-top" src="@Model.ImageUrl" alt="Drug Image">
-        <div class="card-body text-center">
+    <div class="card mb-3" style="background-color:#e1eedd">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="Drug Image" style="background-color:#e1eedd;
+    width:  200px;
+    height: 200px;">
+        <div class="card-body text-center" style="background-color:#f6c453">
             <h4>@Model.BrandName</h4>
             <h6>
                 Price:
@@ -20,16 +22,16 @@
             </h6>
             <br />
             <a asp-area="" asp-controller="Drug" asp-action="Details" asp-route-id="@Model.Id"
-               class="btn btn-success">Details</a>
+               class="btn btn-success" style="color: white; background-color:#183a1d;font-weight:500">Details</a>
 
             @if (User.Identity?.IsAuthenticated ?? false)
             {
                 @if (isUserPharmacist)
                 {
                     <a asp-area="" asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
-                       class="btn btn-warning">Edit</a>
+                       class="btn btn-warning" style="color: white; background-color:#183a1d;font-weight:500">Edit</a>
                     <a asp-area="" asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
-                       class="btn btn-danger">Delete</a>
+                       class="btn btn-danger" style="color: white; background-color:#183a1d;font-weight:500">Delete</a>
                 }
             }
         </div>

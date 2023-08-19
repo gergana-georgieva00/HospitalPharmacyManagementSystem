@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Prescribe Drug";
 }
-<h2 class="text-center">@ViewBag.Title</h2>
+<h2 class="text-center" style="color: #f0a04b; font-weight:600">@ViewBag.Title</h2>
 <hr />
 @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"] != null)
 {
@@ -15,26 +15,14 @@
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form method="post">
             <div class="form-group">
-                <label asp-for="PatientEmail"></label>
+                <label asp-for="PatientEmail" style="font-weight:500"></label>
                 <input asp-for="PatientEmail" class="form-control"
-                       placeholder="Enter patient email here">
+                       placeholder="Enter patient email here" style="background-color:#e1eedd">
                 <span asp-validation-for="PatientEmail" class="small textdanger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="PatientFullName"></label>
-                <input asp-for="PatientFullName" class="form-control"
-                       placeholder="Enter patient full name here">
-                <span asp-validation-for="PatientFullName" class="small textdanger"></span>
-            </div>
             <div class="form-group">
-                <label asp-for="Age"></label>
-                <input asp-for="Age" class="form-control"
-                       placeholder="Enter patient age here">
-                <span asp-validation-for="Age" class="small textdanger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Gender"></label>
-                <select asp-for="Gender" class="form-control">
+                <label asp-for="Gender" style="font-weight:500"></label>
+                <select asp-for="Gender" class="form-control" style="background-color:#e1eedd">
                     @foreach (int formValue in System.Enum.GetValues(typeof(Gender)))
                     {
                         <option value="@formValue">@((Gender)formValue)</option>
@@ -42,8 +30,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="DiseaseId"></label>
-                <select asp-for="DiseaseId" class="form-control">
+                <label asp-for="DiseaseId" style="font-weight:500"></label>
+                <select asp-for="DiseaseId" class="form-control" style="background-color:#e1eedd">
                     @foreach (var disease in Model.Diseases)
                     {
                         <option value="@disease.Id">@disease.Name</option>
@@ -52,8 +40,8 @@
                 <span asp-validation-for="DiseaseId" class="small textdanger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DrugId"></label>
-                <select asp-for="DrugId" class="form-control">
+                <label asp-for="DrugId" style="font-weight:500"></label>
+                <select asp-for="DrugId" class="form-control" style="background-color:#e1eedd">
                     @foreach (var drug in Model.Drugs)
                     {
                         <option value="@drug.Id">@drug.BrandName</option>
@@ -62,19 +50,19 @@
                 <span asp-validation-for="DrugId" class="small textdanger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MedicationFrequency"></label>
+                <label asp-for="MedicationFrequency" style="font-weight:500"></label>
                 <input asp-for="MedicationFrequency" class="form-control"
-                       placeholder="Describe the medication frequency">
+                       placeholder="Describe the medication frequency" style="background-color:#e1eedd">
                 <span asp-validation-for="MedicationFrequency" class="small textdanger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Notes"></label>
+                <label asp-for="Notes" style="font-weight:500"></label>
                 <input asp-for="Notes" class="form-control"
-                       placeholder="Other important information">
+                       placeholder="Other important information" style="background-color:#e1eedd">
                 <span asp-validation-for="Notes" class="small textdanger"></span>
             </div>
             <div class="text-center">
-                <input class="btn btn-primary mt-3 " type="submit" value="Save" />
+                <input class="btn btn-primary mt-3 " type="submit" value="Save" style="color: white; background-color:#183a1d;font-weight:500" />
             </div>
         </form>
     </div>

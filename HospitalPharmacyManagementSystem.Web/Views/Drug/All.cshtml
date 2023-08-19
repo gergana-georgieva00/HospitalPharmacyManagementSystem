@@ -4,42 +4,40 @@
     ViewBag.Title = "All Drugs";
 }
 
-<h2 class="text-center">@ViewBag.Title</h2>
+<h2 class="text-center" style="color: #f0a04b; font-weight:600">@ViewBag.Title</h2>
 <hr />
 
 <form method="get">
     <div class="row">
-        <div class="form-group col-md-3 d-flex justify-content-between">
-            <div class="form-group">
-                <label asp-for="Category"></label>
-                <select asp-for="Category" class="form-control">
-                    <option value="">All</option>
-                    @foreach (var category in Model.Categories)
-                    {
-                        <option value="@category">@category</option>
-                    }
-                </select>
-            </div>
+        <div class="form-group col-md-2">
+            <label asp-for="Category" style="font-weight:500"></label>
+            <select asp-for="Category" class="form-control" style="background-color:#e1eedd">
+                <option value="">All</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+        </div>
 
-            <div class="form-group">
-                <label asp-for="DrugsPerPage"></label>
-                <select asp-for="DrugsPerPage" class="form-control">
-                    <option value="3">3</option>
-                    <option value="6">6</option>
-                    <option value="9">9</option>
-                </select>
-            </div>
+        <div class="form-group col-md-2">
+            <label asp-for="DrugsPerPage" style="font-weight:500"></label>
+            <select asp-for="DrugsPerPage" class="form-control" style="background-color:#e1eedd">
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="9">9</option>
+            </select>
         </div>
 
         <div class="form-group col-md-3">
-            <label asp-for="SearchString"></label>
-            <input asp-for="SearchString" class="form-control" placeholder="...">
+            <label asp-for="SearchString" style="font-weight:500"></label>
+            <input asp-for="SearchString" class="form-control" placeholder="..." style="background-color:#e1eedd">
         </div>
 
         <div class="form-group col-md-3">
             <div class="form-group">
-                <label asp-for="DrugSorting"></label>
-                <select asp-for="DrugSorting" class="form-control">
+                <label asp-for="DrugSorting" style="font-weight:500"></label>
+                <select asp-for="DrugSorting" class="form-control" style="background-color:#e1eedd">
                     <option value="0">Newest</option>
                     <option value="1">Oldest</option>
                     <option value="2">Price (Ascending)</option>
@@ -48,9 +46,9 @@
             </div>
         </div>
 
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-2">
             <div class="form-group mt-4 p-2">
-                <input type="submit" value="Search" class="btn btn-primary" />
+                <input type="submit" value="Search" class="btn btn-primary" style="color: white; background-color:#183a1d;font-weight:500;" />
             </div>
         </div>
     </div>
@@ -76,7 +74,7 @@
            asp-route-currentPage="@previousPage"
            asp-route-category="@Model.Category"
            asp-route-searchTerm="@Model.SearchString"
-           asp-route-sorting="@((int)Model.DrugSorting)"><<</a>
+           asp-route-sorting="@((int)Model.DrugSorting)" style="color: white; background-color:#183a1d;font-weight:500"><<</a>
     </div>
 
     @{
@@ -92,7 +90,7 @@
            asp-route-currentPage="@(Model.CurrentPage + 1)"
            asp-route-category="@Model.Category"
            asp-route-searchTerm="@Model.SearchString"
-           asp-route-sorting="@((int)Model.DrugSorting)">>></a>
+           asp-route-sorting="@((int)Model.DrugSorting)" style="color: white; background-color:#183a1d;font-weight:500">>></a>
     </div>
 </div>
 

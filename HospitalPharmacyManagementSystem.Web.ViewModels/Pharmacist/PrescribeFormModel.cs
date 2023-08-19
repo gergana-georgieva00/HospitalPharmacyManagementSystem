@@ -9,12 +9,9 @@
     public class PrescribeFormModel
     {
         [Required]
+        [Display(Name = "Patient Email")]
         public string PatientEmail { get; set; } = null!;
-        //[Required]
-        //[StringLength(NameMaxLength, MinimumLength = NameMinLength)]
-        //[Display(Name = "Patient Full Name")]
-        //public string PatientFullName { get; set; } = null!;
-        //public int Age { get; set; }
+
         public string Gender { get; set; } = null!;
         public IEnumerable<SelectDrugViewModel> Drugs { get; set; } = new HashSet<SelectDrugViewModel>();
 

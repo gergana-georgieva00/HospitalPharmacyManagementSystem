@@ -4,29 +4,29 @@
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form method="post">
             <div class="form-group">
-                <label asp-for="BrandName"></label>
-                <input asp-for="BrandName" class="form-control" placeholder="Brand Name">
+                <label asp-for="BrandName" style="font-weight:500"></label>
+                <input asp-for="BrandName" class="form-control" placeholder="Brand Name" style="background-color:#e1eedd">
                 <span asp-validation-for="BrandName" class="small text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description"></label>
+                <label asp-for="Description" style="font-weight:500"></label>
                 <textarea asp-for="Description" rows="4" class="form-control"
-                          placeholder="Drug Descpription"></textarea>
+                          placeholder="Drug Descpription" style="background-color:#e1eedd"></textarea>
                 <span asp-validation-for="Description" class="small textdanger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImageUrl"></label>
-                <input asp-for="ImageUrl" class="form-control" placeholder="Drug Image Link">
+                <label asp-for="ImageUrl" style="font-weight:500"></label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="Drug Image Link" style="background-color:#e1eedd">
                 <span asp-validation-for="ImageUrl" class="small textdanger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PricePerPackage"></label>
-                <input asp-for="PricePerPackage" class="form-control">
+                <label asp-for="PricePerPackage" style="font-weight:500"></label>
+                <input asp-for="PricePerPackage" class="form-control" style="background-color:#e1eedd">
                 <span asp-validation-for="PricePerPackage" class="small textdanger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DrugForm"></label>
-                <select asp-for="DrugForm" class="form-control">
+                <label asp-for="DrugForm" style="font-weight:500"></label>
+                <select asp-for="DrugForm" class="form-control" style="background-color:#e1eedd">
                     @foreach (int formValue in System.Enum.GetValues(typeof(DrugForm)))
                     {
                         <option value="@formValue">@((DrugForm)formValue)</option>
@@ -35,8 +35,8 @@
                 <span asp-validation-for="CategoryId" class="small textdanger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId"></label>
-                <select asp-for="CategoryId" class="form-control">
+                <label asp-for="CategoryId" style="font-weight:500"></label>
+                <select asp-for="CategoryId" class="form-control" style="background-color:#e1eedd;">
                     @foreach (var category in Model.Categories)
                     {
                         <option value="@category.Id">@category.Name</option>
@@ -45,7 +45,7 @@
                 <span asp-validation-for="CategoryId" class="small textdanger"></span>
             </div>
             <div class="text-center">
-                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+                <input class="btn btn-primary mt-3" type="submit" value="Save" style="color: white; background-color:#183a1d;font-weight:500" />
             </div>
         </form>
     </div>

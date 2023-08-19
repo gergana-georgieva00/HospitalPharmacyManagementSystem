@@ -10,7 +10,6 @@ namespace HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist
         public string PatientEmail { get; set; } = null!;
         public DateTime CreatedOn { get; set; }
         public DateTime ValidUntil { get; set; }
-        //public DrugDetailsViewModel DrugDetailsViewModel { get; set; }
         public string DrugBrandName { get; set; } = null!;
         public string DiseaseName { get; set; } = null!;
         public string MedicationFrequency { get; set; } = null!;

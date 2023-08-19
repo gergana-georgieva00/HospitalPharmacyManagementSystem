@@ -5,6 +5,7 @@
     using HospitalPharmacyManagementSystem.Services.Data;
     using Microsoft.EntityFrameworkCore;
     using static DatabaseSeeder;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Disease;
 
     public class DiseaseServiceTests
     {
@@ -25,6 +26,22 @@
             SeedDatabase(this.dbContext);
 
             this.diseaseService = new DiseaseService(this.dbContext);
+        }
+
+        //public async Task<IEnumerable<SelectDiseaseViewModel>> AllDiseasesAsync()
+        //{
+        //    IEnumerable<SelectDiseaseViewModel> allDiseases =
+        //        await this.dbContext
+        //        .Diseases
+        //        .AsNoTracking()
+        //        .Select(d => new SelectDiseaseViewModel()
+        //        {
+        //            Id = d.Id.ToString(),
+        //            Name = d.Name
+        //        })
+        //        .ToArrayAsync();
+
+        //    return allDiseases;
         }
     }
 }

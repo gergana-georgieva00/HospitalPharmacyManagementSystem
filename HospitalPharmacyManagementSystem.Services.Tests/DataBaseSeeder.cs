@@ -15,6 +15,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
         public static AppUser PatientUser;
         public static Pharmacist Pharmacist;
         public static Category Category;
+        public static Disease Disease;
 
         public static void SeedDatabase(HospitalPharmacyManagementSystemDbContext dbContext)
         {
@@ -54,11 +55,17 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
                 Id = 1,
                 Name = "Over-the-counter"
             };
+            Disease = new Disease()
+            {
+                Id = 1,
+                Name = "Heart Disease"
+            };
 
             dbContext.Users.Add(PharmacistUser);
             dbContext.Users.Add(PatientUser);
             dbContext.Pharmacists.Add(Pharmacist);
             dbContext.Categories.Add(Category);
+            dbContext.Diseases.Add(Disease);
 
             dbContext.SaveChanges();
         }

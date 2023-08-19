@@ -90,7 +90,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
         }
 
         [Test]
-        public async Task Test()
+        public async Task PrescribeDrugAsyncShouldWorkCorrectly()
         {
             PrescribeFormModel model = new PrescribeFormModel()
             {

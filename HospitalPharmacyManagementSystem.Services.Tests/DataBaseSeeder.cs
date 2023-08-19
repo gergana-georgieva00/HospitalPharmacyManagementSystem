@@ -55,6 +55,19 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
                 Id = 1,
                 Name = "Over-the-counter"
             };
+            dbContext.Categories.Add(Category);
+            Category = new Category()
+            {
+                Id = 2,
+                Name = "Prescription"
+            };
+            dbContext.Categories.Add(Category);
+            Category = new Category()
+            {
+                Id = 3,
+                Name = "Complementary medicine"
+            };
+            dbContext.Categories.Add(Category);
             Drug = new Drug()
             {
                 Id = Guid.Parse("AEC8649C-11B7-4040-AF70-23AA5F293EB3"),

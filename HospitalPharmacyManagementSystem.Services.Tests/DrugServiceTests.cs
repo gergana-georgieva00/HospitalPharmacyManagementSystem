@@ -49,5 +49,19 @@
             await this.drugService.DeleteDrugByIdAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower());
             Assert.That(drug.BrandName, Is.EqualTo("Lipitor"));
         }
+
+        [Test]
+        public async Task ExistsByIdAsyncShouldWorkCorrectly()
+        {
+            var result = await this.drugService.ExistsByIdAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower());
+            Assert.True(result);
+        }
+        [Test]
+        public async Task GetDrugForEditByIdAsyncShouldWorkCorrectly()
+        {
+            var drug = await this.drugService.GetDrugForEditByIdAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower());
+            Assert.That(drug.BrandName, Is.EqualTo("Lipitor"));
+        }
+
     }
 }

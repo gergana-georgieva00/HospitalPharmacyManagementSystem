@@ -105,5 +105,14 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
 
             Assert.True(dbContext.Prescriptions.Any(p => p.DiseaseId == 1));
         }
+
+        [Test]
+        public async Task GetPharmacistIdByUserIdAsyncShouldReturnCorrectResult()
+        {
+            var result = await this.pharmacistService
+                .GetPharmacistIdByUserIdAsync("AC08E4B9-C160-4ED6-BC83-9C935BF11951".ToLower());
+
+            Assert.That(result, Is.EqualTo("AF814777-0299-4041-AA12-F800EA5A25DA".ToLower()));
+        }
     }
 }

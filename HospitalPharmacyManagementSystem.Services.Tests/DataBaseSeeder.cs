@@ -49,6 +49,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
             };
             Pharmacist = new Pharmacist()
             {
+                Id = Guid.Parse("AF814777-0299-4041-AA12-F800EA5A25DA"),
                 HospitalIdNumber = "12345678",
                 User = PharmacistUser
             };

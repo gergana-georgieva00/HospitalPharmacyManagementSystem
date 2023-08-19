@@ -21,6 +21,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
         {
             PharmacistUser = new AppUser()
             {
+                Id = Guid.Parse("AC08E4B9-C160-4ED6-BC83-9C935BF11951"),
                 UserName = "gerganaPharmacist@gmail.com",
                 NormalizedUserName = "GERGANAPHARMACIST@GMAIL.COM",
                 Email = "gerganaPharmacist@gmail.com",
@@ -34,6 +35,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
             };
             PatientUser = new AppUser()
             {
+                Id = Guid.Parse("C0BCC73A-D87C-4D81-BDE4-20FFAEE2C93E"),
                 UserName = "patient@gmail.com",
                 NormalizedUserName = "PATIENT@GMAIL.COM",
                 Email = "patient@gmail.com",

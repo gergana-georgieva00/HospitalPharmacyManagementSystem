@@ -3,6 +3,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
     using HospitalPharmacyManagementSystem.Data;
     using HospitalPharmacyManagementSystem.Services.Data;
     using HospitalPharmacyManagementSystem.Services.Data.Interfaces;
+    using HospitalPharmacyManagementSystem.Web.ViewModels.Pharmacist;
     using Microsoft.EntityFrameworkCore;
     using static DatabaseSeeder;
 
@@ -60,7 +61,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
         [Test]
         public async Task PatientExistsByEmailAsyncShouldReturnFalseWhenNotExists()
         {
-            string existingPatientEmail = "";//PatientUser.Email.ToString();
+            string existingPatientEmail = "";
 
             bool result = await this.pharmacistService.PatientExistsByEmailAsync(existingPatientEmail);
 
@@ -78,14 +79,31 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
             Assert.IsTrue(result);
         }
 
-    [Test]
-    public async Task PharmacistExistByHospitalIdNumberAsyncShouldReturnFalseWhenNotExists()
-    {
-        string notexistingPharmacistUserId = "";
+        [Test]
+        public async Task PharmacistExistByHospitalIdNumberAsyncShouldReturnFalseWhenNotExists()
+        {
+            string notexistingPharmacistUserId = "";
 
-        bool result = await this.pharmacistService.PharmacistExistsByUserIdAsync(notexistingPharmacistUserId);
+            bool result = await this.pharmacistService.PharmacistExistsByHospitalIdAsync(notexistingPharmacistUserId);
 
-        Assert.IsFalse(result);
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public async Task Test()
+        {
+            PrescribeFormModel model = new PrescribeFormModel()
+            {
+                PatientEmail = "patient@gmail.com",
+                DrugId = "AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower(),
+                DiseaseId = 1,
+                MedicationFrequency = "",
+                Notes = ""
+            };
+
+            await this.pharmacistService.PrescribeDrugAsync(model, "AC08E4B9-C160-4ED6-BC83-9C935BF11951".ToLower());
+
+            Assert.True(dbContext.Prescriptions.Any(p => p.DiseaseId == 1));
+        }
     }
-}
 }

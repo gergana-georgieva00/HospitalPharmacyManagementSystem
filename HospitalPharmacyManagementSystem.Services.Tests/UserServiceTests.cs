@@ -28,24 +28,16 @@
         }
 
         [Test]
-        public async Task GetFullNameByIdAsyncShouldReturnCorrectResultWhenNull()
+        public async Task GetFullNameByIdAsyncShouldReturnCorrectResultWhenNotExists()
         {
-            var user = await this.dbContext
-                .Users
-                .FirstOrDefaultAsync(u => u.Id.ToString() == PatientUser.FullName);
+            var result = await this.userService.GetFullNameByIdAsync("");
 
-            Assert.That(user, Is.EqualTo(null));
+            Assert.That(result, Is.EqualTo(""));
         }
 
         [Test]
         public async Task GetFullNameByIdAsyncShouldReturnCorrectResult()
         {
-            //var user = await this.dbContext
-            //    .Users
-            //    .FirstOrDefaultAsync(u => u.Id.ToString() == PharmacistUser.FullName);
-
-            //Assert.That(user.FullName, Is.EqualTo(PharmacistUser.FullName));
-
             var user = await this.dbContext
                 .Users
                 .FirstOrDefaultAsync(u => u.Id == PharmacistUser.Id);
@@ -53,6 +45,26 @@
             var result = await this.userService.GetFullNameByIdAsync(user.Id.ToString());
 
             Assert.That(result, Is.EqualTo(PharmacistUser.FullName));
+        }
+
+        [Test]
+        public async Task GetFullNameByEmailAsyncShouldReturnCorrectResultWhenNull()
+        {
+            var resut = await this.userService.GetFullNameByEmailAsync("");
+
+            Assert.That(resut, Is.EqualTo(""));
+        }
+
+        [Test]
+        public async Task GetFullNameByEmailAsyncShouldReturnCorrectResult()
+        {
+            var user = await this.dbContext
+                .Users
+                .FirstOrDefaultAsync(u => u.Email == PatientUser.Email);
+
+            var resut = await this.userService.GetFullNameByEmailAsync(user.Email);
+
+            Assert.That(resut, Is.EqualTo(PatientUser.FullName));
         }
     }
 }

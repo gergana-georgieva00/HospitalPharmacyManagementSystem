@@ -66,7 +66,7 @@ namespace HospitalPharmacyManagementSystem.Services.Tests
                 Price = 20.71m,
                 CreatedOn = DateTime.Now,
                 CategoryId = 2,
-                IsActive = false
+                IsActive = true
             };
 
             dbContext.Users.Add(PharmacistUser);

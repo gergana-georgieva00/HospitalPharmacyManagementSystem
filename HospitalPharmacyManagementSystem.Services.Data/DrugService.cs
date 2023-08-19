@@ -14,7 +14,6 @@
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    //using static HospitalPharmacyManagementSystem.Common.EntityValidationConstants;
 
     public class DrugService : IDrugService
     {

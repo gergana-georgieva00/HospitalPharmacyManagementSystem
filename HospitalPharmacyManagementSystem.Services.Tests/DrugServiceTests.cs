@@ -5,6 +5,7 @@
     using HospitalPharmacyManagementSystem.Services.Data;
     using Microsoft.EntityFrameworkCore;
     using static DatabaseSeeder;
+    using HospitalPharmacyManagementSystem.Services.Data.Models.Drug;
 
     public class DrugServiceTests
     {
@@ -27,6 +28,11 @@
             this.drugService = new DrugService(this.dbContext);
         }
 
-
+        [Test]
+        public async Task AllDrugsAsyncShouldWorkCorrectly()
+        {
+            var result = await this.drugService.AllDrugsAsync();
+            Assert.That(result.ToList()[0].BrandName, Is.EqualTo("Lipitor"));
+        }
     }
 }

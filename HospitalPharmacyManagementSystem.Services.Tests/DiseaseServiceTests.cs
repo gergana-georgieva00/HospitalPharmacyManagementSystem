@@ -28,21 +28,6 @@
             this.diseaseService = new DiseaseService(this.dbContext);
         }
 
-        //public async Task<IEnumerable<SelectDiseaseViewModel>> AllDiseasesAsync()
-        //{
-        //    IEnumerable<SelectDiseaseViewModel> allDiseases =
-        //        await this.dbContext
-        //        .Diseases
-        //        .AsNoTracking()
-        //        .Select(d => new SelectDiseaseViewModel()
-        //        {
-        //            Id = d.Id.ToString(),
-        //            Name = d.Name
-        //        })
-        //        .ToArrayAsync();
-
-        //    return allDiseases;
-
         [Test]
         public async Task AllDiseasesAsyncShouldWorkCorrectly()
         {

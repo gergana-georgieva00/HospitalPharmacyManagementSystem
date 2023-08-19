@@ -34,5 +34,12 @@
             var result = await this.drugService.AllDrugsAsync();
             Assert.That(result.ToList()[0].BrandName, Is.EqualTo("Lipitor"));
         }
+
+        [Test]
+        public async Task BestDealsAsyncShouldWorkCorrectly()
+        {
+            var result = await this.drugService.BestDealsAsync();
+            Assert.That(result.ToList()[0].BrandName, Is.EqualTo("Lipitor"));
+        }
     }
 }

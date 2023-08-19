@@ -28,22 +28,6 @@
             this.categoryService = new CategoryService(this.dbContext);
         }
 
-        //public async Task<IEnumerable<DrugSelectCategoryViewModel>> AllCategoriesAsync()
-        //{
-        //    IEnumerable<DrugSelectCategoryViewModel> allCategories =
-        //        await this.dbContext
-        //        .Categories
-        //        .AsNoTracking()
-        //        .Select(d => new DrugSelectCategoryViewModel()
-        //        {
-        //            Id = d.Id,
-        //            Name = d.Name
-        //        })
-        //        .ToArrayAsync();
-
-        //    return allCategories;
-        //}
-
         [Test]
         public async Task AllCategoriesAsyncShouldWorkCorrectly()
         {

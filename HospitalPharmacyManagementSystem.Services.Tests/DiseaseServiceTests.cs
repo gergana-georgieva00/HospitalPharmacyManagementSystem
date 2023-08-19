@@ -42,6 +42,13 @@
         //        .ToArrayAsync();
 
         //    return allDiseases;
+
+        [Test]
+        public async Task AllDiseasesAsyncShouldWorkCorrectly()
+        {
+            var result = await this.diseaseService.AllDiseasesAsync();
+
+            Assert.That(result.ToList()[0].Name, Is.EqualTo("Heart Disease"));
         }
     }
 }

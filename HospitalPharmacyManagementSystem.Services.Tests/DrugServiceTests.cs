@@ -112,7 +112,14 @@
 
             await this.drugService.EditDrugByIdAndFormModelAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower(), model);
             var result = await this.drugService.AllByUserIdAsync("C0BCC73A-D87C-4D81-BDE4-20FFAEE2C93E".ToLower());
-            Assert.That(result.ToList()[0].DrugBrandName, Is.EqualTo("Lipitor"));
+            Assert.That(result.ToList()[0].DrugBrandName, Is.EqualTo("TestDrug"));
+        }
+
+        [Test]
+        public async Task GetPrescriptionByIdAsyncShouldWorkCorrectly()
+        {
+            var result = await this.drugService.GetPrescriptionByIdAsync("DC8AF683-A9F7-4197-9771-641C055758B8".ToLower());
+            Assert.That(result.Notes, Is.EqualTo(""));
         }
     }
 }

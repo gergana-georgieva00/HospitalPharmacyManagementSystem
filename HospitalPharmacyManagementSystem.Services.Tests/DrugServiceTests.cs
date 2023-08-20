@@ -30,6 +30,15 @@
         }
 
         [Test]
+        [RequiresThread]
+        public async Task ExistsByIdAsyncShouldWorkCorrectly()
+        {
+            OneTimeSetUp();
+            var result = await this.drugService.ExistsByIdAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower());
+            Assert.True(result);
+        }
+
+        [Test]
         public async Task AllDrugsAsyncShouldWorkCorrectly()
         {
             var result = await this.drugService.AllDrugsAsync();
@@ -51,26 +60,6 @@
             Assert.That(drug.BrandName, Is.EqualTo("Lipitor"));
         }
 
-        [Test]
-        public async Task ExistsByIdAsyncShouldWorkCorrectly()
-        {
-            var result = await this.drugService.ExistsByIdAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower());
-            Assert.True(result);
-        }
-
-        [Test]
-        public async Task GetDrugForEditByIdAsyncShouldWorkCorrectly()
-        {
-            var drug = await this.drugService.GetDrugForEditByIdAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower());
-            Assert.That(drug.BrandName, Is.EqualTo("Lipitor"));
-        }
-
-        [Test]
-        public async Task GetDetailsByIdAsyncShouldWorkCorrectly()
-        {
-            var drugViewModel = await this.drugService.GetDrugForEditByIdAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower());
-            Assert.That(drugViewModel.BrandName, Is.EqualTo("Lipitor"));
-        }
 
         [Test]
         public async Task AllByUserIdAsyncShouldWorkCorrectly()
@@ -97,9 +86,28 @@
             Assert.That(result.ToList()[0].DrugBrandName, Is.EqualTo("Lipitor"));
         }
 
+
         [Test]
+        [RequiresThread]
+        public async Task GetDetailsByIdAsyncShouldWorkCorrectly()
+        {
+            var drugViewModel = await this.drugService.GetDrugForEditByIdAsync("AEC8649C-11B7-4040-AF70-23AA5F293EB3".ToLower());
+            Assert.That(drugViewModel.BrandName, Is.EqualTo("Lipitor"));
+        }
+
+        [Test]
+        [RequiresThread]
+        public async Task GetDrugForEditByIdAsyncShouldWorkCorrectly()
+        {
+            var drug = await this.drugService.GetDrugForEditByIdAsync("aec8649c-11b7-4040-af70-23aa5f293eb3".ToLower());
+            Assert.That(drug.BrandName, Is.EqualTo("Lipitor"));
+        }
+
+        [Test]
+        [RequiresThread]
         public async Task EditDrugByIdAndFormModelAsyncShouldWorkCorrectly()
         {
+            OneTimeSetUp();
             AddDrugViewModel model = new AddDrugViewModel()
             {
                 BrandName = "TestDrug",

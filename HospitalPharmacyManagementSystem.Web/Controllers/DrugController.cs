@@ -25,6 +25,7 @@
         }
 
         [HttpGet]
+        [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery]AllDrugsQueryModel queryModel)
         {
@@ -213,7 +214,7 @@
                 ModelState.AddModelError(nameof(model.CategoryId), "Seelcted category does not exist!");
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 model.Categories = await this._categoryService.AllCategoriesAsync();
                 return View(model);
@@ -299,7 +300,7 @@
                 await this.drugService.DeleteDrugByIdAsync(id);
 
                 this.TempData[WarningMessage] = "Drug deleted successfully!";
-                return this.RedirectToAction("Mine", "Drug");
+                return this.RedirectToAction("All", "Drug");
             }
             catch (Exception)
             {

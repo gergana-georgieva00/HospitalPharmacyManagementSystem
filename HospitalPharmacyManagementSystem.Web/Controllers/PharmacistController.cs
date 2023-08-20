@@ -85,7 +85,7 @@
             string userId = this.User.GetId()!;
             bool isUserPharmacist = await this.pharmacistService
                 .PharmacistExistsByUserIdAsync(userId);
-            ViewBag.IsUserPharmacist = isUserPharmacist;
+            //ViewBag.IsUserPharmacist = isUserPharmacist;
 
             try
             {

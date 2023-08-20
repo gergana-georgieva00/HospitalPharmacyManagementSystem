@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Delete Drug";
 }
-<h2 class="text-center">@ViewBag.Title</h2>
+<h2 class="text-center" style="color: #f0a04b; font-weight:600">@ViewBag.Title</h2>
 <hr />
 <form asp-action="Delete">
     <div class="row">
@@ -11,15 +11,15 @@
         </div>
         <div class="col-md-8">
             <div class="form-group">
-                <label asp-for="BrandName" class="control-label"></label>
-                <input asp-for="BrandName" class="form-control" disabled="disabled" />
+                <label asp-for="BrandName" class="control-label" style="font-weight:500"></label>
+                <input asp-for="BrandName" class="form-control" disabled="disabled" style="background-color:#e1eedd" />
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" disabled="disabled" />
+                <label asp-for="Description" class="control-label" style="font-weight:500"></label>
+                <input asp-for="Description" class="form-control" disabled="disabled" style="background-color:#e1eedd" />
             </div>
-            <div class="form-group">
-                <input type="submit" value="Delete" class="btn btn-primary" />
+            <div class="form-group mt-2">
+                <input type="submit" value="Delete" class="btn btn-primary" style="color: white; background-color:#183a1d;font-weight:500" />
             </div>
         </div>
     </div>

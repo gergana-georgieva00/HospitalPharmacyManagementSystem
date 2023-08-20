@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Drug Details";
 }
-<h2 class="text-center">@ViewBag.Title</h2>
+<h2 class="text-center" style="color: #f0a04b; font-weight:600">@ViewBag.Title</h2>
 <hr />
 <div class="container" style="display:inline">
     <div class="row">
@@ -10,22 +10,22 @@
             <img class="card-img-top" style="width: 20rem;"
                  src="@Model.ImageUrl" alt="Drug Image">
         </div>
-        <div class="card col-8 border-0">
-            <p style="font-size:25px;"><u>@Model.BrandName</u></p>
-            <p>Form: <b>@Model.Form</b></p>
+        <div class="card col-8 border-0" style="background-color:#e1eedd">
+            <p style="font-size:25px;font-weight:500;color:#183a1d"><u>@Model.BrandName</u></p>
+            <p>Form: <b style="color:#183a1d">@Model.Form</b></p>
             <p>
                 Price:
                 <b>@String.Format("{0:f2}", Model.Price) BGN</b>
             </p>
-            <p>@Model.Description</p>
-            <p>Category: <b>@Model.Category</b></p>
+            <p>Description: <b style="color:#183a1d">@Model.Description</b></p>
+            <p>Category: <b style="color:#183a1d">@Model.Category</b></p>
             <div class="form-inline">
                 @if (User.Identity?.IsAuthenticated ?? false)
                 {
                     <a asp-area = "" asp-controller="Drug" asp-action="Edit" asp-route-id="@Model.Id"
-                       class="btn btn-warning">Edit</a>
+                       class="btn btn-warning" style="color: white; background-color:#183a1d;font-weight:500">Edit</a>
                     <a asp-area="" asp-controller="Drug" asp-action="Delete" asp-route-id="@Model.Id"
-                       class="btn btn-danger">Delete</a>
+                       class="btn btn-danger" style="color: white; background-color:#183a1d;font-weight:500">Delete</a>
                 }
             </div>
         </div>

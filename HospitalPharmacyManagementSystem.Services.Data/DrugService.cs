@@ -145,6 +145,7 @@
                 ImageUrl = formModel.ImageUrl,
                 Price = formModel.PricePerPackage,
                 CategoryId = formModel.CategoryId,
+                CreatedOn = DateTime.UtcNow
             };
 
             await this.dbContext.Drugs.AddAsync(newDrug);

@@ -19,7 +19,7 @@ namespace HospitalPharmacyManagementSystem.Common
             public const int BrandNameMinLength = 2;
             public const int BrandNameMaxLength = 150;
 
-            public const int DescriptionMinLength = 50;
+            public const int DescriptionMinLength = 10;
             public const int DescriptionMaxLength = 500;
 
             public const string PriceMinValue = "0";
